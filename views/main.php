@@ -50,7 +50,7 @@ if (!empty($_POST)) {
 	$logged_in_greeting = strip_tags($_POST['mxp_fb_messenger_logged_in_greeting']);
 	$logged_out_greeting = strip_tags($_POST['mxp_fb_messenger_logged_out_greeting']);
 	$theme_color = $_POST['mxp_fb_messenger_theme_color'];
-	$mxp_remove_plugin_debug_log = $_POST['mxp_remove_plugin_debug_log'] == "" ? "no" : $_POST['mxp_remove_plugin_debug_log'];
+	$mxp_remove_plugin_debug_log = (!isset($_POST['mxp_remove_plugin_debug_log']) || $_POST['mxp_remove_plugin_debug_log'] == "") ? "no" : $_POST['mxp_remove_plugin_debug_log'];
 	$mxp_active_tab = $_POST['mxp_fb2wp_active_tab'];
 	$section_title = stripslashes($_POST['mxp_fb_functions_section_title']);
 	$comment_mirror_enable = $_POST['mxp_fb2wp_comment_mirror_enable'];
