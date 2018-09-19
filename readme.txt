@@ -5,7 +5,7 @@ Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 
 Requires at least: 4.7
 Requires PHP: 5.4
 Tested up to: 4.9.8
-Stable tag: 1.7.3
+Stable tag: 1.7.4
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,6 +159,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.7.4 =
+
+* 感謝 Kdiag Haci 網友提交可能的安全性風險。已完成修復設定頁的 CSRF issue
 
 = 1.7.3 =
 
