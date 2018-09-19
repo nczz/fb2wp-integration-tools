@@ -4,7 +4,7 @@ if (!defined('WPINC')) {
 }
 //有整理過些惹...
 //TODO:優化
-if (!empty($_POST)) {
+if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-setting-page')) {
 	$id = $_POST['mxp_fb_app_id'];
 	$secret = $_POST['mxp_fb_secret'];
 	$token = $_POST['mxp_fb_app_access_token'];
@@ -402,6 +402,7 @@ echo '</ul>';
 		</p>
 </div>
  <input type="hidden" value="<?php echo $activebtn; ?>" name="mxp_fb2wp_active_tab" id="mxp_fb2wp_active_tab" />
+ <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('mxp-fb2wp-main-setting-page'); ?>"/>
 <p><input type="submit" id="save" value="儲存" class="button action" /></p>
 </form>
 <p>當前版本：<?php echo Mxp_FB2WP::$version; ?></p>
