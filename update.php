@@ -5,7 +5,7 @@ if (!defined('WPINC')) {
 
 //更新方法都寫這，方法必須要回傳 true 才算更新完成。
 class Mxp_Update {
-	public static $version_list = array('1.3.4', '1.3.5', '1.3.6', '1.3.7', '1.3.8', '1.3.9', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.3.1', '1.4.4', '1.4.5', '1.4.6', '1.4.7', '1.4.7.1', '1.4.7.2', '1.4.7.3', '1.4.7.4', '1.4.8', '1.4.9', '1.5.0', '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.5.5', '1.5.6', '1.5.7', '1.5.7.1', '1.5.8', '1.5.9', '1.5.9.1', '1.6.0', '1.6.0.1', '1.7.0', '1.7.0.1', '1.7.0.4', '1.7.1', '1.7.2', '1.7.3', '1.7.4');
+	public static $version_list = array('1.3.4', '1.3.5', '1.3.6', '1.3.7', '1.3.8', '1.3.9', '1.4.0', '1.4.1', '1.4.2', '1.4.3', '1.4.3.1', '1.4.4', '1.4.5', '1.4.6', '1.4.7', '1.4.7.1', '1.4.7.2', '1.4.7.3', '1.4.7.4', '1.4.8', '1.4.9', '1.5.0', '1.5.1', '1.5.2', '1.5.3', '1.5.4', '1.5.5', '1.5.6', '1.5.7', '1.5.7.1', '1.5.8', '1.5.9', '1.5.9.1', '1.6.0', '1.6.0.1', '1.7.0', '1.7.0.1', '1.7.0.4', '1.7.1', '1.7.2', '1.7.3', '1.7.4', '1.7.5');
 
 	public static function apply_update($ver) {
 		$index = array_search($ver, self::$version_list);
@@ -19,7 +19,8 @@ class Mxp_Update {
 				echo "<script>console.log('mxp_update_to_v{$new_v}');</script>";
 			}
 			if (call_user_func(array(__CLASS__, "mxp_update_to_v{$new_v}")) === false) {
-				echo "<script>console.log('current version: {$ver}, new version: {$new_v}');</script>";
+				//echo "<script>console.log('current version: {$ver}, new version: {$new_v}');</script>";
+				//NO MORE TALK!
 				return false;
 			}
 		}
@@ -257,6 +258,11 @@ class Mxp_Update {
 	}
 	public static function mxp_update_to_v1_7_4() {
 		//感謝 Kdiag Haci 網友提交可能的安全性風險。已完成修復設定頁的 CSRF issue
+		return true;
+	}
+	public static function mxp_update_to_v1_7_5() {
+		//新增 Webhooks 紀錄搜尋功能，省得一頁一頁找！
+		//更新支援的 Graph API 版本到 v3.1
 		return true;
 	}
 }

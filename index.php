@@ -3,7 +3,7 @@
  * Plugin Name: FB2WP integration tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: 最強的 Facebook Webhooks 整合外掛，沒有之一！ 功能包含：粉絲頁評價、訊息機器人、發文同步回網站、粉絲頁外掛等，包含粉絲頁留言、訊息等開發者可以介接強化彈性 Hooks。
- * Version: 1.7.4
+ * Version: 1.7.5
  * Author: Chun
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ if (!class_exists('Mxp_FB2WP_API')) {
 }
 
 class Mxp_FB2WP {
-	static $version = '1.7.4';
+	static $version = '1.7.5';
 	protected static $instance = null;
 	protected static $rest_api = null;
 	public $slug = 'mxp-fb2wp';
@@ -604,6 +604,13 @@ class Mxp_FB2WP {
 			} else {
 				wp_send_json_error(array('msg' => '無效的請求'));
 			}
+			break;
+		case 'search':
+			$keyword = strip_tags($_POST['keyword']);
+			$keywords = explode(' ', $keyword);
+			$keywords = join('%%', $keywords);
+			$data = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}fb2wp_debug WHERE message LIKE '%{$keywords}%'", ARRAY_A);
+			wp_send_json_success(array('data' => $data, 'total_pages' => 1, 'page' => 1));
 			break;
 		default:
 			wp_send_json_error(array('msg' => '無效的請求'));

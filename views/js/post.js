@@ -41,13 +41,14 @@
     function build_table(data) {
         var items = data.data;
         var pages = data.total_pages;
+        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="關鍵字"/><button class="button action" id="search">搜尋</button></div>';
         var sel = '<select id="page_select">';
         for (var i = 0; i < pages; ++i) {
             var now = i == data.page ? 'selected' : '';
             sel += '<option value="' + i + '" ' + now + '>第 ' + (i + 1) + ' 頁</option>';
         }
         sel += '</select>';
-        var table = '<table><tr><th><button class="button action delete_all">刪除此頁</button> |' + sel + '</th><th>操作</th><th>時間</th><th>物件</th><th>對象</th><th>訊息</th></tr>';
+        var table = '<table id="main"><tr><th><button class="button action delete_all">刪除此頁</button> |' + sel + '</th><th>操作</th><th>時間</th><th>物件</th><th>對象</th><th>訊息</th></tr>';
         for (var i = 0; i < items.length; ++i) {
             var item = items[i];
             var disabled = item.action != 'add' ? 'disabled' : '';
@@ -63,7 +64,30 @@
             table += post + action + created_time + obj + sender + msg;
         }
         table += '</table>';
-        return table;
+        return search_box + table;
+    }
+
+    function build_search_results_table(data) {
+        var items = data.data;
+        var pages = data.total_pages;
+        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="關鍵字"/><button class="button action" id="search">搜尋</button></div>';
+        var table = '<table id="search_results"><tr><th><a href="">返回前頁</a></th><th>操作</th><th>時間</th><th>物件</th><th>對象</th><th>訊息</th></tr>';
+        for (var i = 0; i < items.length; ++i) {
+            var item = items[i];
+            var disabled = item.action != 'add' ? 'disabled' : '';
+            if (item.item == 'album') {
+                disabled = 'disabled';
+            }
+            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>發文</button> | <button data-id="' + item.sid + '"" class="button action delete">刪除</button></td>';
+            var action = '<td>' + item.action + '</td>';
+            var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
+            var obj = '<td>' + item.item + '</td>';
+            var sender = '<td><a href="https://facebook.com/' + item.sender + '" target="_blank" >' + (item.sender_name == null ? 'none' : item.sender_name) + '</a></td>';
+            var msg = '<td>' + (item.message == "" ? '無' : escapeHtml(item.message)) + '</td></tr>';
+            table += post + action + created_time + obj + sender + msg;
+        }
+        table += '</table>';
+        return search_box + table;
     }
 
     function event_binding() {
@@ -149,6 +173,25 @@
             $.post(ajaxurl, data, function(res) {
                 if (res.success) {
                     $('#table').html(build_table(res.data));
+                    event_binding();
+                } else {
+                    alert('發生錯誤！');
+                }
+                loading(false);
+            });
+        });
+
+        $('#search').click(function() {
+            loading(true);
+            var data = {
+                'action': 'mxp_debug_record_action',
+                'nonce': MXP_FB2WP.nonce,
+                'method': 'search',
+                'keyword': $('#keyword').val()
+            };
+            $.post(ajaxurl, data, function(res) {
+                if (res.success) {
+                    $('#table').html(build_search_results_table(res.data));
                     event_binding();
                 } else {
                     alert('發生錯誤！');
