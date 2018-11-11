@@ -20,9 +20,9 @@ if (class_exists('WP_REST_Controller')) {
 		 */
 		protected $rest_base = 'webhook';
 
-		public $fb_messenger_api = 'https://graph.facebook.com/v2.11/me/messages';
+		public $fb_messenger_api = 'https://graph.facebook.com/v3.1/me/messages';
 
-		public $fb_graph_api = 'https://graph.facebook.com/v2.11';
+		public $fb_graph_api = 'https://graph.facebook.com/v3.1';
 
 		public function get_namespace_var() {
 			return $this->namespace;
@@ -919,6 +919,7 @@ if (class_exists('WP_REST_Controller')) {
 						$attachment = array(
 							'post_mime_type' => $wp_filetype['type'],
 							'post_parent' => $pid,
+							'post_author' => get_option("mxp_fb2wp_post_author", "1"),
 							'post_title' => preg_replace('/\.[^.]+$/', '', $filename[$i]),
 							'post_content' => is_array($link) && isset($link[$i]['name']) ? $link[$i]['name'] : $origin_title . $origin_body,
 							'post_status' => 'inherit',

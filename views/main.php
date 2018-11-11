@@ -196,7 +196,7 @@ echo '<input type="text" value="' . get_option("mxp_fb_jssdk_local", "zh_TW") . 
 ?>
 		</p>
 		<p>設定 SDK 版本：
-		<input type="text" size="7" value="<?php echo get_option("mxp_fb_api_version", "v2.11"); ?>" name="mxp_fb_api_version">
+		<input type="text" size="7" value="<?php echo get_option("mxp_fb_api_version", "v3.1"); ?>" name="mxp_fb_api_version">
 		</p>
 </div>
 <div id="webhooks" class="container Section">
