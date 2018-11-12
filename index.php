@@ -3,7 +3,7 @@
  * Plugin Name: FB2WP integration tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: 最強的 Facebook Webhooks 整合外掛，沒有之一！ 功能包含：粉絲頁評價、訊息機器人、發文同步回網站、粉絲頁外掛等，包含粉絲頁留言、訊息等開發者可以介接強化彈性 Hooks。
- * Version: 1.7.5
+ * Version: 1.7.6
  * Author: Chun
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
@@ -19,7 +19,7 @@ if (!class_exists('Mxp_FB2WP_API')) {
 }
 
 class Mxp_FB2WP {
-	static $version = '1.7.5';
+	static $version = '1.7.6';
 	protected static $instance = null;
 	protected static $rest_api = null;
 	public $slug = 'mxp-fb2wp';
@@ -395,7 +395,7 @@ class Mxp_FB2WP {
 			return;
 		}
 		if (get_option("mxp_fb_comments_enable", "yes") == "yes" || get_option("mxp_fb_comments_enable", "yes") == "yes1") {
-			echo '<div id="mxp-fb2wp-comments"><p><div class="fb-comments"  data-numposts="5"></div></p></div>';
+			echo '<div id="mxp-fb2wp-comments"><p><div class="fb-comments" data-href="' . esc_url(get_permalink($post->ID)) . '" data-numposts="5"></div></p></div>';
 		}
 	}
 	// v1.4.5 新增FB留言模組覆蓋方法
@@ -432,7 +432,8 @@ class Mxp_FB2WP {
 	    FB.init({
 	      appId      : '<?php echo get_option("mxp_fb_app_id"); ?>',
 	      xfbml      : true,
-	      version    : '<?php echo get_option("mxp_fb_api_version", "v2.11"); ?>'
+	      autoLogAppEvents: true,
+	      version    : '<?php echo get_option("mxp_fb_api_version", "v3.1"); ?>'
 	    });
 	  };
 

@@ -5,7 +5,7 @@ Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 
 Requires at least: 4.7
 Requires PHP: 5.4
 Tested up to: 4.9.8
-Stable tag: 1.7.5
+Stable tag: 1.7.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,6 +159,12 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.7.6 =
+
+* 修正 Facebook JS SDK 留言外掛參數讀取頁面路徑為必填
+* 提升使用者預設 JS SDK 版本 v3.1，避免早期 v2.x 版的支援問題
+* 如果有問題，我應該會收到 feedback 吧（？），不想被主動提升版本可以自己設定回去，其實設定都是自己可以來的，我幫你一把而已。
 
 = 1.7.5 =
 
