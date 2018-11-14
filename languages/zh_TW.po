@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Project-Id-Version: FB2WP integration tools - Mxp.TW\n"
+"POT-Creation-Date: 2018-11-15 00:53+0800\n"
+"PO-Revision-Date: 2018-11-15 00:54+0800\n"
+"Language-Team: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: index.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;"
+"_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;"
+"esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;"
+"__ngettext_noop:1,2\n"
+"Last-Translator: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"Language: zh_TW\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#: index.php:142
+msgid "Mxp.TW FB Toobox"
+msgstr "Mxp.TW FB工具箱"
+
+#. Plugin Name of the plugin/theme
+msgid "FB2WP integration tools - Mxp.TW"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://tw.wordpress.org/plugins/fb2wp-integration-tools/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"最強的 Facebook Webhooks 整合外掛，沒有之一！ 功能包含：粉絲頁"
+"評價、訊息機器人、發文同步回網站、粉絲頁外掛等，包含粉絲頁留"
+"言、訊息等開發者可以介接強化彈性 Hooks。"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Chun"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.mxp.tw/contact/"
+msgstr ""

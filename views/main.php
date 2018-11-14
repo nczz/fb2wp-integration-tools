@@ -405,6 +405,6 @@ echo '</ul>';
  <input type="hidden" name="_wpnonce" value="<?php echo wp_create_nonce('mxp-fb2wp-main-setting-page'); ?>"/>
 <p><input type="submit" id="save" value="儲存" class="button action" /></p>
 </form>
-<p>當前版本：<?php echo Mxp_FB2WP::$version; ?></p>
+<p><?php esc_html_e('Current version: ','mxp-fb2wp');echo Mxp_FB2WP::$version; ?></p>
 <p>聯絡作者：<a href="https://www.mxp.tw/contact/" target="blank">江弘竣（阿竣）</a></p>
 <p>贊助作者：<a href="https://goo.gl/XQYSq1" target="blank">覺得有幫助嗎？請作者喝一杯咖啡吧！</a></p>

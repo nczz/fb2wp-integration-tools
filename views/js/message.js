@@ -3,7 +3,7 @@
         if (flag) {
             $('body').waitMe({
                 'effect': 'facebook',
-                'text': '請稍候...',
+                'text': MXP_FB2WP.waitMe,
                 'bg': 'rgba(255,255,255,0.7)',
                 'color': '#000',
                 'maxSize': '',
@@ -17,10 +17,10 @@
     }
 
     function add_item(prefix, id, req, resp) {
-        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. 比對句：<input class="' +
-            prefix + '_' + id + ' item" type="text" value="' + req + '" size="20"/>回應句：<textarea class="' +
+        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. ' + MXP_FB2WP.inputMatch + '<input class="' +
+            prefix + '_' + id + ' item" type="text" value="' + req + '" size="20"/>'+ MXP_FB2WP.matchReply +'<textarea class="' +
             prefix + '_' + id + ' item" rows="3" cols="30">' + decodeURIComponent(resp) + '</textarea><button data-id="' +
-            prefix + '_' + id + '" class="button delete_item">刪除</button></p>';
+            prefix + '_' + id + '" class="button delete_item">' + MXP_FB2WP.removeItem+'</button></p>';
     }
 
     function delete_item() {
@@ -56,10 +56,10 @@
         };
         $.post(ajaxurl, data, function(res) {
             if (res.success) {
-                alert('儲存成功！');
+                alert(MXP_FB2WP.successMsg);
                 loading(false);
             } else {
-                alert('發生錯誤！');
+                alert(MXP_FB2WP.errorMsg);
                 loading(false);
             }
         });
@@ -88,7 +88,7 @@
                 $('.delete_item').click(delete_item);
                 loading(false);
             } else {
-                alert('發生錯誤');
+                alert(MXP_FB2WP.errorMsg);
                 loading(false);
             }
         });
