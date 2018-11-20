@@ -20,7 +20,7 @@
         $(".activebtn").trigger('click');
         $('#import_ratings').click(function() {
             var self = this;
-            $(this).val('匯入中...');
+            $(this).val(MXP_FB2WP.importRat);
             var data = {
                 'action': 'mxp_import_fb_ratings',
                 'nonce': MXP_FB2WP.nonce,
@@ -28,7 +28,7 @@
             $.post(ajaxurl, data, function(res) {
                 console.log(res);
                 if (res.success) {
-                    $(self).val('匯入成功！');
+                    $(self).val(MXP_FB2WP.successMsg);
                     $(self).prop('disabled', true);
                 } else {
                     //Error? That's my problem...
