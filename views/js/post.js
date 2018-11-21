@@ -55,12 +55,12 @@
             if (item.item == 'album') {
                 disabled = 'disabled';
             }
-            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>發文</button> | <button data-id="' + item.sid + '"" class="button action delete">' + MXP_FB2WP.remove +'</button></td>';
+            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>'+MXP_FB2WP.postBtn+'</button> | <button data-id="' + item.sid + '"" class="button action delete">' + MXP_FB2WP.remove +'</button></td>';
             var action = '<td>' + item.action + '</td>';
             var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
             var obj = '<td>' + item.item + '</td>';
             var sender = '<td><a href="https://facebook.com/' + item.sender + '" target="_blank" >' + (item.sender_name == null ? 'none' : item.sender_name) + '</a></td>';
-            var msg = '<td>' + (item.message == "" ? '無' : escapeHtml(item.message)) + '</td></tr>';
+            var msg = '<td>' + (item.message == "" ? MXP_FB2WP.empty : escapeHtml(item.message)) + '</td></tr>';
             table += post + action + created_time + obj + sender + msg;
         }
         table += '</table>';
@@ -83,7 +83,7 @@
             var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
             var obj = '<td>' + item.item + '</td>';
             var sender = '<td><a href="https://facebook.com/' + item.sender + '" target="_blank" >' + (item.sender_name == null ? 'none' : item.sender_name) + '</a></td>';
-            var msg = '<td>' + (item.message == "" ? '無' : escapeHtml(item.message)) + '</td></tr>';
+            var msg = '<td>' + (item.message == "" ? MXP_FB2WP.empty : escapeHtml(item.message)) + '</td></tr>';
             table += post + action + created_time + obj + sender + msg;
         }
         table += '</table>';

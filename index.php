@@ -203,6 +203,8 @@ class Mxp_FB2WP {
 			'object' => esc_html__('Objects','mxp-fb2wp'),
 			'sender' => esc_html__('Targets','mxp-fb2wp'), // Target? 對象代表誰
 			'msg' => esc_html__('Messages','mxp-fb2wp'),
+			'postBtn' => esc_html__('Publish','mxp-fb2wp'),
+			'empty' => esc_html__('No contents','mxp-fb2wp'),
 		));
 		wp_enqueue_script($this->slug . '-post-page');
 		wp_enqueue_script($this->slug . '-loading-script');
@@ -357,13 +359,17 @@ class Mxp_FB2WP {
 			} else {
 				$theme_color = 'theme_color="#' . esc_attr($theme_color) . '"';
 			}
-			$logged_in_greeting = get_option("mxp_fb_messenger_logged_in_greeting", "你好，歡迎透過訊息聯絡我們！"); //登入狀態顯示訊息
+			$logged_in_greeting = get_option("mxp_fb_messenger_logged_in_greeting", 
+			/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
+			esc_html__('Hello, thanks for messaging us.','mxp-fb2wp')); //登入狀態顯示訊息"你好，歡迎透過訊息聯絡我們！"
 			if ($logged_in_greeting == "") {
 				$logged_in_greeting = '';
 			} else {
 				$logged_in_greeting = 'logged_in_greeting="' . esc_attr($logged_in_greeting) . '"';
 			}
-			$logged_out_greeting = get_option("mxp_fb_messenger_logged_out_greeting", "你好，歡迎透過訊息聯絡我們！"); //登出狀態顯示訊息
+			$logged_out_greeting = get_option("mxp_fb_messenger_logged_out_greeting", 
+			/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
+			esc_html__('Hello, thanks for messaging us.','mxp-fb2wp')); //登出狀態顯示訊息"你好，歡迎透過訊息聯絡我們！""你好，歡迎透過訊息聯絡我們！"
 			if ($logged_out_greeting == "") {
 				$logged_out_greeting = '';
 			} else {

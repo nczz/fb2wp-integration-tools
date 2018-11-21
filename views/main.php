@@ -57,7 +57,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
 	$comment_mirror_approved = $_POST['mxp_fb2wp_comment_mirror_approved'];
 	if (has_shortcode($post_footer, 'mxp_fb2wp_display_embed')) {
 		//待處理
-		echo "<script>alert('".__('「轉發文章Footer內容」中 請勿包含「mxp_fb2wp_display_embed」shortcode','mxp-fb2wp')."');</script>";
+		echo "<script>alert('".__('Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for synced posts.','mxp-fb2wp')."');</script>"; //「轉發文章Footer內容」中 請勿包含「mxp_fb2wp_display_embed」shortcode
 		unset($post_footer);
 	}
 }
@@ -181,7 +181,7 @@ foreach ($tabs as $key => $value) {
 		<input type="text" value="<?php echo get_option("mxp_fb_page_id"); ?>" name="mxp_fb_page_id" size="20" id="mxp_fb_page_id" />
 		</p>
 		<p><?php esc_html_e('Page Access Token: ','mxp-fb2wp');//粉絲頁應用程式授權碼：?>
-		<input type="text" value="<?php echo get_option("mxp_fb_app_access_token"); ?>" name="mxp_fb_app_access_token" size="60" id="fb_app_access_token" />(<a href="https://tw.wordpress.org/plugins/fb2wp-integration-tools/faq/" target="_blank" >Q&A</a>)
+		<input type="text" value="<?php echo get_option("mxp_fb_app_access_token"); ?>" name="mxp_fb_app_access_token" size="60" id="fb_app_access_token" />(<a href="https://tw.wordpress.org/plugins/fb2wp-integration-tools/faq/" target="_blank" ><?php esc_html_e('FAQ','mxp-fb2wp');?></a>)
 		</p>
 		<p><?php esc_html_e('Enable Facebook JavaScript SDK: ','mxp-fb2wp');//啟用 Facebook JavaScript SDK：?>
 		<input type="radio" name="mxp_fb_enable_jssdk" value="yes" <?php checked('yes', get_option("mxp_fb_enable_jssdk", "yes"));?> checked="checked"><label>
@@ -353,67 +353,70 @@ echo '<input type="text" value="' . get_option("mxp_fb_jssdk_local", "zh_TW") . 
 		</p>
 		<p><?php esc_html_e('Default video height: ', 'mxp-fb2wp');//預設影片高度：?>
 		<input type="text" name="mxp_fb2wp_video_height" size="7" value="<?php echo get_option("mxp_fb2wp_video_height", "240"); ?>" /></p>
-		<p>附件短碼影片使用部分，還有其他預設參數：video_controls, video_preload, video_loop, video_autoplay （列為TODO之後參數化）</p>
-		<p>預設顯示嵌入文章：
+		<p><?php esc_html_e('There are other parameters for displaying video attachments, such as "video_controls", "video_preload", "video_loop" and "video_autoplay." This feature is still under development.','mxp-fb2wp');//附件短碼影片使用部分，還有其他預設參數：video_controls, video_preload, video_loop, video_autoplay （列為TODO之後參數化）?></p>
+		<p><?php esc_html_e('Display embedded posts by default','mxp-fb2wp');//預設顯示嵌入文章：?>
 		<input type="radio" name="mxp_fb2wp_default_display_embed" value="yes" <?php checked('yes', get_option("mxp_fb2wp_default_display_embed", "yes"));?>><label><?php esc_html_e('Enable','mxp-fb2wp');?></label>
 		<input type="radio" name="mxp_fb2wp_default_display_embed" value="no" <?php checked('no', get_option("mxp_fb2wp_default_display_embed"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
-		<p>轉發文章Footer內容：
-		<textarea name="mxp_fb2wp_post_footer" rows="3" cols="40"><?php echo get_option("mxp_fb2wp_post_footer", ""); ?></textarea>（支援 HTML, JavaScript, CSS and shortcode）
+		<p><?php esc_html_e('Footer contents for synced posts: (HTML, JavaScript, CSS and shortcodes supported): ','mxp-fb2wp');//轉發文章Footer內容：（支援 HTML, JavaScript, CSS and shortcode）?>
+		<textarea name="mxp_fb2wp_post_footer" rows="3" cols="40"><?php echo get_option("mxp_fb2wp_post_footer", ""); ?></textarea>
 		</p>
-		<h2>留言同步回 WordPress 文章設定</h2>
-		<p>文章分享至粉絲頁時，同步粉絲留言內容回網站該篇文章。</p>
-		<p>是否啟用：
+		<h2><?php esc_html_e('Sync Comments Setup','mxp-fb2wp');//留言同步回 WordPress 文章設定?></h2>
+		<p><?php esc_html_e('To sync comments of posts shared to Facebook page back to the original posts.','mxp-fb2wp');//文章分享至粉絲頁時，同步粉絲留言內容回網站該篇文章。?></p>
+		<p><?php esc_html_e('Sync comments back: ','mxp-fb2wp');//是否啟用?>
 		<input type="radio" name="mxp_fb2wp_comment_mirror_enable" value="yes" <?php checked('yes', get_option("mxp_fb2wp_comment_mirror_enable", "yes"));?>><label><?php esc_html_e('Enable','mxp-fb2wp');?></label>
 		<input type="radio" name="mxp_fb2wp_comment_mirror_enable" value="no" <?php checked('no', get_option("mxp_fb2wp_comment_mirror_enable"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
-		<p>留言預設發佈：
+		<p><?php esc_html_e('Comments approved by default: ','mxp-fb2wp');//留言預設發佈：代表核准？?>
 		<input type="radio" name="mxp_fb2wp_comment_mirror_approved" value="yes" <?php checked('yes', get_option("mxp_fb2wp_comment_mirror_approved", "yes"));?>><label><?php esc_html_e('Enable','mxp-fb2wp');?></label>
 		<input type="radio" name="mxp_fb2wp_comment_mirror_approved" value="no" <?php checked('no', get_option("mxp_fb2wp_comment_mirror_approved"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
 </div>
 <div id="fb_plugin" class="container Section">
 		<h2><?php esc_html_e('Facebook Plugins','mxp-fb2wp'); //Facebook 外掛功能?></h2>
-		<p>區塊標題：
-		<input type="text" name="mxp_fb_functions_section_title" value="<?php echo get_option("mxp_fb_functions_section_title", "<h3>Facebook 功能：</h3>"); ?>">（支援 HTML, JavaScript and CSS)
+		<p><?php esc_html_e('Block title: ','mxp-fb2wp');//區塊標題：?>
+		<input type="text" name="mxp_fb_functions_section_title" value="<?php echo get_option("mxp_fb_functions_section_title", "<h3>Facebook 功能：</h3>"); ?>">
+		<?php esc_html_e('(HTML, JavaScript and CSS supoorted)','mxp-fb2wp');//（支援 HTML, JavaScript and CSS)?>
 		</p>
-		<p>啟用文章引言分享：
+		<p><?php esc_html_e('Enable Quote Plugin: ','mxp-fb2wp');//啟用文章引言分享：?>
 		<input type="radio" name="mxp_fb_quote_enable" value="yes" <?php checked('yes', get_option("mxp_fb_quote_enable", "yes"));?>><label><?php esc_html_e('Enable','mxp-fb2wp');?></label>
 		<input type="radio" name="mxp_fb_quote_enable" value="no" <?php checked('no', get_option("mxp_fb_quote_enable"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
-		<p>啟用文章儲存：
-		<input type="radio" name="mxp_fb_save_enable" value="yes" <?php checked('yes', get_option("mxp_fb_save_enable", "yes"));?>>是(大按鈕) 
-		<input type="radio" name="mxp_fb_save_enable" value="yes1" <?php checked('yes1', get_option("mxp_fb_save_enable", "yes"));?>>是(小按鈕) 
+		<p><?php esc_html_e('Enable Save Button','mxp-fb2wp');//啟用文章儲存：?>
+		<input type="radio" name="mxp_fb_save_enable" value="yes" <?php checked('yes', get_option("mxp_fb_save_enable", "yes"));?>><label><?php printf(esc_html__('Enable','mxp-fb2wp').' './* translators: the size of Save Button */esc_html__('(Large)','mxp-fb2wp'));?></label> 
+		<input type="radio" name="mxp_fb_save_enable" value="yes1" <?php checked('yes1', get_option("mxp_fb_save_enable", "yes"));?>><label><?php printf(esc_html__('Enable','mxp-fb2wp').' './* translators: the size of Save Button */esc_html__('(Small)','mxp-fb2wp'));?></label> 
 		<input type="radio" name="mxp_fb_save_enable" value="no" <?php checked('no', get_option("mxp_fb_save_enable"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
-		<p>啟用文章留言：
-		<input type="radio" name="mxp_fb_comments_enable" value="yes" <?php checked('yes', get_option("mxp_fb_comments_enable", "yes"));?>>是(共存模式) 
-		<input type="radio" name="mxp_fb_comments_enable" value="yes1" <?php checked('yes1', get_option("mxp_fb_comments_enable", "yes"));?>>是(單一模式) 
+		<p><?php esc_html_e('Enable Embedded Comments','mxp-fb2wp');//啟用文章留言：待確認?>
+		<input type="radio" name="mxp_fb_comments_enable" value="yes" <?php checked('yes', get_option("mxp_fb_comments_enable", "yes"));?>><label><?php printf(esc_html__('Enable','mxp-fb2wp').' './* translators: the mode of Embedded Comments */esc_html__('(Integrated mode)','mxp-fb2wp'));?></label> 
+		<input type="radio" name="mxp_fb_comments_enable" value="yes1" <?php checked('yes1', get_option("mxp_fb_comments_enable", "yes"));?>><label><?php printf(esc_html__('Enable','mxp-fb2wp').' './* translators: the mode of Embedded Comments */esc_html__('(Single mode)','mxp-fb2wp'));?></label> 
 		<input type="radio" name="mxp_fb_comments_enable" value="no" <?php checked('no', get_option("mxp_fb_comments_enable"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
-		<p>網站嵌入粉絲頁 Messenger 顧客聊天：
-		<input type="radio" name="mxp_fb_messenger_embed" value="show" <?php checked('show', get_option("mxp_fb_messenger_embed", "fade"));?>>展開對話框 
-		<input type="radio" name="mxp_fb_messenger_embed" value="fade" <?php checked('fade', get_option("mxp_fb_messenger_embed", "fade"));?>>延遲展開對話框 
-		<input type="radio" name="mxp_fb_messenger_embed" value="hide" <?php checked('hide', get_option("mxp_fb_messenger_embed", "fade"));?>>關閉對話框 
-		<input type="radio" name="mxp_fb_messenger_embed" value="no" <?php checked('no', get_option("mxp_fb_messenger_embed", "fade"));?>>不啟用 (<a href="https://goo.gl/zXU8rH" target="_blank">參考使用 FB2WP 將臉書 Messenger 聊天機器人加入 WordPress 網站教學</a>)
-		<p>Messenger 顧客聊天延遲展開對話框秒數：
+		<p><?php esc_html_e('Enable Customer Chat Plugin','mxp-fb2wp');//網站嵌入粉絲頁 Messenger 顧客聊天：?>
+		<input type="radio" name="mxp_fb_messenger_embed" value="show" <?php checked('show', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Show the dialog','mxp-fb2wp');//展開對話框 ?></label>
+		<input type="radio" name="mxp_fb_messenger_embed" value="fade" <?php checked('fade', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Show the dialog with delay','mxp-fb2wp');//延遲展開對話框 ?></label>
+		<input type="radio" name="mxp_fb_messenger_embed" value="hide" <?php checked('hide', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Hide the dialog','mxp-fb2wp');//關閉對話框 ?></label> 
+		<input type="radio" name="mxp_fb_messenger_embed" value="no" <?php checked('no', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label><br />
+		(<a href="https://goo.gl/zXU8rH" target="_blank"><?php esc_html_e('How to embed Messenger Automated Bots with FB2WP (zh-tw)','mxp-fb2wp');//參考使用 FB2WP 將臉書 Messenger 聊天機器人加入 WordPress 網站教學?></a>)
+		<p><?php esc_html_e('Delays of showing the dialog (sec): ','mxp-fb2wp');//Messenger 顧客聊天延遲展開對話框秒數：?>
 			<input type="number" name="mxp_fb_messenger_greeting_dialog_delay" value="<?php echo get_option("mxp_fb_messenger_greeting_dialog_delay", "5"); ?>" maxlength="3" size="3"/>
 		</p>
-		<p>Messenger 顧客聊天登入狀態顯示訊息：
-			<input type="text" name="mxp_fb_messenger_logged_in_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_in_greeting", "你好，歡迎透過訊息聯絡我們！"); ?>" size="40"/>（最多 80 字元）
+		<p><?php esc_html_e('Logged in greeting: ','mxp-fb2wp');//Messenger 顧客聊天登入狀態顯示訊息：?>
+			<input type="text" name="mxp_fb_messenger_logged_in_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_in_greeting", "你好，歡迎透過訊息聯絡我們！"); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)','mxp-fb2wp');//（最多 80 字元）?>
 		</p>
-		<p>Messenger 顧客聊天登出狀態顯示訊息：
-			<input type="text" name="mxp_fb_messenger_logged_out_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_out_greeting", "你好，歡迎透過訊息聯絡我們！"); ?>" size="40"/>（最多 80 字元）
+		<p><?php esc_html_e('Logged out greeting: ','mxp-fb2wp');//Messenger 顧客聊天登出狀態顯示訊息：?>
+			<input type="text" name="mxp_fb_messenger_logged_out_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_out_greeting", "你好，歡迎透過訊息聯絡我們！"); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)','mxp-fb2wp');//（最多 80 字元）?>
 		</p>
-		<p>Messenger 顧客聊天主題顏色：
-			#<input type="text" name="mxp_fb_messenger_theme_color" value="<?php echo get_option("mxp_fb_messenger_theme_color", ""); ?>" maxlength="8" size="8"/>（HEX 色碼格式，無需 # 字號）
+		<p><?php esc_html_e('Theme color: ','mxp-fb2wp');//Messenger 顧客聊天主題顏色：?>
+			#<input type="text" name="mxp_fb_messenger_theme_color" value="<?php echo get_option("mxp_fb_messenger_theme_color", ""); ?>" maxlength="8" size="8"/><br />
+			<?php esc_html_e('Hexadecimal color code without #','mxp-fb2wp');//（HEX 色碼格式，無需 # 字號）?>
 		</p>
 		</p>
-		<p>外掛區塊顯示位置：
-		<input type="radio" name="mxp_fb_widget_place" value="up" <?php checked('up', get_option("mxp_fb_widget_place", "down"));?>>內容上方 
-		<input type="radio" name="mxp_fb_widget_place" value="down" <?php checked('down', get_option("mxp_fb_widget_place", "down"));?>>內容下方 
+		<p><?php esc_html_e('Placement of Facebook Plugins','mxp-fb2wp');//外掛區塊顯示位置：?>
+		<input type="radio" name="mxp_fb_widget_place" value="up" <?php checked('up', get_option("mxp_fb_widget_place", "down"));?>><label><?php esc_html_e('Before the content','mxp-fb2wp');//內容上方?></label>
+		<input type="radio" name="mxp_fb_widget_place" value="down" <?php checked('down', get_option("mxp_fb_widget_place", "down"));?>><label><?php esc_html_e('After the content','mxp-fb2wp');//內容下方?></label>
 		</p>
-		<p>更新文章時同步清除 Facebook 快取：
+		<p><?php esc_html_e('Clear Facebook URL Cache after updating posts','mxp-fb2wp');//更新文章時同步清除 Facebook 快取：?>
 		<input type="radio" name="mxp_fb_clear_url_cache" value="yes" <?php checked('yes', get_option("mxp_fb_clear_url_cache", "yes"));?>><label><?php esc_html_e('Enable','mxp-fb2wp');?></label>
 		<input type="radio" name="mxp_fb_clear_url_cache" value="no" <?php checked('no', get_option("mxp_fb_clear_url_cache", "yes"));?>><label><?php esc_html_e('Disable','mxp-fb2wp');?></label>
 		</p>
