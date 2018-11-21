@@ -1,5 +1,5 @@
 === FB2WP integration tools ===
-Contributors: mxp
+Contributors: mxp, no249a002
 Donate link: https://goo.gl/XQYSq1
 Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 自動回覆訊息, API, sync, synchronize, 粉絲頁, Facebook, Page, Messenger, webhook, generate, auto, bot
 Requires at least: 4.7
@@ -54,6 +54,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 1. 多國語言化（i18n）
 2. 寫文件
+3. UI 修正
 
 == Installation ==
 
@@ -163,6 +164,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 = 1.7.8 =
 
 * 擴充 i18n 功能
+* 部分介面修正
 
 = 1.7.7 =
 

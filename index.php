@@ -4,7 +4,7 @@
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: The best Facebook Webhooks integration plugin ever! This plugin integrates the following features: Facebook Reviews, Automated bots, Facebook-WordPress posts synchronization and Facebook Page plugins etc. This plugin also allows developers to use powerful Hooks to connect Facebook Page comments and messages.
  * Version: 1.7.8
- * Author: Chun
+ * Author: Chun, Huanyi Chuang
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
