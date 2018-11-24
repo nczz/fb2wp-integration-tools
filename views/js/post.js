@@ -3,7 +3,7 @@
         if (flag) {
             $('body').waitMe({
                 'effect': 'facebook',
-                'text': '請稍候...',
+                'text': MXP_FB2WP.waitMe,
                 'bg': 'rgba(255,255,255,0.7)',
                 'color': '#000',
                 'maxSize': '',
@@ -41,26 +41,26 @@
     function build_table(data) {
         var items = data.data;
         var pages = data.total_pages;
-        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="關鍵字"/><button class="button action" id="search">搜尋</button></div>';
+        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="' + MXP_FB2WP.searchTerm + '"/><button class="button action" id="search">' + MXP_FB2WP.searchBtn + '</button></div>';
         var sel = '<select id="page_select">';
         for (var i = 0; i < pages; ++i) {
             var now = i == data.page ? 'selected' : '';
             sel += '<option value="' + i + '" ' + now + '>第 ' + (i + 1) + ' 頁</option>';
         }
         sel += '</select>';
-        var table = '<table id="main"><tr><th><button class="button action delete_all">刪除此頁</button> |' + sel + '</th><th>操作</th><th>時間</th><th>物件</th><th>對象</th><th>訊息</th></tr>';
+        var table = '<table id="main"><tr><th><button class="button action delete_all">' + MXP_FB2WP.removeBtn + '</button> |' + sel + '</th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg +'</th></tr>';
         for (var i = 0; i < items.length; ++i) {
             var item = items[i];
             var disabled = item.action != 'add' ? 'disabled' : '';
             if (item.item == 'album') {
                 disabled = 'disabled';
             }
-            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>發文</button> | <button data-id="' + item.sid + '"" class="button action delete">刪除</button></td>';
+            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>'+MXP_FB2WP.postBtn+'</button> | <button data-id="' + item.sid + '"" class="button action delete">' + MXP_FB2WP.remove +'</button></td>';
             var action = '<td>' + item.action + '</td>';
             var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
             var obj = '<td>' + item.item + '</td>';
             var sender = '<td><a href="https://facebook.com/' + item.sender + '" target="_blank" >' + (item.sender_name == null ? 'none' : item.sender_name) + '</a></td>';
-            var msg = '<td>' + (item.message == "" ? '無' : escapeHtml(item.message)) + '</td></tr>';
+            var msg = '<td>' + (item.message == "" ? MXP_FB2WP.empty : escapeHtml(item.message)) + '</td></tr>';
             table += post + action + created_time + obj + sender + msg;
         }
         table += '</table>';
@@ -70,8 +70,8 @@
     function build_search_results_table(data) {
         var items = data.data;
         var pages = data.total_pages;
-        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="關鍵字"/><button class="button action" id="search">搜尋</button></div>';
-        var table = '<table id="search_results"><tr><th><a href="">返回前頁</a></th><th>操作</th><th>時間</th><th>物件</th><th>對象</th><th>訊息</th></tr>';
+        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="' + MXP_FB2WP.searchTerm + '"/><button class="button action" id="search">' + MXP_FB2WP.searchBtn + '</button></div>';
+        var table = '<table id="search_results"><tr><th><a href="">返回前頁</a></th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg +'</th></tr>';
         for (var i = 0; i < items.length; ++i) {
             var item = items[i];
             var disabled = item.action != 'add' ? 'disabled' : '';
@@ -83,7 +83,7 @@
             var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
             var obj = '<td>' + item.item + '</td>';
             var sender = '<td><a href="https://facebook.com/' + item.sender + '" target="_blank" >' + (item.sender_name == null ? 'none' : item.sender_name) + '</a></td>';
-            var msg = '<td>' + (item.message == "" ? '無' : escapeHtml(item.message)) + '</td></tr>';
+            var msg = '<td>' + (item.message == "" ? MXP_FB2WP.empty : escapeHtml(item.message)) + '</td></tr>';
             table += post + action + created_time + obj + sender + msg;
         }
         table += '</table>';

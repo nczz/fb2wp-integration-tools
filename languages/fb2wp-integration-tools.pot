@@ -1,0 +1,770 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+"Project-Id-Version: FB2WP integration tools - Mxp.TW\n"
+"POT-Creation-Date: 2018-11-25 01:54+0800\n"
+"PO-Revision-Date: 2018-11-25 01:54+0800\n"
+"Last-Translator: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"Language-Team: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: index.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. translators: To sponsor the original developer of the plugin that shows on the plugin list.
+#: index.php:91
+msgid "Sponsor Me"
+msgstr ""
+
+#: index.php:133
+msgid ""
+"Oops, update failed. Please email to im@mxp.tw, and tell me in which version "
+"did you fail to update. You may check whether there is any error message in "
+"Console tab with Chrome DevTools."
+msgstr ""
+
+#: index.php:143
+msgid "Mxp.TW FB Toolbox"
+msgstr ""
+
+#: index.php:143
+msgid "FB2WP Settings"
+msgstr ""
+
+#: index.php:144
+msgid "Message Settings"
+msgstr ""
+
+#: index.php:145 index.php:190
+msgid "Webhooks Logs"
+msgstr ""
+
+#: index.php:155
+msgid "Facebook Toolbox Settings"
+msgstr ""
+
+#: index.php:161
+msgid "Importing Facebook ratings..."
+msgstr ""
+
+#: index.php:162
+msgid "Imported successfully!"
+msgstr ""
+
+#: index.php:169
+msgid "Message settings"
+msgstr ""
+
+#: index.php:175 index.php:196
+msgid "Loading..."
+msgstr ""
+
+#: index.php:176
+msgid "Remove match"
+msgstr ""
+
+#. translators: The input message sent from users.
+#: index.php:178
+msgid "Input match: "
+msgstr ""
+
+#. translators: The replying message sent from Automated bots.
+#: index.php:180
+msgid "Replying message: "
+msgstr ""
+
+#: index.php:181
+msgid "Errors occurred"
+msgstr ""
+
+#: index.php:182
+msgid "Saved successfully!"
+msgstr ""
+
+#: index.php:197
+msgid "Remove this page"
+msgstr ""
+
+#: index.php:198
+msgid "Remove"
+msgstr ""
+
+#: index.php:199
+msgid "Search"
+msgstr ""
+
+#: index.php:200
+msgid "Search terms"
+msgstr ""
+
+#: index.php:201
+msgid "Actions"
+msgstr ""
+
+#: index.php:202
+msgid "Time"
+msgstr ""
+
+#: index.php:203
+msgid "Objects"
+msgstr ""
+
+#: index.php:204
+msgid "Targets"
+msgstr ""
+
+#: index.php:205
+msgid "Messages"
+msgstr ""
+
+#: index.php:206
+msgid "Publish"
+msgstr ""
+
+#: index.php:207
+msgid "No contents"
+msgstr ""
+
+#. translators: Default Logged in greeting for Facebook Customer Chat Plugin.
+#: index.php:364 index.php:372
+msgid "Hello, thanks for messaging us."
+msgstr ""
+
+#: index.php:416 index.php:418
+msgid "Facebook features:"
+msgstr ""
+
+#: index.php:522 index.php:607
+msgid "Bad request"
+msgstr ""
+
+#: index.php:535
+msgid "Unable to renew"
+msgstr ""
+
+#: index.php:553
+msgid "Invalid request parameters"
+msgstr ""
+
+#: index.php:557
+msgid "Errors occurred. Please check the debugging log."
+msgstr ""
+
+#: index.php:628 index.php:638 index.php:649
+msgid "Invalid request"
+msgstr ""
+
+#. translators: Message that shows up when somebody fails to verify the request via Facebook.
+#: rest_api.php:67
+msgid "Oops, I believe that you are just testing."
+msgstr ""
+
+#: rest_api.php:149
+msgid "In general cases, you would not see this message."
+msgstr ""
+
+#: rest_api.php:348
+msgid "Errors occurred. Please try again later."
+msgstr ""
+
+#: rest_api.php:351
+msgid "We have already switched back to Manual Reply"
+msgstr ""
+
+#: rest_api.php:355
+msgid "Your technician should be in trouble."
+msgstr ""
+
+#: rest_api.php:394
+msgid ""
+"OK. Automated bots will be shut down temporarily in the next 12 hours.\\n"
+"\\nIn case you want to reactivate Automated bots, please type \"hi bot\""
+msgstr ""
+
+#: rest_api.php:396
+msgid "Congratulations, Automated bot is reactivated."
+msgstr ""
+
+#: views/main.php:60
+msgid ""
+"Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for "
+"synced posts."
+msgstr ""
+
+#: views/main.php:125
+msgid "Updated successfully!"
+msgstr ""
+
+#: views/main.php:131
+#, php-format
+msgid ""
+"The version of your WordPress too old ( v.%s ) and does not support REST API "
+"method. Please make sure to update your WordPress site to v4.7 (or later) "
+"version."
+msgstr ""
+
+#: views/main.php:138
+msgid ""
+"Starting from v2.5, Facebook API does not support insecure callback URL. "
+"Please upgrade your website to HTTPS before using the plugin!"
+msgstr ""
+
+#: views/main.php:159
+msgid "Features"
+msgstr ""
+
+#: views/main.php:161
+msgid "Facebook App Settings"
+msgstr ""
+
+#: views/main.php:162
+msgid "Facebook Webhooks Setup"
+msgstr ""
+
+#: views/main.php:163 views/main.php:237
+msgid "Facebook Messenger Bot Setup"
+msgstr ""
+
+#: views/main.php:164 views/main.php:272
+msgid "Sync Posts to WordPress"
+msgstr ""
+
+#: views/main.php:165 views/main.php:376
+msgid "Facebook Plugins"
+msgstr ""
+
+#: views/main.php:166 views/main.php:425
+msgid "Facebook Page Ratings"
+msgstr ""
+
+#: views/main.php:167 views/main.php:444
+msgid "Developer Tools"
+msgstr ""
+
+#. translators: This "settings" is used for Facebook App Settings tab.
+#: views/main.php:172
+msgid "Settings"
+msgstr ""
+
+#: views/main.php:174
+msgid "App ID: "
+msgstr ""
+
+#: views/main.php:177
+msgid "App Secret: "
+msgstr ""
+
+#: views/main.php:180
+msgid "Page ID: "
+msgstr ""
+
+#: views/main.php:183
+msgid "Page Access Token: "
+msgstr ""
+
+#: views/main.php:184
+msgid "FAQ"
+msgstr ""
+
+#: views/main.php:186
+msgid "Enable Facebook JavaScript SDK: "
+msgstr ""
+
+#. translators: Whether enabling Facebook JS SDK or not
+#: views/main.php:190 views/main.php:239 views/main.php:260 views/main.php:274
+#: views/main.php:338 views/main.php:342 views/main.php:358 views/main.php:367
+#: views/main.php:371 views/main.php:382 views/main.php:386 views/main.php:387
+#: views/main.php:391 views/main.php:392 views/main.php:420 views/main.php:446
+#: views/main.php:450 views/main.php:454
+msgid "Enable"
+msgstr ""
+
+#: views/main.php:190
+msgid "(Recommended)"
+msgstr ""
+
+#. translators: Whether enabling Facebook JS SDK or not
+#: views/main.php:194 views/main.php:240 views/main.php:261 views/main.php:275
+#: views/main.php:339 views/main.php:343 views/main.php:359 views/main.php:368
+#: views/main.php:372 views/main.php:383 views/main.php:388 views/main.php:393
+#: views/main.php:399 views/main.php:421 views/main.php:447 views/main.php:451
+msgid "Disable"
+msgstr ""
+
+#. translators: Choose the language of Facebook JS SDK
+#: views/main.php:198
+msgid "SDK Locale: "
+msgstr ""
+
+#. translators: Choose the version of Facebook JS SDK
+#: views/main.php:219
+msgid "SDK Version: "
+msgstr ""
+
+#: views/main.php:224
+msgid "Facebook App Webhooks Setup"
+msgstr ""
+
+#: views/main.php:225
+msgid "Please fill in the following URL to Callback URL in Webhooks settings"
+msgstr ""
+
+#: views/main.php:229
+msgid ""
+"Subscribe to the following events: messages, messaging_postbacks, standby, "
+"messaging_handovers, conversations, feed, ratings."
+msgstr ""
+
+#. translators: The verify token provided by site owners to confirm the request sent from Facebook
+#: views/main.php:232
+msgid "Verify Token: "
+msgstr ""
+
+#: views/main.php:238
+msgid "Enable Messenger Bot: "
+msgstr ""
+
+#: views/main.php:242
+msgid ""
+"After enabling this feature, please go to Settings > Messenger Platform on "
+"your Facebook Page, check \"Responses are partially automated, with some "
+"support by people,\" and set the app \"Page Inbox 263902037430900\" as your "
+"Secondary Receiver, and then the users may pass control of the conversation "
+"between Messenger Bots and Page managers."
+msgstr ""
+
+#: views/main.php:243
+msgid "Testing Facebook Accounts: "
+msgstr ""
+
+#. translators: Use comma-separated format to decide which Facebook account to access this feature
+#: views/main.php:247 views/main.php:320
+msgid ""
+"Use commas to separate testing users' Facebook user IDs, or leave blank to "
+"allow everyone to access this feature."
+msgstr ""
+
+#. translators: Default reply when there is no correspondent match.
+#: views/main.php:252
+msgid "Default reply: "
+msgstr ""
+
+#: views/main.php:254
+msgid ""
+"You may use [mxp_input_msg] as a placeholder of users input message. For "
+"example, \"Oops, I don't understand what you mean by saying "
+"'[mxp_input_msg]'. Please try other commands.\""
+msgstr ""
+
+#. translators: %1$s is the url of Handover Protocol instructions
+#: views/main.php:258
+#, php-format
+msgid "Enable <a href=\"%1$s\" target=\"%2$s\">Handover Protocol</a>: "
+msgstr ""
+
+#: views/main.php:263
+msgid "Text shown on Handover Protocol switch button: "
+msgstr ""
+
+#. translators: Default message shown on Handover Protocol switch button.
+#: views/main.php:267
+msgid "Click here to inform the admin."
+msgstr ""
+
+#: views/main.php:273
+msgid "Enable Sync Posts to WordPress"
+msgstr ""
+
+#. translators: Default post author for posts synced back to WordPress.
+#: views/main.php:280
+msgid "Post Author: "
+msgstr ""
+
+#. translators: Default post categories for posts synced back to WordPress.
+#: views/main.php:285
+msgid "Post Category: "
+msgstr ""
+
+#. translators: Default post visibility for posts synced back to WordPress.
+#: views/main.php:290
+msgid "Post Status & Visibility: "
+msgstr ""
+
+#: views/main.php:292
+msgid "Published"
+msgstr ""
+
+#: views/main.php:293
+msgid "Pending Review"
+msgstr ""
+
+#: views/main.php:294
+msgid "Draft"
+msgstr ""
+
+#: views/main.php:295
+msgid "Private"
+msgstr ""
+
+#: views/main.php:298
+msgid "Allow Comments: "
+msgstr ""
+
+#: views/main.php:299 views/main.php:303
+msgid "Allow"
+msgstr ""
+
+#: views/main.php:300 views/main.php:304
+msgid "Disallow"
+msgstr ""
+
+#: views/main.php:302
+msgid "Allow Pingbacks & Trackbacks: "
+msgstr ""
+
+#: views/main.php:306
+msgid "Post Type: "
+msgstr ""
+
+#: views/main.php:316
+msgid "Facebook accounts permitted to sync the posts: "
+msgstr ""
+
+#: views/main.php:323
+msgid "Post tags"
+msgstr ""
+
+#. translators: Ask the admin to separate post tags for synced posts with commas.
+#: views/main.php:326
+msgid "Use comma-saparated format"
+msgstr ""
+
+#: views/main.php:328
+msgid "Escape syncing posts with this hashtag: "
+msgstr ""
+
+#: views/main.php:330
+msgid "Do not append # to the defined hashtag."
+msgstr ""
+
+#: views/main.php:332
+msgid "Deafault title: "
+msgstr ""
+
+#: views/main.php:333
+msgid "-Synced from Facebook"
+msgstr ""
+
+#: views/main.php:334
+msgid ""
+"The posts will scrape the first line of the Facebook post as the post title "
+"by default, but Default Title will be used when the first line or the post "
+"is empty."
+msgstr ""
+
+#: views/main.php:337
+msgid "Display attachments by default: "
+msgstr ""
+
+#: views/main.php:341
+msgid "Display image captions by default: "
+msgstr ""
+
+#: views/main.php:345
+msgid "Default image width: "
+msgstr ""
+
+#: views/main.php:348
+msgid "Default image height: "
+msgstr ""
+
+#: views/main.php:351
+msgid "Default video width: "
+msgstr ""
+
+#: views/main.php:354
+msgid "Default video height: "
+msgstr ""
+
+#: views/main.php:357
+msgid "Display embedded posts by default: "
+msgstr ""
+
+#: views/main.php:361
+msgid ""
+"Footer contents for synced posts (HTML, JavaScript, CSS and shortcodes "
+"supported): "
+msgstr ""
+
+#: views/main.php:364
+msgid "Sync Comments Setup"
+msgstr ""
+
+#: views/main.php:365
+msgid ""
+"To sync comments of posts shared to Facebook page back to the original posts."
+msgstr ""
+
+#: views/main.php:366
+msgid "Sync comments back: "
+msgstr ""
+
+#: views/main.php:370
+msgid "Comments approved by default: "
+msgstr ""
+
+#: views/main.php:377
+msgid "Block title: "
+msgstr ""
+
+#: views/main.php:379
+msgid "(HTML, JavaScript and CSS supoorted)"
+msgstr ""
+
+#: views/main.php:381
+msgid "Enable Quote Plugin: "
+msgstr ""
+
+#: views/main.php:385
+msgid "Enable Save Button"
+msgstr ""
+
+#. translators: the size of Save Button
+#: views/main.php:386
+msgid "(Large)"
+msgstr ""
+
+#. translators: the size of Save Button
+#: views/main.php:387
+msgid "(Small)"
+msgstr ""
+
+#: views/main.php:390
+msgid "Enable Embedded Comments: "
+msgstr ""
+
+#. translators: the mode of Embedded Comments
+#: views/main.php:391
+msgid "(Integrated mode)"
+msgstr ""
+
+#. translators: the mode of Embedded Comments
+#: views/main.php:392
+msgid "(Single mode)"
+msgstr ""
+
+#: views/main.php:395
+msgid "Enable Customer Chat Plugin"
+msgstr ""
+
+#: views/main.php:396
+msgid "Show the dialog"
+msgstr ""
+
+#: views/main.php:397
+msgid "Show the dialog with delay"
+msgstr ""
+
+#: views/main.php:398
+msgid "Hide the dialog"
+msgstr ""
+
+#: views/main.php:400
+msgid "How to embed Messenger Messenger Bot with FB2WP (zh-tw)"
+msgstr ""
+
+#: views/main.php:401
+msgid "Delays of showing the dialog (sec): "
+msgstr ""
+
+#: views/main.php:404
+msgid "Logged in greeting: "
+msgstr ""
+
+#: views/main.php:405 views/main.php:408
+msgid "(Maximum 80 characters)"
+msgstr ""
+
+#: views/main.php:407
+msgid "Logged out greeting: "
+msgstr ""
+
+#: views/main.php:410
+msgid "Theme color: "
+msgstr ""
+
+#: views/main.php:412
+msgid "Hexadecimal color code without #"
+msgstr ""
+
+#: views/main.php:415
+msgid "Placement of Facebook Plugins"
+msgstr ""
+
+#: views/main.php:416
+msgid "Before the content"
+msgstr ""
+
+#: views/main.php:417
+msgid "After the content"
+msgstr ""
+
+#: views/main.php:419
+msgid "Clear Facebook URL Cache after updating posts"
+msgstr ""
+
+#: views/main.php:427
+msgid ""
+"1. Please subscribe to \"ratings\" event in your Facebook App before start "
+"using Facebook Page Ratings feature."
+msgstr ""
+
+#: views/main.php:430
+msgid ""
+"2. Use shortcode [mxp_fb2wp_display_ratings] to display synced reviews from "
+"Facebook wherever on your site."
+msgstr ""
+
+#: views/main.php:433
+msgid ""
+"3. The shortcode attribute \"limit\" will load 20 reviews by default. You "
+"may define other value, but too many requests may cause unexpected issues. "
+"Use \"uid\" to select certain user's review. Set \"display_embed\" attribute "
+"to \"yes\" to display the review in embed mode."
+msgstr ""
+
+#: views/main.php:436
+msgid ""
+"4. Developers may customize \"fb2wp_display_ratings\" to redefine the "
+"structure for better theme design."
+msgstr ""
+
+#: views/main.php:440
+msgid ""
+"5. Press the following button to import current ratings of your Facebook "
+"Page (at most 100 reviews)"
+msgstr ""
+
+#: views/main.php:441
+msgid "Ratings imported"
+msgstr ""
+
+#: views/main.php:441
+msgid "Import ratings"
+msgstr ""
+
+#: views/main.php:445
+msgid "Delete the plugin as well as all settings: "
+msgstr ""
+
+#: views/main.php:449
+msgid "Enable saving log files: "
+msgstr ""
+
+#: views/main.php:453
+msgid "Eliminate current logs: "
+msgstr ""
+
+#: views/main.php:456
+msgid "Current logs: "
+msgstr ""
+
+#: views/main.php:462
+msgid "No logs available."
+msgstr ""
+
+#. translators: Save the settings
+#: views/main.php:474
+msgid "Save"
+msgstr ""
+
+#: views/main.php:476
+msgid "Current version: "
+msgstr ""
+
+#: views/main.php:477
+msgid "Contact the developer: "
+msgstr ""
+
+#: views/main.php:478
+msgid "Sponsor the developer: "
+msgstr ""
+
+#: views/main.php:478
+msgid "Do you think the plugin helpful? Buy me a cup of coffee!"
+msgstr ""
+
+#: views/message.php:6 views/post.php:6
+msgid "Feature description"
+msgstr ""
+
+#: views/message.php:7
+msgid ""
+"The system will match the messages in Exact Match prior than Fuzzy Match, "
+"following the order of the messages."
+msgstr ""
+
+#: views/message.php:8
+msgid "Exact Match"
+msgstr ""
+
+#: views/message.php:9
+msgid "Triggered when input messages are matched exactly."
+msgstr ""
+
+#: views/message.php:11 views/message.php:15
+msgid "Add new match"
+msgstr ""
+
+#: views/message.php:11 views/message.php:15
+msgid "Save changes"
+msgstr ""
+
+#: views/message.php:12
+msgid "Fuzzy Match"
+msgstr ""
+
+#: views/message.php:13
+msgid "Regex is supported when using Fuzzy Match"
+msgstr ""
+
+#: views/post.php:7
+msgid ""
+"When the system receives data sent by Facebook, it will detect certain "
+"events and display them here."
+msgstr ""
+
+#. Plugin Name of the plugin/theme
+msgid "FB2WP integration tools - Mxp.TW"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "https://tw.wordpress.org/plugins/fb2wp-integration-tools/"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"The best Facebook Webhooks integration plugin ever! This plugin integrates "
+"the following features: Facebook Reviews, Automated bots, Facebook-WordPress "
+"posts synchronization and Facebook Page plugins etc. This plugin also allows "
+"developers to use powerful Hooks to connect Facebook Page comments and "
+"messages."
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Chun, Huanyi Chuang"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "https://www.mxp.tw/contact/"
+msgstr ""

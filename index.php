@@ -2,12 +2,14 @@
 /**
  * Plugin Name: FB2WP integration tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
- * Description: 最強的 Facebook Webhooks 整合外掛，沒有之一！ 功能包含：粉絲頁評價、訊息機器人、發文同步回網站、粉絲頁外掛等，包含粉絲頁留言、訊息等開發者可以介接強化彈性 Hooks。
- * Version: 1.7.7
- * Author: Chun
+ * Description: The best Facebook Webhooks integration plugin ever! This plugin integrates the following features: Facebook Reviews, Automated bots, Facebook-WordPress posts synchronization and Facebook Page plugins etc. This plugin also allows developers to use powerful Hooks to connect Facebook Page comments and messages.
+ * Version: 1.7.8
+ * Author: Chun, Huanyi Chuang
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
  * License URI: https://www.gnu.org/licenses/gpl-2.0.html
+ * Text Domain:  fb2wp-integration-tools
+ * Domain Path:  /languages/
  */
 
 if (!defined('WPINC')) {
@@ -19,7 +21,7 @@ if (!class_exists('Mxp_FB2WP_API')) {
 }
 
 class Mxp_FB2WP {
-	static $version = '1.7.7';
+	static $version = '1.7.8';
 	protected static $instance = null;
 	protected static $rest_api = null;
 	public $slug = 'mxp-fb2wp';
@@ -85,7 +87,8 @@ class Mxp_FB2WP {
 
 	public function add_action_links($links) {
 		$mxp_links = array(
-			'<a href="https://goo.gl/XQYSq1" target="blank"><font color=red>贊助作者</font></a>',
+			/* translators: To sponsor the original developer of the plugin that shows on the plugin list.*/
+			'<a href="https://goo.gl/XQYSq1" target="blank"><font color=red>'.__('Sponsor Me','fb2wp-integration-tools').'</font></a>',
 		);
 		return array_merge($links, $mxp_links);
 	}
@@ -127,7 +130,8 @@ class Mxp_FB2WP {
 			require_once ABSPATH . 'wp-admin/includes/plugin.php';
 			deactivate_plugins(plugin_basename(__FILE__));
 			//更新失敗的TODO:聯絡我～回報錯誤
-			wp_die('更新失敗惹...Q_Q||| 請來信至: im@mxp.tw 告訴我您是從哪個版本升級發生意外的？可以使用 Chrome Dev tools 的 console 分頁查看是否有錯誤提示！', 'Q_Q|||');
+			wp_die(esc_html__('Oops, update failed. Please email to im@mxp.tw, and tell me in which version did you fail to update. You may check whether there is any error message in Console tab with Chrome DevTools.','fb2wp-integration-tools'), 'Q_Q|||');
+			//更新失敗惹...Q_Q||| 請來信至: im@mxp.tw 告訴我您是從哪個版本升級發生意外的？可以使用 Chrome Dev tools 的 console 分頁查看是否有錯誤提示！
 		}
 
 	}
@@ -136,9 +140,9 @@ class Mxp_FB2WP {
 		public methods
 	*/
 	public function create_plugin_menu() {
-		add_menu_page('Mxp.TW FB工具箱', 'FB工具箱設定', 'administrator', $this->slug, array($this, 'main_page_cb'), 'dashicons-admin-generic');
-		add_submenu_page($this->slug, '訊息回覆設定', '訊息回覆設定', 'administrator', $this->slug . '-message', array($this, 'message_page_cb'));
-		add_submenu_page($this->slug, 'Webhooks 紀錄', 'Webhooks 紀錄', 'administrator', $this->slug . '-post', array($this, 'post_page_cb'));
+		add_menu_page(__('Mxp.TW FB Toolbox','fb2wp-integration-tools'), __('FB2WP Settings','fb2wp-integration-tools'), 'administrator', $this->slug, array($this, 'main_page_cb'), 'dashicons-admin-generic');
+		add_submenu_page($this->slug, esc_html__('Message Settings','fb2wp-integration-tools'), __('Message Settings','fb2wp-integration-tools'), 'administrator', $this->slug . '-message', array($this, 'message_page_cb'));
+		add_submenu_page($this->slug, esc_html__('Webhooks Logs','fb2wp-integration-tools'), __('Webhooks Logs','fb2wp-integration-tools'), 'administrator', $this->slug . '-post', array($this, 'post_page_cb'));
 	}
 
 	public function page_wraper($title, $cb) {
@@ -148,24 +152,34 @@ class Mxp_FB2WP {
 	}
 
 	public function main_page_cb() {
-		$this->page_wraper('FB工具箱設定', function () {
+		$this->page_wraper(esc_html__('Facebook Toolbox Settings','fb2wp-integration-tools'), function () {
 			include plugin_dir_path(__FILE__) . "views/main.php";
 		});
 		wp_localize_script($this->slug . '-main-page', 'MXP_FB2WP', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('mxp-ajax-nonce'),
+			'importRat' => esc_html__('Importing Facebook ratings...','fb2wp-integration-tools'),
+			'successMsg' => esc_html__('Imported successfully!','fb2wp-integration-tools'),
 		));
 		wp_enqueue_script($this->slug . '-main-page');
 		wp_enqueue_style($this->slug . '-main-page-style');
 	}
 
 	public function message_page_cb() {
-		$this->page_wraper('訊息回覆設定', function () {
+		$this->page_wraper(esc_html__('Message settings','fb2wp-integration-tools'), function () {
 			include plugin_dir_path(__FILE__) . "views/message.php";
 		});
 		wp_localize_script($this->slug . '-message-page', 'MXP_FB2WP', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('mxp-ajax-nonce'),
+			'waitMe' => esc_html__('Loading...','fb2wp-integration-tools'),
+			'removeItem' => esc_html__('Remove match','fb2wp-integration-tools'),
+			/* translators: The input message sent from users. */
+			'inputMatch' => esc_html__('Input match: ','fb2wp-integration-tools'), //對比句
+			/* translators: The replying message sent from Automated bots. */
+			'matchReply' => esc_html__('Replying message: ','fb2wp-integration-tools'), //回應句
+			'errorMsg' => esc_html__('Errors occurred','fb2wp-integration-tools'),
+			'successMsg' => esc_html__('Saved successfully!','fb2wp-integration-tools'),
 		));
 		wp_enqueue_script($this->slug . '-message-page');
 		wp_enqueue_script($this->slug . '-loading-script');
@@ -173,12 +187,24 @@ class Mxp_FB2WP {
 	}
 
 	public function post_page_cb() {
-		$this->page_wraper('Webhooks 紀錄', function () {
+		$this->page_wraper(__('Webhooks Logs','fb2wp-integration-tools'), function () {
 			include plugin_dir_path(__FILE__) . "views/post.php";
 		});
 		wp_localize_script($this->slug . '-post-page', 'MXP_FB2WP', array(
 			'ajaxurl' => admin_url('admin-ajax.php'),
 			'nonce' => wp_create_nonce('mxp-ajax-nonce'),
+			'waitMe' => esc_html__('Loading...','fb2wp-integration-tools'),
+			'removeBtn' => esc_html__('Remove this page','fb2wp-integration-tools'),
+			'remove' => esc_html__('Remove', 'mxp-fb2wp'),
+			'searchBtn' => esc_html__('Search','fb2wp-integration-tools'),
+			'searchTerm' => esc_html__('Search terms','fb2wp-integration-tools'),
+			'action' => esc_html__('Actions', 'mxp-fb2wp'),
+			'time' => esc_html__('Time','fb2wp-integration-tools'),
+			'object' => esc_html__('Objects','fb2wp-integration-tools'),
+			'sender' => esc_html__('Targets','fb2wp-integration-tools'), // Target? 對象代表誰
+			'msg' => esc_html__('Messages','fb2wp-integration-tools'),
+			'postBtn' => esc_html__('Publish','fb2wp-integration-tools'),
+			'empty' => esc_html__('No contents','fb2wp-integration-tools'),
 		));
 		wp_enqueue_script($this->slug . '-post-page');
 		wp_enqueue_script($this->slug . '-loading-script');
@@ -333,13 +359,17 @@ class Mxp_FB2WP {
 			} else {
 				$theme_color = 'theme_color="#' . esc_attr($theme_color) . '"';
 			}
-			$logged_in_greeting = get_option("mxp_fb_messenger_logged_in_greeting", "你好，歡迎透過訊息聯絡我們！"); //登入狀態顯示訊息
+			$logged_in_greeting = get_option("mxp_fb_messenger_logged_in_greeting", 
+			/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
+			esc_html__('Hello, thanks for messaging us.','fb2wp-integration-tools')); //登入狀態顯示訊息"你好，歡迎透過訊息聯絡我們！"
 			if ($logged_in_greeting == "") {
 				$logged_in_greeting = '';
 			} else {
 				$logged_in_greeting = 'logged_in_greeting="' . esc_attr($logged_in_greeting) . '"';
 			}
-			$logged_out_greeting = get_option("mxp_fb_messenger_logged_out_greeting", "你好，歡迎透過訊息聯絡我們！"); //登出狀態顯示訊息
+			$logged_out_greeting = get_option("mxp_fb_messenger_logged_out_greeting", 
+			/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
+			esc_html__('Hello, thanks for messaging us.','fb2wp-integration-tools')); //登出狀態顯示訊息"你好，歡迎透過訊息聯絡我們！""你好，歡迎透過訊息聯絡我們！"
 			if ($logged_out_greeting == "") {
 				$logged_out_greeting = '';
 			} else {
@@ -383,9 +413,9 @@ class Mxp_FB2WP {
 		}
 		// v1.5.0 新增 Facebook 小工具擺放位置的選項：文章內容上方、文章內容下方
 		if (get_option("mxp_fb_widget_place", "down") == "down") {
-			return $content . "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>Facebook 功能：</h3>") . $func . "</div>";
+			return $content . "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>".__('Facebook features:','fb2wp-integration-tools')."</h3>") . $func . "</div>";
 		} else {
-			return "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>Facebook 功能：</h3>") . $func . "</div>" . $content;
+			return "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>".__('Facebook features:','fb2wp-integration-tools')."</h3>") . $func . "</div>" . $content;
 		}
 	}
 	// v1.4.4.1 修正FB留言模組跟隨在任意有實作留言模板區塊文後
@@ -488,7 +518,8 @@ class Mxp_FB2WP {
 		$nonce = $_POST['nonce'];
 		$method = $_POST['method'];
 		if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce')) {
-			wp_send_json_error(array('data' => array('msg' => '錯誤的請求')));
+			//wp_send_json_error(array('data' => array('msg' => '錯誤的請求')));
+			wp_send_json_error(array('data' => array('msg' => __('Bad request','fb2wp-integration-tools'))));
 		}
 		if (!isset($data) || $data == "") {
 			update_option("mxp_messenger_msglist", serialize(array('match' => array(), 'fuzzy' => array())));
@@ -500,7 +531,8 @@ class Mxp_FB2WP {
 		if (update_option("mxp_messenger_msglist", serialize($data))) {
 			wp_send_json_success(array('data' => $data));
 		} else {
-			wp_send_json_error(array('data' => array('msg' => '無效更新')));
+			//wp_send_json_error(array('data' => array('msg' => '無效更新')));
+			wp_send_json_error(array('data' => array('msg' => __('Unable to renew','fb2wp-integration-tools'))));
 		}
 
 	}
@@ -518,11 +550,11 @@ class Mxp_FB2WP {
 		$page_id = get_option("mxp_fb_page_id", "");
 		$access_token = get_option("mxp_fb_app_access_token", "");
 		if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce') || $page_id == "" || $access_token == "") {
-			wp_send_json_error(array('data' => array('msg' => '錯誤的請求參數')));
+			wp_send_json_error(array('data' => array('msg' => __('Invalid request parameters','fb2wp-integration-tools'))));//錯誤的請求參數
 		}
 		$data = self::$rest_api->import_ratings();
 		if ($data === false) {
-			wp_send_json_error(array('data' => array('msg' => '錯誤發生，查看除錯紀錄。')));
+			wp_send_json_error(array('data' => array('msg' => __('Errors occurred. Please check the debugging log.','fb2wp-integration-tools')))); //錯誤發生，查看除錯紀錄。
 			exit;
 		}
 		global $wpdb;
@@ -572,7 +604,7 @@ class Mxp_FB2WP {
 		$nonce = $_POST['nonce'];
 
 		if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce') || !isset($method)) {
-			wp_send_json_error(array('data' => array('msg' => '錯誤的請求')));
+			wp_send_json_error(array('data' => array('msg' => __('Bad request','fb2wp-integration-tools'))));
 		}
 		$page = isset($_POST['page']) ? intval($_POST['page']) : 0;
 		$sid = isset($_POST['sid']) ? explode(",", $_POST['sid']) : array();
@@ -593,7 +625,7 @@ class Mxp_FB2WP {
 			if ($res) {
 				wp_send_json_success(array('msg' => 'done'));
 			} else {
-				wp_send_json_error(array('msg' => '無效的請求'));
+				wp_send_json_error(array('msg' => __('Invalid request','fb2wp-integration-tools'))); //無效的請求
 			}
 			break;
 		case 'delete':
@@ -603,7 +635,7 @@ class Mxp_FB2WP {
 				}
 				wp_send_json_success();
 			} else {
-				wp_send_json_error(array('msg' => '無效的請求'));
+				wp_send_json_error(array('msg' => __('Invalid request','fb2wp-integration-tools')));
 			}
 			break;
 		case 'search':
@@ -614,7 +646,7 @@ class Mxp_FB2WP {
 			wp_send_json_success(array('data' => $data, 'total_pages' => 1, 'page' => 1));
 			break;
 		default:
-			wp_send_json_error(array('msg' => '無效的請求'));
+			wp_send_json_error(array('msg' => __('Invalid request','fb2wp-integration-tools')));
 			break;
 		}
 
@@ -622,3 +654,15 @@ class Mxp_FB2WP {
 }
 
 add_action('plugins_loaded', array('Mxp_FB2WP', 'get_instance'));
+
+/**
+ * Load plugin textdomain.
+ *
+ * @since 1.7.8
+ */
+function text_domain() {
+	$plugin_rel_path = basename( dirname( __FILE__ ) ) . '/languages'; /* Relative to WP_PLUGIN_DIR */
+	load_plugin_textdomain( 'fb2wp-integration-tools', false, $plugin_rel_path );
+	
+}
+add_action('plugins_loaded', 'text_domain');
