@@ -1,0 +1,802 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: FB2WP integration tools - Mxp.TW\n"
+"POT-Creation-Date: 2018-11-25 01:54+0800\n"
+"PO-Revision-Date: 2018-11-25 01:55+0800\n"
+"Last-Translator: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"Language-Team: Huanyi Chuang <eric.chuang@applemint.tech>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
+"X-Poedit-WPHeader: index.php\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPathExcluded-0: *.js\n"
+
+#. translators: To sponsor the original developer of the plugin that shows on the plugin list.
+#: index.php:91
+msgid "Sponsor Me"
+msgstr "贊助"
+
+#: index.php:133
+msgid ""
+"Oops, update failed. Please email to im@mxp.tw, and tell me in which version "
+"did you fail to update. You may check whether there is any error message in "
+"Console tab with Chrome DevTools."
+msgstr ""
+"更新失敗。請來信至: im@mxp.tw 告訴我您是從哪個版本升級發生意外的？可以使用 "
+"Chrome Dev tools 的 console 分頁查看是否有錯誤提示。"
+
+#: index.php:143
+msgid "Mxp.TW FB Toolbox"
+msgstr "Mxp.TW FB Toolbox"
+
+#: index.php:143
+msgid "FB2WP Settings"
+msgstr "FB2WP 設定"
+
+#: index.php:144
+msgid "Message Settings"
+msgstr "自動回覆設定"
+
+#: index.php:145 index.php:190
+msgid "Webhooks Logs"
+msgstr "Webhook 紀錄"
+
+#: index.php:155
+msgid "Facebook Toolbox Settings"
+msgstr "Facebook 工具箱設定"
+
+#: index.php:161
+msgid "Importing Facebook ratings..."
+msgstr "正在匯入 Facebook 評價..."
+
+#: index.php:162
+msgid "Imported successfully!"
+msgstr "成功匯入！"
+
+#: index.php:169
+msgid "Message settings"
+msgstr "自動回覆設定"
+
+#: index.php:175 index.php:196
+msgid "Loading..."
+msgstr "載入中..."
+
+#: index.php:176
+msgid "Remove match"
+msgstr "移除比對"
+
+#. translators: The input message sent from users.
+#: index.php:178
+msgid "Input match: "
+msgstr "對比句: "
+
+#. translators: The replying message sent from Automated bots.
+#: index.php:180
+msgid "Replying message: "
+msgstr "回應句: "
+
+#: index.php:181
+msgid "Errors occurred"
+msgstr "發生錯誤"
+
+#: index.php:182
+msgid "Saved successfully!"
+msgstr "儲存成功！"
+
+#: index.php:197
+msgid "Remove this page"
+msgstr "刪除此頁"
+
+#: index.php:198
+msgid "Remove"
+msgstr "移除"
+
+#: index.php:199
+msgid "Search"
+msgstr "搜尋"
+
+#: index.php:200
+msgid "Search terms"
+msgstr "關鍵字"
+
+#: index.php:201
+msgid "Actions"
+msgstr "操作"
+
+#: index.php:202
+msgid "Time"
+msgstr "時間"
+
+#: index.php:203
+msgid "Objects"
+msgstr "物件"
+
+#: index.php:204
+msgid "Targets"
+msgstr "對象"
+
+#: index.php:205
+msgid "Messages"
+msgstr "訊息"
+
+#: index.php:206
+msgid "Publish"
+msgstr "發布"
+
+#: index.php:207
+msgid "No contents"
+msgstr "沒有內容"
+
+#. translators: Default Logged in greeting for Facebook Customer Chat Plugin.
+#: index.php:364 index.php:372
+msgid "Hello, thanks for messaging us."
+msgstr "你好，歡迎透過訊息聯絡我們！"
+
+#: index.php:416 index.php:418
+msgid "Facebook features:"
+msgstr "Facebook 功能："
+
+#: index.php:522 index.php:607
+msgid "Bad request"
+msgstr "錯誤的請求"
+
+#: index.php:535
+msgid "Unable to renew"
+msgstr "無效更新"
+
+#: index.php:553
+msgid "Invalid request parameters"
+msgstr "無效的請求參數"
+
+#: index.php:557
+msgid "Errors occurred. Please check the debugging log."
+msgstr "發生錯誤，請檢查除錯紀錄。"
+
+#: index.php:628 index.php:638 index.php:649
+msgid "Invalid request"
+msgstr "無效的請求"
+
+#. translators: Message that shows up when somebody fails to verify the request via Facebook.
+#: rest_api.php:67
+msgid "Oops, I believe that you are just testing."
+msgstr "嗯，我相信你現在只是在做測試。"
+
+#: rest_api.php:149
+msgid "In general cases, you would not see this message."
+msgstr "基本上，你不會看到這段訊息。"
+
+#: rest_api.php:348
+msgid "Errors occurred. Please try again later."
+msgstr "發生錯誤，請稍後再重試。"
+
+#: rest_api.php:351
+msgid "We have already switched back to Manual Reply"
+msgstr "已經為您切換至手動回覆留言"
+
+#: rest_api.php:355
+msgid "Your technician should be in trouble."
+msgstr "你的技術人員有麻煩了。"
+
+#: rest_api.php:394
+msgid ""
+"OK. Automated bots will be shut down temporarily in the next 12 hours.\\n"
+"\\nIn case you want to reactivate Automated bots, please type \"hi bot\""
+msgstr ""
+"收到，機器人模式暫時關閉12小時！\\n\\n如果需要重新啟用機器人，請輸入「hi "
+"bot」。"
+
+#: rest_api.php:396
+msgid "Congratulations, Automated bot is reactivated."
+msgstr "恭喜，已重新啟動機器人模式。"
+
+#: views/main.php:60
+msgid ""
+"Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for "
+"synced posts."
+msgstr "[轉發文章Footer內容] 中，請不要包含短代碼 [mxp_fb2wp_display_embed]。"
+
+#: views/main.php:125
+msgid "Updated successfully!"
+msgstr "更新成功！"
+
+#: views/main.php:131
+#, php-format
+msgid ""
+"The version of your WordPress too old ( v.%s ) and does not support REST API "
+"method. Please make sure to update your WordPress site to v4.7 (or later) "
+"version."
+msgstr ""
+"WordPress 版本過低( v.%s )，不支援 REST API 方法，請更新到比 4.7 新的版本後再"
+"使用。"
+
+#: views/main.php:138
+msgid ""
+"Starting from v2.5, Facebook API does not support insecure callback URL. "
+"Please upgrade your website to HTTPS before using the plugin!"
+msgstr ""
+"Facebook API 自 v2.5 版後，不支援非安全連線的回呼 URL，請將網站升級安全連線 "
+"HTTPS 後再使用！"
+
+#: views/main.php:159
+msgid "Features"
+msgstr "功能選單"
+
+#: views/main.php:161
+msgid "Facebook App Settings"
+msgstr "Facebook 應用程式設定"
+
+#: views/main.php:162
+msgid "Facebook Webhooks Setup"
+msgstr "Facebook Webhooks 設定"
+
+#: views/main.php:163 views/main.php:237
+msgid "Facebook Messenger Bot Setup"
+msgstr "Facebook Messenger Bot 設定"
+
+#: views/main.php:164 views/main.php:272
+msgid "Sync Posts to WordPress"
+msgstr "同步 Facebook 回 WordPress"
+
+#: views/main.php:165 views/main.php:376
+msgid "Facebook Plugins"
+msgstr "Facebook 外掛功能"
+
+#: views/main.php:166 views/main.php:425
+msgid "Facebook Page Ratings"
+msgstr "Facebook 粉專評價"
+
+#: views/main.php:167 views/main.php:444
+msgid "Developer Tools"
+msgstr "開發人員工具"
+
+#. translators: This "settings" is used for Facebook App Settings tab.
+#: views/main.php:172
+msgid "Settings"
+msgstr "設定"
+
+#: views/main.php:174
+msgid "App ID: "
+msgstr "應用程式 ID: "
+
+#: views/main.php:177
+msgid "App Secret: "
+msgstr "應用程式密鑰: "
+
+#: views/main.php:180
+msgid "Page ID: "
+msgstr "粉絲專頁 ID: "
+
+#: views/main.php:183
+msgid "Page Access Token: "
+msgstr "粉絲專頁應用程式授權碼: "
+
+#: views/main.php:184
+msgid "FAQ"
+msgstr "常見問題"
+
+#: views/main.php:186
+msgid "Enable Facebook JavaScript SDK: "
+msgstr "啟用 Facebook JavaScript SDK: "
+
+#. translators: Whether enabling Facebook JS SDK or not
+#: views/main.php:190 views/main.php:239 views/main.php:260 views/main.php:274
+#: views/main.php:338 views/main.php:342 views/main.php:358 views/main.php:367
+#: views/main.php:371 views/main.php:382 views/main.php:386 views/main.php:387
+#: views/main.php:391 views/main.php:392 views/main.php:420 views/main.php:446
+#: views/main.php:450 views/main.php:454
+msgid "Enable"
+msgstr "啟用"
+
+#: views/main.php:190
+msgid "(Recommended)"
+msgstr "(建議)"
+
+#. translators: Whether enabling Facebook JS SDK or not
+#: views/main.php:194 views/main.php:240 views/main.php:261 views/main.php:275
+#: views/main.php:339 views/main.php:343 views/main.php:359 views/main.php:368
+#: views/main.php:372 views/main.php:383 views/main.php:388 views/main.php:393
+#: views/main.php:399 views/main.php:421 views/main.php:447 views/main.php:451
+msgid "Disable"
+msgstr "停用"
+
+#. translators: Choose the language of Facebook JS SDK
+#: views/main.php:198
+msgid "SDK Locale: "
+msgstr "SDK 語言: "
+
+#. translators: Choose the version of Facebook JS SDK
+#: views/main.php:219
+msgid "SDK Version: "
+msgstr "SDK 版本: "
+
+#: views/main.php:224
+msgid "Facebook App Webhooks Setup"
+msgstr "Facebook 應用程式 Webhooks 設定"
+
+#: views/main.php:225
+msgid "Please fill in the following URL to Callback URL in Webhooks settings"
+msgstr "請將下列網址填入 Webhooks 設定中的 [回呼網址] 中"
+
+#: views/main.php:229
+msgid ""
+"Subscribe to the following events: messages, messaging_postbacks, standby, "
+"messaging_handovers, conversations, feed, ratings."
+msgstr ""
+"請訂閱下列事件: messages、message_postbacks、standby、messaging_handovers、"
+"conversations、feed 與 ratings。"
+
+#. translators: The verify token provided by site owners to confirm the request sent from Facebook
+#: views/main.php:232
+msgid "Verify Token: "
+msgstr "驗證權杖: "
+
+#: views/main.php:238
+msgid "Enable Messenger Bot: "
+msgstr "啟用 Messenger Bot: "
+
+#: views/main.php:242
+msgid ""
+"After enabling this feature, please go to Settings > Messenger Platform on "
+"your Facebook Page, check \"Responses are partially automated, with some "
+"support by people,\" and set the app \"Page Inbox 263902037430900\" as your "
+"Secondary Receiver, and then the users may pass control of the conversation "
+"between Messenger Bots and Page managers."
+msgstr ""
+"啟用這項功能後，請前往粉絲專頁的 [設定]  > [Messenger 開放平台]，選取 [回覆有"
+"部分是自動操作，並以部分人工操作輔助]，並將應用程式〈Page Inbox "
+"263902037430900〉設為你的 Secondary Receiver，接著使用者便可以選擇切換對話角"
+"色為機器人或粉絲頁管理員。"
+
+#: views/main.php:243
+msgid "Testing Facebook Accounts: "
+msgstr "測試用 Facebook 帳號: "
+
+#. translators: Use comma-separated format to decide which Facebook account to access this feature
+#: views/main.php:247 views/main.php:320
+msgid ""
+"Use commas to separate testing users' Facebook user IDs, or leave blank to "
+"allow everyone to access this feature."
+msgstr ""
+"使用逗點 (,) 分隔測試使用者的 Facebook 使用者 ID，或是留空讓所有人都可以使用"
+"這項功能。"
+
+#. translators: Default reply when there is no correspondent match.
+#: views/main.php:252
+msgid "Default reply: "
+msgstr "預設回覆: "
+
+#: views/main.php:254
+msgid ""
+"You may use [mxp_input_msg] as a placeholder of users input message. For "
+"example, \"Oops, I don't understand what you mean by saying "
+"'[mxp_input_msg]'. Please try other commands.\""
+msgstr ""
+"你可以使用 [mxp_input_msg] 代入使用者輸入訊息。舉例來說，「糟糕，無法辨識"
+"『[mxp_input_msg]』。請試試其他指令。」"
+
+#. translators: %1$s is the url of Handover Protocol instructions
+#: views/main.php:258
+#, php-format
+msgid "Enable <a href=\"%1$s\" target=\"%2$s\">Handover Protocol</a>: "
+msgstr "啟用<a href=\"%1$s\" target=\"%2$s\">交接通訊協定</a>: "
+
+#: views/main.php:263
+msgid "Text shown on Handover Protocol switch button: "
+msgstr "切換交接通訊協定按鈕文字: "
+
+#. translators: Default message shown on Handover Protocol switch button.
+#: views/main.php:267
+msgid "Click here to inform the admin."
+msgstr "點擊這裡通知管理員。"
+
+#: views/main.php:273
+msgid "Enable Sync Posts to WordPress"
+msgstr "將貼文同步回 WordPress"
+
+#. translators: Default post author for posts synced back to WordPress.
+#: views/main.php:280
+msgid "Post Author: "
+msgstr "作者: "
+
+#. translators: Default post categories for posts synced back to WordPress.
+#: views/main.php:285
+msgid "Post Category: "
+msgstr "文章分類: "
+
+#. translators: Default post visibility for posts synced back to WordPress.
+#: views/main.php:290
+msgid "Post Status & Visibility: "
+msgstr "文章狀態與能見度: "
+
+#: views/main.php:292
+msgid "Published"
+msgstr "已發佈"
+
+#: views/main.php:293
+msgid "Pending Review"
+msgstr "待審核"
+
+#: views/main.php:294
+msgid "Draft"
+msgstr "草稿"
+
+#: views/main.php:295
+msgid "Private"
+msgstr "私密"
+
+#: views/main.php:298
+msgid "Allow Comments: "
+msgstr "允許迴響: "
+
+#: views/main.php:299 views/main.php:303
+msgid "Allow"
+msgstr "允許"
+
+#: views/main.php:300 views/main.php:304
+msgid "Disallow"
+msgstr "禁止"
+
+#: views/main.php:302
+msgid "Allow Pingbacks & Trackbacks: "
+msgstr "允許通告: "
+
+#: views/main.php:306
+msgid "Post Type: "
+msgstr "文章類型: "
+
+#: views/main.php:316
+msgid "Facebook accounts permitted to sync the posts: "
+msgstr "允許同步貼文的 Facebook 帳號: "
+
+#: views/main.php:323
+msgid "Post tags"
+msgstr "文章標籤"
+
+#. translators: Ask the admin to separate post tags for synced posts with commas.
+#: views/main.php:326
+msgid "Use comma-saparated format"
+msgstr "使用逗號 (,) 分隔格式"
+
+#: views/main.php:328
+msgid "Escape syncing posts with this hashtag: "
+msgstr "略過同步使用此標籤的貼文: "
+
+#: views/main.php:330
+msgid "Do not append # to the defined hashtag."
+msgstr "定義標籤時不須加上 #。"
+
+#: views/main.php:332
+msgid "Deafault title: "
+msgstr "預設標題: "
+
+#: views/main.php:333
+msgid "-Synced from Facebook"
+msgstr "-同步自 Facebook"
+
+#: views/main.php:334
+msgid ""
+"The posts will scrape the first line of the Facebook post as the post title "
+"by default, but Default Title will be used when the first line or the post "
+"is empty."
+msgstr ""
+"文章抓取時使用 Facebook 貼文的第一行為標題，若第一行或內文為空，則帶入替代標"
+"題。"
+
+#: views/main.php:337
+msgid "Display attachments by default: "
+msgstr "預設顯示附件: "
+
+#: views/main.php:341
+msgid "Display image captions by default: "
+msgstr "預設顯示影像標題: "
+
+#: views/main.php:345
+msgid "Default image width: "
+msgstr "預設影像寬度: "
+
+#: views/main.php:348
+msgid "Default image height: "
+msgstr "預設影像高度: "
+
+#: views/main.php:351
+msgid "Default video width: "
+msgstr "預設影片寬度: "
+
+#: views/main.php:354
+msgid "Default video height: "
+msgstr "預設影片高度: "
+
+#: views/main.php:357
+msgid "Display embedded posts by default: "
+msgstr "預設顯示嵌入貼文: "
+
+#: views/main.php:361
+msgid ""
+"Footer contents for synced posts (HTML, JavaScript, CSS and shortcodes "
+"supported): "
+msgstr "同步後文章頁尾內容 (支援 HTML、JavaScript、CSS 與短代碼): "
+
+#: views/main.php:364
+msgid "Sync Comments Setup"
+msgstr "迴響同步設定"
+
+#: views/main.php:365
+msgid ""
+"To sync comments of posts shared to Facebook page back to the original posts."
+msgstr "同步文章的迴響回 Facebook 粉絲專頁的原始貼文。"
+
+#: views/main.php:366
+msgid "Sync comments back: "
+msgstr "同步迴響: "
+
+#: views/main.php:370
+msgid "Comments approved by default: "
+msgstr "預設核准迴響: "
+
+#: views/main.php:377
+msgid "Block title: "
+msgstr "區塊標題: "
+
+#: views/main.php:379
+msgid "(HTML, JavaScript and CSS supoorted)"
+msgstr "(支援 HTML、JavaScript 與 CSS)"
+
+#: views/main.php:381
+msgid "Enable Quote Plugin: "
+msgstr "啟用引文外掛程式: "
+
+#: views/main.php:385
+msgid "Enable Save Button"
+msgstr "啟用「儲存」按鈕"
+
+#. translators: the size of Save Button
+#: views/main.php:386
+msgid "(Large)"
+msgstr "(大按鈕)"
+
+#. translators: the size of Save Button
+#: views/main.php:387
+msgid "(Small)"
+msgstr "(小按鈕)"
+
+#: views/main.php:390
+msgid "Enable Embedded Comments: "
+msgstr "啟用文章留言: "
+
+#. translators: the mode of Embedded Comments
+#: views/main.php:391
+msgid "(Integrated mode)"
+msgstr "(整合模式)"
+
+#. translators: the mode of Embedded Comments
+#: views/main.php:392
+msgid "(Single mode)"
+msgstr "(單一模式)"
+
+#: views/main.php:395
+msgid "Enable Customer Chat Plugin"
+msgstr "啟用客戶洽談外掛程式"
+
+#: views/main.php:396
+msgid "Show the dialog"
+msgstr "展開對話框"
+
+#: views/main.php:397
+msgid "Show the dialog with delay"
+msgstr "延遲後展開對話框"
+
+#: views/main.php:398
+msgid "Hide the dialog"
+msgstr "隱藏對話框"
+
+#: views/main.php:400
+msgid "How to embed Messenger Messenger Bot with FB2WP (zh-tw)"
+msgstr "參考《使用 FB2WP 將臉書 Messenger 聊天機器人加入 WordPress 網站》教學"
+
+#: views/main.php:401
+msgid "Delays of showing the dialog (sec): "
+msgstr "延遲展開對話框秒數: "
+
+#: views/main.php:404
+msgid "Logged in greeting: "
+msgstr "Messenger 登入狀態顯示訊息: "
+
+#: views/main.php:405 views/main.php:408
+msgid "(Maximum 80 characters)"
+msgstr "(最多 80 字元)"
+
+#: views/main.php:407
+msgid "Logged out greeting: "
+msgstr "Messenger 登出狀態顯示訊息: "
+
+#: views/main.php:410
+msgid "Theme color: "
+msgstr "主題顏色: "
+
+#: views/main.php:412
+msgid "Hexadecimal color code without #"
+msgstr "16 進位顏色代碼，無須包含 #"
+
+#: views/main.php:415
+msgid "Placement of Facebook Plugins"
+msgstr "Facebook 外掛位置"
+
+#: views/main.php:416
+msgid "Before the content"
+msgstr "內容之前"
+
+#: views/main.php:417
+msgid "After the content"
+msgstr "內容之後"
+
+#: views/main.php:419
+msgid "Clear Facebook URL Cache after updating posts"
+msgstr "再更新文章後清除 Facebook URL 快取"
+
+#: views/main.php:427
+msgid ""
+"1. Please subscribe to \"ratings\" event in your Facebook App before start "
+"using Facebook Page Ratings feature."
+msgstr ""
+"1. 使用粉絲頁評價同步功能前，請先於 Facebook App 中增加 「ratings」 的 "
+"Webhooks 事件訂閱。"
+
+#: views/main.php:430
+msgid ""
+"2. Use shortcode [mxp_fb2wp_display_ratings] to display synced reviews from "
+"Facebook wherever on your site."
+msgstr ""
+"2. 前端輸出同步回網站的評價請使用「[mxp_fb2wp_display_ratings]」短碼，安插在"
+"任何希望呈現的角落。"
+
+#: views/main.php:433
+msgid ""
+"3. The shortcode attribute \"limit\" will load 20 reviews by default. You "
+"may define other value, but too many requests may cause unexpected issues. "
+"Use \"uid\" to select certain user's review. Set \"display_embed\" attribute "
+"to \"yes\" to display the review in embed mode."
+msgstr ""
+"3. 短碼屬性 limit 可隨意指定數量，預設讀取 20 筆評價，但過多的請求可能導致無"
+"法預期的問題；使用屬性 uid 選擇特定 Facebook 使用者評價；使用屬性 "
+"display_embed=yes 來用嵌入模式顯示該篇評價。"
+
+#: views/main.php:436
+msgid ""
+"4. Developers may customize \"fb2wp_display_ratings\" to redefine the "
+"structure for better theme design."
+msgstr ""
+"4. 開發者可藉由自訂 [fb2wp_display_ratings] 這個事件重新定義顯示結構，以符合"
+"主題設計。"
+
+#: views/main.php:440
+msgid ""
+"5. Press the following button to import current ratings of your Facebook "
+"Page (at most 100 reviews)"
+msgstr "5. 點擊以下按鈕，匯入目前粉絲專頁的評價，最多 100 筆。"
+
+#: views/main.php:441
+msgid "Ratings imported"
+msgstr "已匯入評價"
+
+#: views/main.php:441
+msgid "Import ratings"
+msgstr "匯入評價"
+
+#: views/main.php:445
+msgid "Delete the plugin as well as all settings: "
+msgstr "刪除外掛時時一併刪除所有設定: "
+
+#: views/main.php:449
+msgid "Enable saving log files: "
+msgstr "啟用 Log 文件記錄: "
+
+#: views/main.php:453
+msgid "Eliminate current logs: "
+msgstr "清除現有記錄: "
+
+#: views/main.php:456
+msgid "Current logs: "
+msgstr "現有記錄: "
+
+#: views/main.php:462
+msgid "No logs available."
+msgstr "沒有可用的記錄。"
+
+#. translators: Save the settings
+#: views/main.php:474
+msgid "Save"
+msgstr "儲存"
+
+#: views/main.php:476
+msgid "Current version: "
+msgstr "目前版本: "
+
+#: views/main.php:477
+msgid "Contact the developer: "
+msgstr "聯絡開發者: "
+
+#: views/main.php:478
+msgid "Sponsor the developer: "
+msgstr "贊助開發者: "
+
+#: views/main.php:478
+msgid "Do you think the plugin helpful? Buy me a cup of coffee!"
+msgstr "你覺得這個外掛對你有幫助嗎？請我喝杯咖啡吧！"
+
+#: views/message.php:6 views/post.php:6
+msgid "Feature description"
+msgstr "功能介紹"
+
+#: views/message.php:7
+msgid ""
+"The system will match the messages in Exact Match prior than Fuzzy Match, "
+"following the order of the messages."
+msgstr "系統比對流程為先精準再模糊，依序由上往下。"
+
+#: views/message.php:8
+msgid "Exact Match"
+msgstr "精確比對"
+
+#: views/message.php:9
+msgid "Triggered when input messages are matched exactly."
+msgstr "比對訊息來源完全一致才觸發。"
+
+#: views/message.php:11 views/message.php:15
+msgid "Add new match"
+msgstr "新增比對"
+
+#: views/message.php:11 views/message.php:15
+msgid "Save changes"
+msgstr "儲存變更"
+
+#: views/message.php:12
+msgid "Fuzzy Match"
+msgstr "模糊比對"
+
+#: views/message.php:13
+msgid "Regex is supported when using Fuzzy Match"
+msgstr "使用模糊比對時支援 Regex"
+
+#: views/post.php:7
+msgid ""
+"When the system receives data sent by Facebook, it will detect certain "
+"events and display them here."
+msgstr "系統收到來自 Facebook 的資料，偵測特定事件記錄會呈現在這裡。"
+
+#. Plugin Name of the plugin/theme
+msgid "FB2WP integration tools - Mxp.TW"
+msgstr "FB2WP integration tools - Mxp.TW"
+
+#. Plugin URI of the plugin/theme
+msgid "https://tw.wordpress.org/plugins/fb2wp-integration-tools/"
+msgstr "https://tw.wordpress.org/plugins/fb2wp-integration-tools/"
+
+#. Description of the plugin/theme
+msgid ""
+"The best Facebook Webhooks integration plugin ever! This plugin integrates "
+"the following features: Facebook Reviews, Automated bots, Facebook-WordPress "
+"posts synchronization and Facebook Page plugins etc. This plugin also allows "
+"developers to use powerful Hooks to connect Facebook Page comments and "
+"messages."
+msgstr ""
+"最強的 Facebook Webhooks 整合外掛，沒有之一！ 功能包含：粉絲頁評價、訊息機器"
+"人、發文同步回網站、粉絲頁外掛等，包含粉絲頁留言、訊息等開發者可以介接強化彈"
+"性 Hooks。"
+
+#. Author of the plugin/theme
+msgid "Chun, Huanyi Chuang"
+msgstr "Chun, Huanyi Chuang"
+
+#. Author URI of the plugin/theme
+msgid "https://www.mxp.tw/contact/"
+msgstr "https://www.mxp.tw/contact/"
