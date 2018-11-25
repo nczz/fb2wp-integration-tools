@@ -163,7 +163,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 = 1.7.8 =
 
-* 擴充 i18n 功能
+* 擴充 i18n 功能
 * 部分介面修正
 
 = 1.7.7 =
