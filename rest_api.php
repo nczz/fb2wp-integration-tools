@@ -64,7 +64,7 @@ if (class_exists('WP_REST_Controller')) {
 				exit;
 			}
 			return /* translators: Message that shows up when somebody fails to verify the request via Facebook.*/
-			array('msg' => esc_html__('Oops, I believe that you are just testing.','fb2wp-integration-tools'));//我猜你在測試，這次就原諒你惹！
+			array('msg' => esc_html__('Oops, I believe that you are just testing.','fb2wp-integration-tools'));
 			//WP REST API 在 callback 這邊如果使用 return  就會被包裝成 JSON 格式
 		}
 
@@ -146,7 +146,7 @@ if (class_exists('WP_REST_Controller')) {
 			} else {
 				$this->logger('debug-isnotpage', $body);
 			}
-			return array('msg' => esc_html__('In general cases, you would not see this message.','fb2wp-integration-tools'));//一般人應該是看不到這串文字der～
+			return array('msg' => /* translators: Messages shown when any exception happens receiving Webhook data. */esc_html__('Technically, you would not see this message.','fb2wp-integration-tools'));
 		}
 
 		/**
@@ -345,14 +345,14 @@ if (class_exists('WP_REST_Controller')) {
 				if (is_wp_error($response)) {
 					$error_message = $response->get_error_message();
 					$this->logger('messenger_request_pass_thread_control_error', $error_message);
-					$resp_data['message'] = array('text' => __('Errors occurred. Please try again later.','fb2wp-integration-tools'));//發生錯誤，請稍後再試試！
+					$resp_data['message'] = array('text' => __('Errors occurred. Please try again later.','fb2wp-integration-tools'));
 				} else {
 					$this->logger('messenger_request_pass_thread_control_success', json_encode($response));
-					$resp_data['message'] = array('text' => __('We have already switched back to Manual Reply','fb2wp-integration-tools')); //已為您切換至人工回覆留言
+					$resp_data['message'] = array('text' => __('We have already switched back to Manual Reply','fb2wp-integration-tools')); 
 				}
 				break;
 			default:
-				$resp_data['message'] = array('text' => __('Your technician should be in trouble.'));//看到這個訊息代表工程師要倒楣惹QQ
+				$resp_data['message'] = array('text' => /* translators: Messages shown when exception happens receiving the postback from Facebook Messenger.*/__('Your technician should be in trouble.'));//看到這個訊息代表工程師要倒楣惹QQ
 				break;
 			}
 			apply_filters('fb2wp_messenger_postback_respond', $resp_data, $sender, $postback, $msg);
@@ -391,9 +391,9 @@ if (class_exists('WP_REST_Controller')) {
 			if ($sleep_status != 0) {
 				$resp_data = array('recipient' => array('id' => $sender), 'messaging_type' => 'RESPONSE');
 				if ($sleep_status == 1) {
-					$resp_data['message'] = array('text' => __('OK. Automated bots will be shut down temporarily in the next 12 hours.\n\nIn case you want to reactivate Automated bots, please type "hi bot"','fb2wp-integration-tools'));//收到，機器人模式暫時關閉12小時！\n\n如果需要重新喚醒機器人請輸入「hi bot」。
+					$resp_data['message'] = array('text' => __('OK. Automated bots will be shut down temporarily in the next 12 hours.\n\nIn case you want to reactivate Automated bots, please type "hi bot"','fb2wp-integration-tools'));
 				} else if ($sleep_status == 2) {
-					$resp_data['message'] = array('text' => __('Congratulations, Automated bot is reactivated.'));//哈囉～ 機器人模式重新啟動拉！
+					$resp_data['message'] = array('text' => __('Congratulations, Automated bot is reactivated.'));
 				}
 				$resp = array(0 => $resp_data);
 			}
