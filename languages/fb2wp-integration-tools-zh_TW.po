@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: FB2WP integration tools - Mxp.TW\n"
-"POT-Creation-Date: 2018-11-27 00:13+0800\n"
-"PO-Revision-Date: 2018-11-27 00:14+0800\n"
+"POT-Creation-Date: 2018-11-29 00:18+0800\n"
+"PO-Revision-Date: 2018-11-29 00:18+0800\n"
 "Last-Translator: Huanyi Chuang <eric.chuang@applemint.tech>\n"
 "Language-Team: Huanyi Chuang <eric.chuang@applemint.tech>\n"
 "Language: zh_TW\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #. translators: To sponsor the original developer of the plugin that shows on the plugin list.
 #: index.php:97
-msgid "Sponsor Me"
+msgid "Donate"
 msgstr "贊助"
 
 #: index.php:139
@@ -807,6 +807,9 @@ msgstr "Chun"
 #. Author URI of the plugin/theme
 msgid "https://www.mxp.tw/contact/"
 msgstr "https://www.mxp.tw/contact/"
+
+#~ msgid "Sponsor Me"
+#~ msgstr "贊助"
 
 #~ msgid "Hello, thanks for messaging us."
 #~ msgstr "你好，歡迎透過訊息聯絡我們！"

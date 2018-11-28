@@ -3,8 +3,8 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: FB2WP integration tools - Mxp.TW\n"
-"POT-Creation-Date: 2018-11-27 00:13+0800\n"
-"PO-Revision-Date: 2018-11-27 00:13+0800\n"
+"POT-Creation-Date: 2018-11-29 00:18+0800\n"
+"PO-Revision-Date: 2018-11-29 00:18+0800\n"
 "Last-Translator: Huanyi Chuang <eric.chuang@applemint.tech>\n"
 "Language-Team: Huanyi Chuang <eric.chuang@applemint.tech>\n"
 "MIME-Version: 1.0\n"
@@ -23,7 +23,7 @@ msgstr ""
 
 #. translators: To sponsor the original developer of the plugin that shows on the plugin list.
 #: index.php:97
-msgid "Sponsor Me"
+msgid "Donate"
 msgstr ""
 
 #: index.php:139
