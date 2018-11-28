@@ -94,7 +94,7 @@ class Mxp_FB2WP {
 	public function add_action_links($links) {
 		$mxp_links = array(
 			/* translators: To sponsor the original developer of the plugin that shows on the plugin list.*/
-			'<a href="https://goo.gl/XQYSq1" target="blank"><font color=red>' . __('Sponsor Me', 'fb2wp-integration-tools') . '</font></a>',
+			'<a href="https://goo.gl/XQYSq1" target="blank"><font color=red>' . __('Donate', 'fb2wp-integration-tools') . '</font></a>',
 		);
 		return array_merge($links, $mxp_links);
 	}
@@ -180,9 +180,9 @@ class Mxp_FB2WP {
 			'waitMe' => esc_html__('Loading...', 'fb2wp-integration-tools'),
 			'removeItem' => esc_html__('Remove match', 'fb2wp-integration-tools'),
 			/* translators: The input message sent from users. */
-			'inputMatch' => esc_html__('Input match: ', 'fb2wp-integration-tools'), 
+			'inputMatch' => esc_html__('Input match: ', 'fb2wp-integration-tools'),
 			/* translators: The replying message sent from Automated bots. */
-			'matchReply' => esc_html__('Replying message: ', 'fb2wp-integration-tools'), 
+			'matchReply' => esc_html__('Replying message: ', 'fb2wp-integration-tools'),
 			'errorMsg' => esc_html__('Errors occurred', 'fb2wp-integration-tools'),
 			'successMsg' => esc_html__('Saved successfully!', 'fb2wp-integration-tools'),
 		));
@@ -206,7 +206,7 @@ class Mxp_FB2WP {
 			'action' => esc_html__('Actions', 'mxp-fb2wp'),
 			'time' => esc_html__('Time', 'fb2wp-integration-tools'),
 			'object' => esc_html__('Objects', 'fb2wp-integration-tools'),
-			'sender' => esc_html__('Targets', 'fb2wp-integration-tools'), 
+			'sender' => esc_html__('Targets', 'fb2wp-integration-tools'),
 			'msg' => esc_html__('Messages', 'fb2wp-integration-tools'),
 			'postBtn' => esc_html__('Publish', 'fb2wp-integration-tools'),
 			'empty' => esc_html__('No contents', 'fb2wp-integration-tools'),
@@ -366,7 +366,7 @@ class Mxp_FB2WP {
 			}
 			$logged_in_greeting = get_option("mxp_fb_messenger_logged_in_greeting",
 				/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
-				esc_html__('Hello! How can we help you?', 'fb2wp-integration-tools')); 
+				esc_html__('Hello! How can we help you?', 'fb2wp-integration-tools'));
 			if ($logged_in_greeting == "") {
 				$logged_in_greeting = '';
 			} else {
@@ -374,13 +374,13 @@ class Mxp_FB2WP {
 			}
 			$logged_out_greeting = get_option("mxp_fb_messenger_logged_out_greeting",
 				/* translators: Default Logged in greeting for Facebook Customer Chat Plugin. */
-				esc_html__('Hello! How can we help you?', 'fb2wp-integration-tools')); 
+				esc_html__('Hello! How can we help you?', 'fb2wp-integration-tools'));
 			if ($logged_out_greeting == "") {
 				$logged_out_greeting = '';
 			} else {
 				$logged_out_greeting = 'logged_out_greeting="' . esc_attr($logged_out_greeting) . '"';
 			}
-			$greeting_dialog_delay = get_option("mxp_fb_messenger_greeting_dialog_delay", 5); 
+			$greeting_dialog_delay = get_option("mxp_fb_messenger_greeting_dialog_delay", 5);
 			if ($greeting_dialog_delay != "") {
 				$greeting_dialog_delay = 'greeting_dialog_delay="' . intval($greeting_dialog_delay) . '"';
 			} else {
@@ -553,11 +553,11 @@ class Mxp_FB2WP {
 		$page_id = get_option("mxp_fb_page_id", "");
 		$access_token = get_option("mxp_fb_app_access_token", "");
 		if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce') || $page_id == "" || $access_token == "") {
-			wp_send_json_error(array('data' => array('msg' => __('Invalid request parameters', 'fb2wp-integration-tools')))); 
+			wp_send_json_error(array('data' => array('msg' => __('Invalid request parameters', 'fb2wp-integration-tools'))));
 		}
 		$data = self::$rest_api->import_ratings();
 		if ($data === false) {
-			wp_send_json_error(array('data' => array('msg' => __('Errors occurred. Please check the debugging log.', 'fb2wp-integration-tools')))); 
+			wp_send_json_error(array('data' => array('msg' => __('Errors occurred. Please check the debugging log.', 'fb2wp-integration-tools'))));
 			exit;
 		}
 		global $wpdb;
@@ -628,7 +628,7 @@ class Mxp_FB2WP {
 			if ($res) {
 				wp_send_json_success(array('msg' => 'done'));
 			} else {
-				wp_send_json_error(array('msg' => __('Invalid request', 'fb2wp-integration-tools'))); 
+				wp_send_json_error(array('msg' => __('Invalid request', 'fb2wp-integration-tools')));
 			}
 			break;
 		case 'delete':
