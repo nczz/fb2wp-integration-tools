@@ -64,7 +64,7 @@ if (class_exists('WP_REST_Controller')) {
 				exit;
 			}
 			return /* translators: Message that shows up when somebody fails to verify the request via Facebook.*/
-			array('msg' => esc_html__('Oops, I believe that you are just testing.','fb2wp-integration-tools'));
+			array('msg' => esc_html__('Oops, I believe that you are just testing.', 'fb2wp-integration-tools'));
 			//WP REST API 在 callback 這邊如果使用 return  就會被包裝成 JSON 格式
 		}
 
@@ -146,7 +146,7 @@ if (class_exists('WP_REST_Controller')) {
 			} else {
 				$this->logger('debug-isnotpage', $body);
 			}
-			return array('msg' => /* translators: Messages shown when any exception happens receiving Webhook data. */esc_html__('Technically, you would not see this message.','fb2wp-integration-tools'));
+			return array('msg' => /* translators: Messages shown when any exception happens receiving Webhook data. */esc_html__('Technically, you would not see this message.', 'fb2wp-integration-tools'));
 		}
 
 		/**
@@ -345,14 +345,14 @@ if (class_exists('WP_REST_Controller')) {
 				if (is_wp_error($response)) {
 					$error_message = $response->get_error_message();
 					$this->logger('messenger_request_pass_thread_control_error', $error_message);
-					$resp_data['message'] = array('text' => __('Errors occurred. Please try again later.','fb2wp-integration-tools'));
+					$resp_data['message'] = array('text' => __('Errors occurred. Please try again later.', 'fb2wp-integration-tools'));
 				} else {
 					$this->logger('messenger_request_pass_thread_control_success', json_encode($response));
-					$resp_data['message'] = array('text' => __('We have already switched back to Manual Reply','fb2wp-integration-tools')); 
+					$resp_data['message'] = array('text' => __('We have already switched back to Manual Reply', 'fb2wp-integration-tools'));
 				}
 				break;
 			default:
-				$resp_data['message'] = array('text' => /* translators: Messages shown when exception happens receiving the postback from Facebook Messenger.*/__('Your technician should be in trouble.'));//看到這個訊息代表工程師要倒楣惹QQ
+				$resp_data['message'] = array('text' => /* translators: Messages shown when exception happens receiving the postback from Facebook Messenger.*/__('Your technician should be in trouble.')); //看到這個訊息代表工程師要倒楣惹QQ
 				break;
 			}
 			apply_filters('fb2wp_messenger_postback_respond', $resp_data, $sender, $postback, $msg);
@@ -391,7 +391,7 @@ if (class_exists('WP_REST_Controller')) {
 			if ($sleep_status != 0) {
 				$resp_data = array('recipient' => array('id' => $sender), 'messaging_type' => 'RESPONSE');
 				if ($sleep_status == 1) {
-					$resp_data['message'] = array('text' => __('OK. Automated bots will be shut down temporarily in the next 12 hours.\n\nIn case you want to reactivate Automated bots, please type "hi bot"','fb2wp-integration-tools'));
+					$resp_data['message'] = array('text' => __('OK. Automated bots will be shut down temporarily in the next 12 hours.\n\nIn case you want to reactivate Automated bots, please type "hi bot"', 'fb2wp-integration-tools'));
 				} else if ($sleep_status == 2) {
 					$resp_data['message'] = array('text' => __('Congratulations, Automated bot is reactivated.'));
 				}
@@ -797,10 +797,24 @@ if (class_exists('WP_REST_Controller')) {
 			$message_arr = explode("\n", $message);
 			//處理文章標題，預設就是發文第一行，若無則呼叫設定的參數
 			$title = $message_arr[0] == "" ? current_time("Y-m-d H:i:s") . get_option("mxp_fb2wp_default_title", "-FB轉發文章") : wp_strip_all_tags($message_arr[0]);
+			//支援 Markdown 寫法的處理
+			$post_content_filtered = "";
+			$markdown_active = false;
+			if (!function_exists('is_plugin_active')) {
+				include_once ABSPATH . 'wp-admin/includes/plugin.php';
+			}
+			if (is_plugin_active('wp-markdown/wp-markdown.php') || is_plugin_active('wp-githuber-md/githuber-md.php')) {
+				$markdown_active = true;
+			}
 			//處理文章內文
 			$body = "";
 			for ($i = 1; $i < count($message_arr); ++$i) {
-				$body .= "<p>" . $message_arr[$i] . "</p>";
+				if ($markdown_active == true) {
+					$body .= $message_arr[$i] . "\n";
+				}
+				if ($message_arr[$i] != "" && $markdown_active == false) {
+					$body .= "<p>" . $message_arr[$i] . "</p>";
+				}
 			}
 			//處理文章標籤
 			preg_match_all('/#([\p{Pc}\p{N}\p{L}\p{Mn}]+)/u', $message, $tags);
@@ -860,9 +874,10 @@ if (class_exists('WP_REST_Controller')) {
 				}
 			}
 			//建立一篇文章
-			$pid = wp_insert_post(array(
+			$post_data = array(
 				'post_title' => $title,
 				'post_content' => $body,
+				'post_content_filtered' => $post_content_filtered,
 				'post_status' => get_option("mxp_fb2wp_post_status", "draft"),
 				'post_author' => get_option("mxp_fb2wp_post_author", "1"),
 				'post_category' => $cats,
@@ -870,7 +885,9 @@ if (class_exists('WP_REST_Controller')) {
 				'comment_status' => get_option("mxp_fb2wp_post_comment_status", "open"),
 				'ping_status' => get_option("mxp_fb2wp_post_ping_status", "open"),
 				'post_type' => get_option("mxp_fb2wp_post_type", "post"),
-			));
+			);
+
+			$pid = wp_insert_post($post_data);
 			if (is_wp_error($pid)) {
 				$this->logger('insert_post_error', print_r($pid, true));
 				return false;
@@ -937,12 +954,12 @@ if (class_exists('WP_REST_Controller')) {
 								$set_feature_image = false;
 							}
 							//更新剛剛那篇文章內容，加載附件更新文章
-							$body .= '<p>[mxp_fb2wp_display_attachment src="' . $upload_file[$i]['url'] . '" mime_type="' . $wp_filetype['type'] . '" title="' . base64_encode(str_replace(array('\'', '"'), '', wp_strip_all_tags(is_array($link) && isset($link[$i]['name']) ? $link[$i]['name'] : $origin_title))) . '" body="" display="' . get_option("mxp_fb2wp_default_display_attachment", "yes") . '" image_display_caption="' . get_option("mxp_fb2wp_default_display_img_caption", "no") . '"]</p>';
+							$body .= "\n<p>[mxp_fb2wp_display_attachment src=\"" . $upload_file[$i]['url'] . '" mime_type="' . $wp_filetype['type'] . '" title="' . base64_encode(str_replace(array('\'', '"'), '', wp_strip_all_tags(is_array($link) && isset($link[$i]['name']) ? $link[$i]['name'] : $origin_title))) . '" body="" display="' . get_option("mxp_fb2wp_default_display_attachment", "yes") . '" image_display_caption="' . get_option("mxp_fb2wp_default_display_img_caption", "no") . '"]</p>';
 						}
 					}
 				}
 			}
-			$body .= '<p>' . $embed_shortcode . '</p>';
+			$body .= "\n<p>" . $embed_shortcode . "</p>";
 			$update_attachment_post = array(
 				'ID' => $pid,
 				'post_content' => $body,

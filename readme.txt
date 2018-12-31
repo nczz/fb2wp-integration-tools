@@ -5,7 +5,7 @@ Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 
 Requires at least: 4.7
 Requires PHP: 5.4
 Tested up to: 4.9.8
-Stable tag: 1.7.8
+Stable tag: 1.7.9
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -160,6 +160,11 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.7.9 =
+
+* 增加 Markdown 外掛功能的支援度
+* 介面翻譯方法修正
 
 = 1.7.8 =
 
