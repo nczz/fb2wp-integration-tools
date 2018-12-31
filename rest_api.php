@@ -803,7 +803,10 @@ if (class_exists('WP_REST_Controller')) {
 			if (!function_exists('is_plugin_active')) {
 				include_once ABSPATH . 'wp-admin/includes/plugin.php';
 			}
-			if (is_plugin_active('wp-markdown/wp-markdown.php') || is_plugin_active('wp-githuber-md/githuber-md.php')) {
+			if (!function_exists('post_type_supports')) {
+				include_once ABSPATH . 'wp-includes/post.php.';
+			}
+			if (is_plugin_active('wp-markdown/wp-markdown.php') || is_plugin_active('wp-githuber-md/githuber-md.php') || post_type_supports(get_option("mxp_fb2wp_post_type", "post"), 'wpcom-markdown')) {
 				$markdown_active = true;
 			}
 			//處理文章內文
