@@ -397,10 +397,10 @@ esc_html_e('Use comma-saparated format', 'fb2wp-integration-tools');?>
 			<input type="number" name="mxp_fb_messenger_greeting_dialog_delay" value="<?php echo get_option("mxp_fb_messenger_greeting_dialog_delay", "5"); ?>" maxlength="3" size="3"/>
 		</p>
 		<p><?php esc_html_e('Logged in greeting: ', 'fb2wp-integration-tools');?>
-			<input type="text" name="mxp_fb_messenger_logged_in_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_in_greeting", esc_attr_e('Hello! How can we help you?', 'fb2wp-integration-tools')); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)', 'fb2wp-integration-tools');?>
+			<input type="text" name="mxp_fb_messenger_logged_in_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_in_greeting", esc_attr__('Hello! How can we help you?', 'fb2wp-integration-tools')); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)', 'fb2wp-integration-tools');?>
 		</p>
 		<p><?php esc_html_e('Logged out greeting: ', 'fb2wp-integration-tools');?>
-			<input type="text" name="mxp_fb_messenger_logged_out_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_out_greeting", esc_attr_e('Hello! How can we help you?', 'fb2wp-integration-tools')); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)', 'fb2wp-integration-tools');?>
+			<input type="text" name="mxp_fb_messenger_logged_out_greeting" value="<?php echo get_option("mxp_fb_messenger_logged_out_greeting", esc_attr__('Hello! How can we help you?', 'fb2wp-integration-tools')); ?>" size="40"/><br /><?php esc_html_e('(Maximum 80 characters)', 'fb2wp-integration-tools');?>
 		</p>
 		<p><?php esc_html_e('Theme color: ', 'fb2wp-integration-tools');?>
 			#<input type="text" name="mxp_fb_messenger_theme_color" value="<?php echo get_option("mxp_fb_messenger_theme_color", ""); ?>" maxlength="8" size="8"/><br />
