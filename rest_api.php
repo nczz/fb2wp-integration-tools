@@ -814,6 +814,7 @@ if (class_exists('WP_REST_Controller')) {
 			for ($i = 1; $i < count($message_arr); ++$i) {
 				if ($markdown_active == true) {
 					$body .= $message_arr[$i] . "\n";
+					$post_content_filtered .= $message_arr[$i] . "\n";
 				}
 				if ($message_arr[$i] != "" && $markdown_active == false) {
 					$body .= "<p>" . $message_arr[$i] . "</p>";
