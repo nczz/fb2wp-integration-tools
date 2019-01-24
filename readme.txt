@@ -52,9 +52,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 ### 待辦清單(TODO):
 
-1. 多國語言化（i18n）
-2. 寫文件
-3. UI 修正
+1. 寫文件
+2. UI 修正
 
 == Installation ==
 
