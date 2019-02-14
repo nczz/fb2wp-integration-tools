@@ -27,6 +27,9 @@ if (get_option("mxp_complete_remove", "no") == "yes") {
 	delete_option("mxp_fb2wp_post_status");
 	delete_option("mxp_fb2wp_post_comment_status");
 	delete_option("mxp_fb2wp_post_ping_status");
+	delete_metadata(get_option("mxp_fb2wp_post_type", "post"), 0, 'mxp_fb2wp_post_id', '', true);
+	delete_metadata(get_option("mxp_fb2wp_post_type", "post"), 0, 'mxp_fb2wp_item', '', true);
+	delete_metadata(get_option("mxp_fb2wp_post_type", "post"), 0, 'mxp_fb2wp_sender', '', true);
 	delete_option("mxp_fb2wp_post_type");
 	delete_option("mxp_fb2wp_auth_users");
 	delete_option("mxp_fb2wp_default_title");
