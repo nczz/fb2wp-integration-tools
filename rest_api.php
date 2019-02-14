@@ -664,6 +664,7 @@ if (class_exists('WP_REST_Controller')) {
 					curl_setopt($ch, CURLOPT_NOBODY, true);
 					$headers = curl_exec($ch); // $headers will contain all headers
 					$url = curl_getinfo($ch, CURLINFO_EFFECTIVE_URL); //the last effective URL
+					curl_close($ch);
 					//確認連結是否是對應某篇文章
 					$wp_post_id = url_to_postid($url); // 神方法！ https://codex.wordpress.org/Function_Reference/url_to_postid
 					if ($wp_post_id == 0) {

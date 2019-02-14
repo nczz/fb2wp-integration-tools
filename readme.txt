@@ -1,6 +1,6 @@
 === FB2WP integration tools ===
 Contributors: mxp, no249a002
-Donate link: https://goo.gl/XQYSq1
+Donate link: https://mxp.tw/jT
 Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 自動回覆訊息, API, sync, synchronize, 粉絲頁, Facebook, Page, Messenger, webhook, generate, auto, bot
 Requires at least: 4.7
 Requires PHP: 5.4
