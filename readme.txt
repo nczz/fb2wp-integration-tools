@@ -91,7 +91,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 粉絲頁應用程式授權碼 這個是需要搭配使用 FB APP 產生
 
-參考之前[寫過的一篇文章](https://goo.gl/dVaa5i)
+參考之前[寫過的一篇文章](https://mxp.tw/oJ)
 
 1. 申請一個 Facebook App，輸入名稱信箱跟用途
 

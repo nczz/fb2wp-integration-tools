@@ -392,7 +392,7 @@ esc_html_e('Use comma-saparated format', 'fb2wp-integration-tools');?>
 		<input type="radio" name="mxp_fb_messenger_embed" value="fade" <?php checked('fade', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Show the dialog with delay', 'fb2wp-integration-tools');?></label>
 		<input type="radio" name="mxp_fb_messenger_embed" value="hide" <?php checked('hide', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Hide the dialog', 'fb2wp-integration-tools');?></label>
 		<input type="radio" name="mxp_fb_messenger_embed" value="no" <?php checked('no', get_option("mxp_fb_messenger_embed", "fade"));?>><label><?php esc_html_e('Disable', 'fb2wp-integration-tools');?></label><br />
-		(<a href="https://goo.gl/zXU8rH" target="_blank"><?php esc_html_e('How to embed Messenger Messenger Bot with FB2WP (Chinese)', 'fb2wp-integration-tools');?></a>)
+		(<a href="https://mxp.tw/oK" target="_blank"><?php esc_html_e('How to embed Messenger Messenger Bot with FB2WP (Chinese)', 'fb2wp-integration-tools');?></a>)
 		<p><?php esc_html_e('Delays of showing the dialog (sec): ', 'fb2wp-integration-tools');?>
 			<input type="number" name="mxp_fb_messenger_greeting_dialog_delay" value="<?php echo get_option("mxp_fb_messenger_greeting_dialog_delay", "5"); ?>" maxlength="3" size="3"/>
 		</p>
@@ -465,4 +465,4 @@ echo '</ul>';
 <p><?php esc_html_e('Current version: ', 'fb2wp-integration-tools');
 echo Mxp_FB2WP::$version;?></p>
 <p><?php esc_html_e('Contact developer: ', 'fb2wp-integration-tools');?><a href="https://www.mxp.tw/contact/" target="blank">江弘竣（阿竣）Chun</a></p>
-<p><?php esc_html_e('Donate developer: ', 'fb2wp-integration-tools');?><a href="https://goo.gl/XQYSq1" target="blank"><?php esc_html_e('Do you think the plugin helpful? Buy me a cup of coffee!', 'fb2wp-integration-tools');?></a></p>
+<p><?php esc_html_e('Donate developer: ', 'fb2wp-integration-tools');?><a href="https://mxp.tw/lw" target="blank"><?php esc_html_e('Do you think the plugin helpful? Buy me a cup of coffee!', 'fb2wp-integration-tools');?></a></p>
