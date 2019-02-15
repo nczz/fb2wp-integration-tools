@@ -44,6 +44,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 2. `mxp_fb2wp_display_embed` 用於嵌入顯示同步回網站的該篇塗鴉牆發文
 3. `mxp_fb2wp_display_ratings` 用於顯示評價內容
 
+[](http://coderisk.com/wp/plugin/fb2wp-integration-tools/RIPS-TjGLXLgQG-)
 
 ### 需求(Requirements):
 
