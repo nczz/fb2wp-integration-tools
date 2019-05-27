@@ -4,7 +4,7 @@ Donate link: https://mxp.tw/jT
 Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 自動回覆訊息, API, sync, synchronize, 粉絲頁, Facebook, Page, Messenger, webhook, generate, auto, bot
 Requires at least: 4.7
 Requires PHP: 5.4
-Tested up to: 5.1
+Tested up to: 5.2
 Stable tag: 1.8.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -13,6 +13,8 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 
 == Description ==
+
+[](http://coderisk.com/wp/plugin/fb2wp-integration-tools/RIPS-TjGLXLgQG-)
 
 ### 外掛功能項目：
 
@@ -44,7 +46,6 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 2. `mxp_fb2wp_display_embed` 用於嵌入顯示同步回網站的該篇塗鴉牆發文
 3. `mxp_fb2wp_display_ratings` 用於顯示評價內容
 
-[](http://coderisk.com/wp/plugin/fb2wp-integration-tools/RIPS-TjGLXLgQG-)
 
 ### 需求(Requirements):
 
