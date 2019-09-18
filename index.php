@@ -94,7 +94,7 @@ class Mxp_FB2WP {
     public function add_action_links($links) {
         $mxp_links = array(
             /* translators: To sponsor the original developer of the plugin that shows on the plugin list.*/
-            '<a href="https://goo.gl/XQYSq1" target="blank"><font color=red>' . __('Donate', 'fb2wp-integration-tools') . '</font></a>',
+            '<a href="https://mxp.tw/lw" target="blank"><font color=red>' . __('Donate', 'fb2wp-integration-tools') . '</font></a>',
         );
         return array_merge($links, $mxp_links);
     }
