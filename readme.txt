@@ -5,7 +5,7 @@ Tags: Mxp.TW, FB2WP, Facebook, Webhooks, FB, 同步, 發佈, 轉發, 機器人, 
 Requires at least: 4.7
 Requires PHP: 5.4
 Tested up to: 5.2
-Stable tag: 1.8.1
+Stable tag: 1.8.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -161,6 +161,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.8.2 =
+
+* 修正 Facebook 儲存文章按鈕不顯示的問題
 
 = 1.8.1 =
 
