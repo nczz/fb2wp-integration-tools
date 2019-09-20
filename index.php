@@ -3,7 +3,7 @@
  * Plugin Name: XX2WP integration tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: The best Facebook Webhooks integration plugin ever! This plugin integrates the following features: Facebook Reviews, Automated bots, Facebook-WordPress posts synchronization and Facebook Page plugins etc. This plugin also allows developers to use powerful Hooks to connect Facebook Page comments and messages.
- * Version: 1.9.1
+ * Version: 1.9.2
  * Author: Chun
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
@@ -21,7 +21,7 @@ if (!class_exists('Mxp_FB2WP_API')) {
 }
 
 class Mxp_FB2WP {
-    static $version            = '1.9.1';
+    static $version            = '1.9.2';
     protected static $instance = null;
     protected static $rest_api = null;
     public $slug               = 'mxp-fb2wp';
@@ -107,18 +107,18 @@ class Mxp_FB2WP {
         }
 
         $tables = "
-		CREATE TABLE {$wpdb->prefix}fb2wp_debug (
-		  sid bigint(20) NOT NULL AUTO_INCREMENT,
-		  created_time bigint(32) NOT NULL,
-		  sender bigint(32) NOT NULL,
-		  sender_name varchar(255) NULL,
-		  action varchar(20) NOT NULL,
-		  item varchar(20) NOT NULL,
-		  post_id varchar(255) NOT NULL,
-		  message longtext NULL,
-		  source_json longtext NOT NULL,
-		  PRIMARY KEY  (sid)
-		) $collate;";
+        CREATE TABLE {$wpdb->prefix}fb2wp_debug (
+          sid bigint(20) NOT NULL AUTO_INCREMENT,
+          created_time bigint(32) NOT NULL,
+          sender bigint(32) NOT NULL,
+          sender_name varchar(255) NULL,
+          action varchar(20) NOT NULL,
+          item varchar(20) NOT NULL,
+          post_id varchar(255) NOT NULL,
+          message longtext NULL,
+          source_json longtext NOT NULL,
+          PRIMARY KEY  (sid)
+        ) $collate;";
         if (!function_exists('dbDelta')) {
             require_once ABSPATH . 'wp-admin/includes/upgrade.php';
         }
@@ -458,31 +458,31 @@ class Mxp_FB2WP {
     public static function setting_fb_sdk() {
 
         ?>
-		<?php if (get_option("mxp_fb_app_id") != ""): ?>
-			<meta property="fb:app_id" content="<?php echo get_option("mxp_fb_app_id"); ?>" />
-		<?php endif;?>
-		<?php if (get_option("mxp_fb_page_id") != ""): ?>
-			<meta property="fb:pages" content="<?php echo get_option("mxp_fb_page_id"); ?>" />
-		<?php endif;?>
-			<script>
-	  window.fbAsyncInit = function() {
-	    FB.init({
-	      appId      : '<?php echo get_option("mxp_fb_app_id"); ?>',
-	      xfbml      : true,
-	      autoLogAppEvents: true,
-	      version    : '<?php echo get_option("mxp_fb_api_version", "v3.1"); ?>'
-	    });
-	  };
+        <?php if (get_option("mxp_fb_app_id") != ""): ?>
+            <meta property="fb:app_id" content="<?php echo get_option("mxp_fb_app_id"); ?>" />
+        <?php endif;?>
+        <?php if (get_option("mxp_fb_page_id") != ""): ?>
+            <meta property="fb:pages" content="<?php echo get_option("mxp_fb_page_id"); ?>" />
+        <?php endif;?>
+            <script>
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '<?php echo get_option("mxp_fb_app_id"); ?>',
+          xfbml      : true,
+          autoLogAppEvents: true,
+          version    : '<?php echo get_option("mxp_fb_api_version", "v3.1"); ?>'
+        });
+      };
 
-	  (function(d, s, id){
-	     var js, fjs = d.getElementsByTagName(s)[0];
-	     if (d.getElementById(id)) {return;}
-	     js = d.createElement(s); js.id = id;
-	     js.src = "//connect.facebook.net/<?php echo get_option("mxp_fb_jssdk_local", get_locale()); ?>/sdk/xfbml.customerchat.js";
-	     fjs.parentNode.insertBefore(js, fjs);
-	   }(document, 'script', 'facebook-jssdk'));
-	</script>
-	<?php
+      (function(d, s, id){
+         var js, fjs = d.getElementsByTagName(s)[0];
+         if (d.getElementById(id)) {return;}
+         js = d.createElement(s); js.id = id;
+         js.src = "//connect.facebook.net/<?php echo get_option("mxp_fb_jssdk_local", get_locale()); ?>/sdk/xfbml.customerchat.js";
+         fjs.parentNode.insertBefore(js, fjs);
+       }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <?php
 
     }
     //取得語言標籤

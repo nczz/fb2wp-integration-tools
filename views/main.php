@@ -1,153 +1,152 @@
 <?php
 if (!defined('WPINC')) {
-	die;
+    die;
 }
 //有整理過些惹...
 //TODO:優化
 if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-setting-page')) {
-	$id = $_POST['mxp_fb_app_id'];
-	$secret = $_POST['mxp_fb_secret'];
-	$token = $_POST['mxp_fb_app_access_token'];
-	$vtoken = $_POST['mxp_fb_webhooks_verify_token'];
-	$enable_log = $_POST['mxp_enable_debug'];
-	$default_reply = $_POST['mxp_messenger_default_reply'];
-	$post_enable = $_POST['mxp_fb2wp_post_enable'];
-	$post_author = $_POST['mxp_fb2wp_post_author'];
-	$post_category = $_POST['mxp_fb2wp_post_category'];
-	$post_status = $_POST['mxp_fb2wp_post_status'];
-	$comment_status = $_POST['mxp_fb2wp_post_comment_status'];
-	$ping_status = $_POST['mxp_fb2wp_post_ping_status'];
-	$post_type = $_POST['mxp_fb2wp_post_type'];
-	$jssdk = $_POST['mxp_fb_enable_jssdk'];
-	$sdk_local = $_POST['mxp_fb_jssdk_local'];
-	$fb_api_version = $_POST['mxp_fb_api_version'];
-	$auth_users = $_POST['mxp_fb2wp_auth_users'];
-	$post_tags = $_POST['mxp_fb2wp_post_tags'];
-	$post_title = $_POST['mxp_fb2wp_default_title'];
-	$display_attachment = $_POST['mxp_fb2wp_default_display_attachment'];
-	$display_embed = $_POST['mxp_fb2wp_default_display_embed'];
-	$display_img_caption = $_POST['mxp_fb2wp_default_display_img_caption'];
-	$display_img_width = $_POST['mxp_fb2wp_image_width'];
-	$display_img_height = $_POST['mxp_fb2wp_image_height'];
-	$display_vid_width = $_POST['mxp_fb2wp_video_width'];
-	$display_vid_height = $_POST['mxp_fb2wp_video_height'];
-	$post_footer = stripslashes($_POST['mxp_fb2wp_post_footer']);
-	$no_post_tag = $_POST['mxp_fb2wp_no_post_tag'];
-	$enable_fbquote = $_POST['mxp_fb_quote_enable'];
-	$enable_fbsave = $_POST['mxp_fb_save_enable'];
-	//$enable_fbsend = $_POST['mxp_fb_send_enable'];
-	$enable_fbcomments = $_POST['mxp_fb_comments_enable'];
-	$complete_remove = $_POST['mxp_complete_remove'];
-	$page_id = $_POST['mxp_fb_page_id'];
-	$fb_widget_place = $_POST['mxp_fb_widget_place'];
-	$clear_cache = $_POST['mxp_fb_clear_url_cache'];
-	$enable_messenger = $_POST['mxp_fb2wp_messenger_enable'];
-	$msg_auth_users = $_POST['mxp_fb2wp_messenger_auth_users'];
-	$enable_pass_thread = $_POST['mxp_fb2wp_messenger_enable_pass_thread'];
-	$pass_thread_btn_text = $_POST['mxp_fb2wp_messenger_enable_pass_thread_btn_text'];
-	$msg_embed = $_POST['mxp_fb_messenger_embed'];
-	$greeting_dialog_delay = intval($_POST['mxp_fb_messenger_greeting_dialog_delay']);
-	$logged_in_greeting = strip_tags($_POST['mxp_fb_messenger_logged_in_greeting']);
-	$logged_out_greeting = strip_tags($_POST['mxp_fb_messenger_logged_out_greeting']);
-	$theme_color = $_POST['mxp_fb_messenger_theme_color'];
-	$mxp_remove_plugin_debug_log = (!isset($_POST['mxp_remove_plugin_debug_log']) || $_POST['mxp_remove_plugin_debug_log'] == "") ? "no" : $_POST['mxp_remove_plugin_debug_log'];
-	$mxp_active_tab = $_POST['mxp_fb2wp_active_tab'];
-	$section_title = stripslashes($_POST['mxp_fb_functions_section_title']);
-	$comment_mirror_enable = $_POST['mxp_fb2wp_comment_mirror_enable'];
-	$comment_mirror_approved = $_POST['mxp_fb2wp_comment_mirror_approved'];
-	if (has_shortcode($post_footer, 'mxp_fb2wp_display_embed')) {
-		//待處理
-		echo "<script>alert('" . __('Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for synced posts.', 'fb2wp-integration-tools') . "');</script>";
-		unset($post_footer);
-	}
+    $id                          = esc_attr($_POST['mxp_fb_app_id']);
+    $secret                      = esc_attr($_POST['mxp_fb_secret']);
+    $token                       = esc_attr($_POST['mxp_fb_app_access_token']);
+    $vtoken                      = esc_attr($_POST['mxp_fb_webhooks_verify_token']);
+    $enable_log                  = esc_attr($_POST['mxp_enable_debug']);
+    $default_reply               = esc_textarea($_POST['mxp_messenger_default_reply']);
+    $post_enable                 = esc_attr($_POST['mxp_fb2wp_post_enable']);
+    $post_author                 = esc_attr($_POST['mxp_fb2wp_post_author']);
+    $post_category               = esc_attr($_POST['mxp_fb2wp_post_category']);
+    $post_status                 = esc_attr($_POST['mxp_fb2wp_post_status']);
+    $comment_status              = esc_attr($_POST['mxp_fb2wp_post_comment_status']);
+    $ping_status                 = esc_attr($_POST['mxp_fb2wp_post_ping_status']);
+    $post_type                   = esc_attr($_POST['mxp_fb2wp_post_type']);
+    $jssdk                       = esc_attr($_POST['mxp_fb_enable_jssdk']);
+    $sdk_local                   = esc_attr($_POST['mxp_fb_jssdk_local']);
+    $fb_api_version              = esc_attr($_POST['mxp_fb_api_version']);
+    $auth_users                  = esc_attr($_POST['mxp_fb2wp_auth_users']);
+    $post_tags                   = esc_attr($_POST['mxp_fb2wp_post_tags']);
+    $post_title                  = esc_attr($_POST['mxp_fb2wp_default_title']);
+    $display_attachment          = esc_attr($_POST['mxp_fb2wp_default_display_attachment']);
+    $display_embed               = esc_attr($_POST['mxp_fb2wp_default_display_embed']);
+    $display_img_caption         = esc_attr($_POST['mxp_fb2wp_default_display_img_caption']);
+    $display_img_width           = esc_attr($_POST['mxp_fb2wp_image_width']);
+    $display_img_height          = esc_attr($_POST['mxp_fb2wp_image_height']);
+    $display_vid_width           = esc_attr($_POST['mxp_fb2wp_video_width']);
+    $display_vid_height          = esc_attr($_POST['mxp_fb2wp_video_height']);
+    $post_footer                 = stripslashes($_POST['mxp_fb2wp_post_footer']);
+    $no_post_tag                 = esc_attr($_POST['mxp_fb2wp_no_post_tag']);
+    $enable_fbquote              = esc_attr($_POST['mxp_fb_quote_enable']);
+    $enable_fbsave               = esc_attr($_POST['mxp_fb_save_enable']);
+    $enable_fbcomments           = esc_attr($_POST['mxp_fb_comments_enable']);
+    $complete_remove             = esc_attr($_POST['mxp_complete_remove']);
+    $page_id                     = esc_attr($_POST['mxp_fb_page_id']);
+    $fb_widget_place             = esc_attr($_POST['mxp_fb_widget_place']);
+    $clear_cache                 = esc_attr($_POST['mxp_fb_clear_url_cache']);
+    $enable_messenger            = esc_attr($_POST['mxp_fb2wp_messenger_enable']);
+    $msg_auth_users              = esc_attr($_POST['mxp_fb2wp_messenger_auth_users']);
+    $enable_pass_thread          = esc_attr($_POST['mxp_fb2wp_messenger_enable_pass_thread']);
+    $pass_thread_btn_text        = esc_attr($_POST['mxp_fb2wp_messenger_enable_pass_thread_btn_text']);
+    $msg_embed                   = esc_attr($_POST['mxp_fb_messenger_embed']);
+    $greeting_dialog_delay       = esc_attr(intval($_POST['mxp_fb_messenger_greeting_dialog_delay']));
+    $logged_in_greeting          = esc_attr(strip_tags($_POST['mxp_fb_messenger_logged_in_greeting']));
+    $logged_out_greeting         = esc_attr(strip_tags($_POST['mxp_fb_messenger_logged_out_greeting']));
+    $theme_color                 = esc_attr($_POST['mxp_fb_messenger_theme_color']);
+    $mxp_remove_plugin_debug_log = esc_attr((!isset($_POST['mxp_remove_plugin_debug_log']) || $_POST['mxp_remove_plugin_debug_log'] == "") ? "no" : $_POST['mxp_remove_plugin_debug_log']);
+    $mxp_active_tab              = esc_attr($_POST['mxp_fb2wp_active_tab']);
+    $section_title               = esc_attr(stripslashes($_POST['mxp_fb_functions_section_title']));
+    $comment_mirror_enable       = esc_attr($_POST['mxp_fb2wp_comment_mirror_enable']);
+    $comment_mirror_approved     = esc_attr($_POST['mxp_fb2wp_comment_mirror_approved']);
+    if (has_shortcode($post_footer, 'mxp_fb2wp_display_embed')) {
+        //待處理
+        echo "<script>alert('" . __('Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for synced posts.', 'fb2wp-integration-tools') . "');</script>";
+        unset($post_footer);
+    }
 }
 if (isset($id) && isset($secret) && isset($token) && isset($vtoken) && isset($enable_log) && isset($default_reply)
-	&& isset($post_enable) && isset($post_author) && isset($post_category) && isset($post_status) && isset($comment_status)
-	&& isset($ping_status) && isset($post_type) && isset($jssdk) && isset($sdk_local) && isset($fb_api_version)
-	&& isset($auth_users) && isset($post_tags) && isset($post_title) && isset($display_attachment) && isset($display_embed)
-	&& isset($display_img_caption) && isset($display_img_width) && isset($display_img_height) && isset($display_vid_width)
-	&& isset($display_vid_height) && isset($post_footer) && isset($no_post_tag) && isset($enable_fbquote)
-	&& isset($enable_fbsave) && isset($enable_fbcomments) && isset($complete_remove) && isset($page_id)
-	&& isset($section_title) && isset($fb_widget_place) && isset($clear_cache) && isset($enable_messenger)
-	&& isset($msg_auth_users) && isset($msg_embed) && isset($mxp_remove_plugin_debug_log) && isset($mxp_active_tab)
-	&& isset($enable_pass_thread) && isset($pass_thread_btn_text) && isset($comment_mirror_enable)
-	&& isset($comment_mirror_approved) && isset($theme_color) && isset($logged_out_greeting) && isset($logged_in_greeting)
-	&& isset($greeting_dialog_delay)) {
-	update_option("mxp_fb_app_id", $id);
-	update_option("mxp_fb_secret", $secret);
-	update_option("mxp_fb_app_access_token", $token);
-	update_option("mxp_fb_webhooks_verify_token", $vtoken);
-	update_option("mxp_enable_debug", $enable_log);
-	update_option("mxp_messenger_default_reply", $default_reply);
-	update_option("mxp_fb2wp_post_enable", $post_enable);
-	update_option("mxp_fb2wp_post_author", $post_author);
-	update_option("mxp_fb2wp_post_category", $post_category);
-	update_option("mxp_fb2wp_post_status", $post_status);
-	update_option("mxp_fb2wp_post_comment_status", $comment_status);
-	update_option("mxp_fb2wp_post_ping_status", $ping_status);
-	update_option("mxp_fb2wp_post_type", $post_type);
-	update_option("mxp_fb_enable_jssdk", $jssdk);
-	update_option("mxp_fb_jssdk_local", $sdk_local);
-	update_option("mxp_fb_api_version", $fb_api_version);
-	update_option("mxp_fb2wp_auth_users", $auth_users);
-	update_option("mxp_fb2wp_post_tags", $post_tags);
-	update_option("mxp_fb2wp_default_title", $post_title);
-	update_option("mxp_fb2wp_default_display_attachment", $display_attachment);
-	update_option("mxp_fb2wp_default_display_embed", $display_embed);
-	update_option("mxp_fb2wp_default_display_img_caption", $display_img_caption);
-	update_option("mxp_fb2wp_image_width", $display_img_width);
-	update_option("mxp_fb2wp_image_height", $display_img_height);
-	update_option("mxp_fb2wp_video_width", $display_vid_width);
-	update_option("mxp_fb2wp_video_height", $display_vid_height);
-	update_option("mxp_fb2wp_post_footer", $post_footer);
-	update_option("mxp_fb2wp_no_post_tag", $no_post_tag);
-	update_option("mxp_fb_quote_enable", $enable_fbquote);
-	update_option("mxp_fb_save_enable", $enable_fbsave);
-	update_option("mxp_fb_comments_enable", $enable_fbcomments);
-	update_option("mxp_complete_remove", $complete_remove);
-	update_option("mxp_fb_page_id", $page_id);
-	update_option("mxp_fb_functions_section_title", $section_title);
-	update_option("mxp_fb_widget_place", $fb_widget_place);
-	update_option("mxp_fb_clear_url_cache", $clear_cache);
-	update_option("mxp_fb2wp_messenger_enable", $enable_messenger);
-	update_option("mxp_fb2wp_messenger_auth_users", $msg_auth_users);
-	update_option("mxp_fb_messenger_embed", $msg_embed);
-	update_option("mxp_fb_messenger_greeting_dialog_delay", $greeting_dialog_delay);
-	update_option("mxp_fb_messenger_logged_in_greeting", $logged_in_greeting);
-	update_option("mxp_fb_messenger_logged_out_greeting", $logged_out_greeting);
-	update_option("mxp_fb_messenger_theme_color", $theme_color);
-	update_option("mxp_remove_plugin_debug_log", $mxp_remove_plugin_debug_log);
-	update_option("mxp_fb2wp_active_tab", $mxp_active_tab);
-	update_option("mxp_fb2wp_messenger_enable_pass_thread", $enable_pass_thread);
-	update_option("mxp_fb2wp_messenger_enable_pass_thread_btn_text", $pass_thread_btn_text);
-	update_option("mxp_fb2wp_comment_mirror_enable", $comment_mirror_enable);
-	update_option("mxp_fb2wp_comment_mirror_approved", $comment_mirror_approved);
-	echo esc_html__('Updated successfully!', 'fb2wp-integration-tools');
+    && isset($post_enable) && isset($post_author) && isset($post_category) && isset($post_status) && isset($comment_status)
+    && isset($ping_status) && isset($post_type) && isset($jssdk) && isset($sdk_local) && isset($fb_api_version)
+    && isset($auth_users) && isset($post_tags) && isset($post_title) && isset($display_attachment) && isset($display_embed)
+    && isset($display_img_caption) && isset($display_img_width) && isset($display_img_height) && isset($display_vid_width)
+    && isset($display_vid_height) && isset($post_footer) && isset($no_post_tag) && isset($enable_fbquote)
+    && isset($enable_fbsave) && isset($enable_fbcomments) && isset($complete_remove) && isset($page_id)
+    && isset($section_title) && isset($fb_widget_place) && isset($clear_cache) && isset($enable_messenger)
+    && isset($msg_auth_users) && isset($msg_embed) && isset($mxp_remove_plugin_debug_log) && isset($mxp_active_tab)
+    && isset($enable_pass_thread) && isset($pass_thread_btn_text) && isset($comment_mirror_enable)
+    && isset($comment_mirror_approved) && isset($theme_color) && isset($logged_out_greeting) && isset($logged_in_greeting)
+    && isset($greeting_dialog_delay)) {
+    update_option("mxp_fb_app_id", $id);
+    update_option("mxp_fb_secret", $secret);
+    update_option("mxp_fb_app_access_token", $token);
+    update_option("mxp_fb_webhooks_verify_token", $vtoken);
+    update_option("mxp_enable_debug", $enable_log);
+    update_option("mxp_messenger_default_reply", $default_reply);
+    update_option("mxp_fb2wp_post_enable", $post_enable);
+    update_option("mxp_fb2wp_post_author", $post_author);
+    update_option("mxp_fb2wp_post_category", $post_category);
+    update_option("mxp_fb2wp_post_status", $post_status);
+    update_option("mxp_fb2wp_post_comment_status", $comment_status);
+    update_option("mxp_fb2wp_post_ping_status", $ping_status);
+    update_option("mxp_fb2wp_post_type", $post_type);
+    update_option("mxp_fb_enable_jssdk", $jssdk);
+    update_option("mxp_fb_jssdk_local", $sdk_local);
+    update_option("mxp_fb_api_version", $fb_api_version);
+    update_option("mxp_fb2wp_auth_users", $auth_users);
+    update_option("mxp_fb2wp_post_tags", $post_tags);
+    update_option("mxp_fb2wp_default_title", $post_title);
+    update_option("mxp_fb2wp_default_display_attachment", $display_attachment);
+    update_option("mxp_fb2wp_default_display_embed", $display_embed);
+    update_option("mxp_fb2wp_default_display_img_caption", $display_img_caption);
+    update_option("mxp_fb2wp_image_width", $display_img_width);
+    update_option("mxp_fb2wp_image_height", $display_img_height);
+    update_option("mxp_fb2wp_video_width", $display_vid_width);
+    update_option("mxp_fb2wp_video_height", $display_vid_height);
+    update_option("mxp_fb2wp_post_footer", $post_footer);
+    update_option("mxp_fb2wp_no_post_tag", $no_post_tag);
+    update_option("mxp_fb_quote_enable", $enable_fbquote);
+    update_option("mxp_fb_save_enable", $enable_fbsave);
+    update_option("mxp_fb_comments_enable", $enable_fbcomments);
+    update_option("mxp_complete_remove", $complete_remove);
+    update_option("mxp_fb_page_id", $page_id);
+    update_option("mxp_fb_functions_section_title", $section_title);
+    update_option("mxp_fb_widget_place", $fb_widget_place);
+    update_option("mxp_fb_clear_url_cache", $clear_cache);
+    update_option("mxp_fb2wp_messenger_enable", $enable_messenger);
+    update_option("mxp_fb2wp_messenger_auth_users", $msg_auth_users);
+    update_option("mxp_fb_messenger_embed", $msg_embed);
+    update_option("mxp_fb_messenger_greeting_dialog_delay", $greeting_dialog_delay);
+    update_option("mxp_fb_messenger_logged_in_greeting", $logged_in_greeting);
+    update_option("mxp_fb_messenger_logged_out_greeting", $logged_out_greeting);
+    update_option("mxp_fb_messenger_theme_color", $theme_color);
+    update_option("mxp_remove_plugin_debug_log", $mxp_remove_plugin_debug_log);
+    update_option("mxp_fb2wp_active_tab", $mxp_active_tab);
+    update_option("mxp_fb2wp_messenger_enable_pass_thread", $enable_pass_thread);
+    update_option("mxp_fb2wp_messenger_enable_pass_thread_btn_text", $pass_thread_btn_text);
+    update_option("mxp_fb2wp_comment_mirror_enable", $comment_mirror_enable);
+    update_option("mxp_fb2wp_comment_mirror_approved", $comment_mirror_approved);
+    echo esc_html__('Updated successfully!', 'fb2wp-integration-tools');
 }
 $rest_url = '';
 
 if (get_option("mxp_fb2wp_callback_url") == "ERROR") {
 
-	$rest_url = esc_html__('The version of your WordPress too old ( v.%s ) and does not support REST API method. Please make sure to update your WordPress site to v4.7 (or later) version.', 'fb2wp-integration-tools');
+    $rest_url = esc_html__('The version of your WordPress too old ( v.%s ) and does not support REST API method. Please make sure to update your WordPress site to v4.7 (or later) version.', 'fb2wp-integration-tools');
 
 } else {
-	if (!is_ssl()) {
-		//ref:https://developers.facebook.com/docs/graph-api/webhooks#setup
-		/* translators: Asking the site owner to upgrade to HTTPS so that they can build secure callback url for Facebook API */
-		$rest_url =
-			esc_html__('Starting from v2.5, Facebook API does not support insecure callback URL. Please upgrade your website to HTTPS before using the plugin!', 'fb2wp-integration-tools');
-	} else {
-		$rest_url = get_rest_url(null, get_option("mxp_fb2wp_callback_url"));
-	}
+    if (!is_ssl()) {
+        //ref:https://developers.facebook.com/docs/graph-api/webhooks#setup
+        /* translators: Asking the site owner to upgrade to HTTPS so that they can build secure callback url for Facebook API */
+        $rest_url =
+            esc_html__('Starting from v2.5, Facebook API does not support insecure callback URL. Please upgrade your website to HTTPS before using the plugin!', 'fb2wp-integration-tools');
+    } else {
+        $rest_url = get_rest_url(null, get_option("mxp_fb2wp_callback_url"));
+    }
 }
-$tabs = array('fbapp' => '', 'webhooks' => '', 'messenger' => '', 'post_to_wp' => '', 'fb_plugin' => '', 'fb_ratings' => '', 'developer_function' => '');
+$tabs      = array('fbapp' => '', 'webhooks' => '', 'messenger' => '', 'post_to_wp' => '', 'fb_plugin' => '', 'fb_ratings' => '', 'developer_function' => '');
 $activebtn = get_option("mxp_fb2wp_active_tab", "fbapp");
 foreach ($tabs as $key => $value) {
-	if ($key == $activebtn) {
-		$tabs[$key] = 'bar-item button tablink activebtn';
-	} else {
-		$tabs[$key] = 'bar-item button tablink ';
-	}
+    if ($key == $activebtn) {
+        $tabs[$key] = 'bar-item button tablink activebtn';
+    } else {
+        $tabs[$key] = 'bar-item button tablink ';
+    }
 }
 ?>
 <style>
@@ -199,16 +198,16 @@ esc_html_e('SDK Locale: ', 'fb2wp-integration-tools');?>
 $fb2wp = Mxp_FB2WP::get_instance();
 // $fblocals = $fb2wp['Mxp_FB2WP']->get_fb_locals()['locale'];
 // if ($fblocals != "error") {
-// 	echo '<select name="mxp_fb_jssdk_local">';
-// 	for ($i = 0; $i < count($fblocals); ++$i) {
-// 		$val = $fblocals[$i]['codes']['code']['standard']['representation'];
-// 		$key = $fblocals[$i]['englishName'];
-// 		echo '<option value="' . $val . '"' . selected(get_option("mxp_fb_jssdk_local", "zh_TW"), $val) . '>' . $key . '</option>';
-// 	}
-// 	echo '</select>';
+//     echo '<select name="mxp_fb_jssdk_local">';
+//     for ($i = 0; $i < count($fblocals); ++$i) {
+//         $val = $fblocals[$i]['codes']['code']['standard']['representation'];
+//         $key = $fblocals[$i]['englishName'];
+//         echo '<option value="' . $val . '"' . selected(get_option("mxp_fb_jssdk_local", "zh_TW"), $val) . '>' . $key . '</option>';
+//     }
+//     echo '</select>';
 // } else {
-// 	echo '<input type="hidden" name="mxp_fb_jssdk_local" value="zh_TW"/>';
-// 	echo "Facebook 語系檔案發生解析錯誤，請將下面訊息回報開發者： " . $fb2wp['Mxp_FB2WP']->get_fb_locals()['msg'];
+//     echo '<input type="hidden" name="mxp_fb_jssdk_local" value="zh_TW"/>';
+//     echo "Facebook 語系檔案發生解析錯誤，請將下面訊息回報開發者： " . $fb2wp['Mxp_FB2WP']->get_fb_locals()['msg'];
 // }
 echo '<input type="text" value="' . get_option("mxp_fb_jssdk_local", get_locale()) . '" size="7" name="mxp_fb_jssdk_local"/>';
 ?>
@@ -260,8 +259,8 @@ printf(__('Enable <a href="%1$s" target="%2$s">Handover Protocol</a>: ', 'fb2wp-
 		<p><?php _e('Text shown on Handover Protocol switch button: ', 'fb2wp-integration-tools');?>
 		<input type="text" name="mxp_fb2wp_messenger_enable_pass_thread_btn_text" size="30" value="<?php
 echo get_option("mxp_fb2wp_messenger_enable_pass_thread_btn_text",
-	/* translators: Default message shown on Handover Protocol switch button.*/
-	esc_html__('Click here to inform the admin.', 'fb2wp-integration-tools'));
+    /* translators: Default message shown on Handover Protocol switch button.*/
+    esc_html__('Click here to inform the admin.', 'fb2wp-integration-tools'));
 ?>" />
 		</p>
 </div>
@@ -305,7 +304,7 @@ esc_html_e('Post Status & Visibility: ', 'fb2wp-integration-tools');?>
 $ps = get_post_types(array('public' => true));
 echo '<select name="mxp_fb2wp_post_type">';
 foreach ($ps as $key => $value) {
-	echo '<option value="' . $value . '"' . selected(get_option("mxp_fb2wp_post_type", "post"), $value) . '>' . $value . '</option>';
+    echo '<option value="' . $value . '"' . selected(get_option("mxp_fb2wp_post_type", "post"), $value) . '>' . $value . '</option>';
 }
 echo '</select>';
 ?>
@@ -444,15 +443,15 @@ esc_html_e('5. Press the following button to import current ratings of your Face
 		</p>
 		<p><?php esc_html_e('Current logs: ', 'fb2wp-integration-tools');?>
 		<?php
-$del = get_option("mxp_remove_plugin_debug_log", "no");
+$del  = get_option("mxp_remove_plugin_debug_log", "no");
 $logs = $fb2wp['Mxp_FB2WP']->get_plugin_logs($del);
 update_option("mxp_remove_plugin_debug_log", "no");
 if (count($logs) == 0) {
-	_e('No logs available.', 'fb2wp-integration-tools');
+    _e('No logs available.', 'fb2wp-integration-tools');
 }
 echo '<ul>';
 for ($i = 0; $i < count($logs); ++$i) {
-	echo '<li><a target="_blank" href="' . $logs[$i] . '">' . $logs[$i] . '</a></li>';
+    echo '<li><a target="_blank" href="' . $logs[$i] . '">' . $logs[$i] . '</a></li>';
 }
 echo '</ul>';
 ?>
