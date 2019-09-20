@@ -31,7 +31,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $display_img_height          = esc_attr($_POST['mxp_fb2wp_image_height']);
     $display_vid_width           = esc_attr($_POST['mxp_fb2wp_video_width']);
     $display_vid_height          = esc_attr($_POST['mxp_fb2wp_video_height']);
-    $post_footer                 = esc_textarea(stripslashes($_POST['mxp_fb2wp_post_footer']));
+    $post_footer                 = stripslashes($_POST['mxp_fb2wp_post_footer']);
     $no_post_tag                 = esc_attr($_POST['mxp_fb2wp_no_post_tag']);
     $enable_fbquote              = esc_attr($_POST['mxp_fb_quote_enable']);
     $enable_fbsave               = esc_attr($_POST['mxp_fb_save_enable']);
@@ -51,7 +51,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $theme_color                 = esc_attr($_POST['mxp_fb_messenger_theme_color']);
     $mxp_remove_plugin_debug_log = esc_attr((!isset($_POST['mxp_remove_plugin_debug_log']) || $_POST['mxp_remove_plugin_debug_log'] == "") ? "no" : $_POST['mxp_remove_plugin_debug_log']);
     $mxp_active_tab              = esc_attr($_POST['mxp_fb2wp_active_tab']);
-    $section_title               = esc_attr(stripslashes($_POST['mxp_fb_functions_section_title']));
+    $section_title               = stripslashes($_POST['mxp_fb_functions_section_title']);
     $comment_mirror_enable       = esc_attr($_POST['mxp_fb2wp_comment_mirror_enable']);
     $comment_mirror_approved     = esc_attr($_POST['mxp_fb2wp_comment_mirror_approved']);
     if (has_shortcode($post_footer, 'mxp_fb2wp_display_embed')) {
