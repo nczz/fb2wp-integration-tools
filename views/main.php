@@ -10,7 +10,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $token                       = esc_attr($_POST['mxp_fb_app_access_token']);
     $vtoken                      = esc_attr($_POST['mxp_fb_webhooks_verify_token']);
     $enable_log                  = esc_attr($_POST['mxp_enable_debug']);
-    $default_reply               = esc_textarea($_POST['mxp_messenger_default_reply']);
+    $default_reply               = esc_textarea(stripslashes($_POST['mxp_messenger_default_reply']));
     $post_enable                 = esc_attr($_POST['mxp_fb2wp_post_enable']);
     $post_author                 = esc_attr($_POST['mxp_fb2wp_post_author']);
     $post_category               = esc_attr($_POST['mxp_fb2wp_post_category']);
@@ -31,7 +31,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $display_img_height          = esc_attr($_POST['mxp_fb2wp_image_height']);
     $display_vid_width           = esc_attr($_POST['mxp_fb2wp_video_width']);
     $display_vid_height          = esc_attr($_POST['mxp_fb2wp_video_height']);
-    $post_footer                 = stripslashes($_POST['mxp_fb2wp_post_footer']);
+    $post_footer                 = esc_textarea(stripslashes($_POST['mxp_fb2wp_post_footer']));
     $no_post_tag                 = esc_attr($_POST['mxp_fb2wp_no_post_tag']);
     $enable_fbquote              = esc_attr($_POST['mxp_fb_quote_enable']);
     $enable_fbsave               = esc_attr($_POST['mxp_fb_save_enable']);
