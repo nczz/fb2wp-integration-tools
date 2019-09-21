@@ -521,21 +521,21 @@ class Mxp_FB2WP {
     }
 
     public function mxp_messenger_settings_save() {
-        $data   = $_POST['data'];
-        $nonce  = $_POST['nonce'];
-        $method = $_POST['method'];
+        $data   = json_encode($_POST['data']);
+        $nonce  = sanitize_text_field($_POST['nonce']);
+        $method = strtolower(sanitize_text_field($_POST['method']));
         if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce')) {
             wp_send_json_error(array('data' => array('msg' => __('Bad request', 'fb2wp-integration-tools'))));
         }
-        if (!isset($data) || $data == "") {
-            update_option("mxp_messenger_msglist", serialize(array('match' => array(), 'fuzzy' => array())));
-            wp_send_json_success(array('data' => $data));
+        if (!$data) {
+            update_option("mxp_messenger_msglist", array('match' => array(), 'fuzzy' => array()));
+            wp_send_json_success(array('data' => array('match' => array(), 'fuzzy' => array())));
         }
         if (isset($method) && $method == "get") {
-            wp_send_json_success(unserialize(get_option("mxp_messenger_msglist")));
+            wp_send_json_success(get_option("mxp_messenger_msglist"));
         }
-        if (update_option("mxp_messenger_msglist", serialize($data))) {
-            wp_send_json_success(array('data' => $data));
+        if (update_option("mxp_messenger_msglist", $data)) {
+            wp_send_json_success(array('data' => json_decode($data, true)));
         } else {
             wp_send_json_error(array('data' => array('msg' => __('Unable to renew', 'fb2wp-integration-tools'))));
         }
