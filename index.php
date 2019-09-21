@@ -521,23 +521,37 @@ class Mxp_FB2WP {
     }
 
     public function mxp_messenger_settings_save() {
-        $data   = base64_encode(json_encode($_POST['data']));
+        $data = "";
+        if (isset($_POST['data'])) {
+            $data = base64_encode(json_encode($_POST['data']));
+        }
         $nonce  = sanitize_text_field($_POST['nonce']);
         $method = strtolower(sanitize_text_field($_POST['method']));
         if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce')) {
             wp_send_json_error(array('data' => array('msg' => __('Bad request', 'fb2wp-integration-tools'))));
         }
-        if (!$data) {
-            update_option("mxp_messenger_msglist", base64_encode(json_encode(array('match' => array(), 'fuzzy' => array()))));
-            wp_send_json_success(array('data' => array('match' => array(), 'fuzzy' => array())));
-        }
-        if (isset($method) && $method == "get") {
-            wp_send_json_success(json_decode(base64_decode(get_option("mxp_messenger_msglist")), true));
-        }
-        if (update_option("mxp_messenger_msglist", $data)) {
-            wp_send_json_success(array('data' => json_decode(base64_decode($data), true)));
-        } else {
-            wp_send_json_error(array('data' => array('msg' => __('Unable to renew', 'fb2wp-integration-tools'))));
+        switch ($method) {
+        case 'set':
+            if ($data != "") {
+                if (update_option("mxp_messenger_msglist", $data)) {
+                    wp_send_json_success(array('data' => json_decode(base64_decode($data), true)));
+                } else {
+                    wp_send_json_error(array('data' => array('msg' => __('Unable to renew', 'fb2wp-integration-tools'))));
+                }
+            }
+            break;
+        case 'get':
+            $msglist = get_option("mxp_messenger_msglist", "");
+            if ($msglist == "") {
+                update_option("mxp_messenger_msglist", base64_encode(json_encode(array('match' => array(), 'fuzzy' => array()))));
+                wp_send_json_success(array('data' => json_decode(base64_decode(array('match' => array(), 'fuzzy' => array())), true)));
+            } else {
+                wp_send_json_success(json_decode(base64_decode($msglist), true));
+            }
+            break;
+        default:
+            wp_send_json_error(array('data' => array('msg' => __('Method not allow', 'fb2wp-integration-tools'))));
+            break;
         }
 
     }

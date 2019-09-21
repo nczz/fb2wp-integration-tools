@@ -17,10 +17,7 @@
     }
 
     function add_item(prefix, id, req, resp) {
-        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. ' + MXP_FB2WP.inputMatch + '<input class="' +
-            prefix + '_' + id + ' item" type="text" value="' + req + '" size="20"/>'+ MXP_FB2WP.matchReply +'<textarea class="' +
-            prefix + '_' + id + ' item" rows="3" cols="30">' + decodeURIComponent(resp) + '</textarea><button data-id="' +
-            prefix + '_' + id + '" class="button delete_item">' + MXP_FB2WP.removeItem+'</button></p>';
+        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. ' + MXP_FB2WP.inputMatch + '<input class="' + prefix + '_' + id + ' item" type="text" value="' + req + '" size="20"/>' + MXP_FB2WP.matchReply + '<textarea class="' + prefix + '_' + id + ' item" rows="3" cols="30">' + decodeURIComponent(resp) + '</textarea><button data-id="' + prefix + '_' + id + '" class="button delete_item">' + MXP_FB2WP.removeItem + '</button></p>';
     }
 
     function delete_item() {
@@ -38,21 +35,31 @@
             var m_input = $('input', m_items[i]).val();
             var m_textarea = $('textarea', m_items[i]).val();
             if (m_input != "" && m_textarea != "") {
-                m.push({ key: m_input, value: encodeURIComponent(m_textarea) });
+                m.push({
+                    key: m_input,
+                    value: encodeURIComponent(m_textarea)
+                });
             }
         }
         for (var i = 0; i < f_items.length; ++i) {
             var f_input = $('input', f_items[i]).val();
             var f_textarea = $('textarea', f_items[i]).val();
             if (f_input != "" && f_textarea != "") {
-                f.push({ key: f_input, value: encodeURIComponent(f_textarea) });
+                f.push({
+                    key: f_input,
+                    value: encodeURIComponent(f_textarea)
+                });
             }
         }
-        var items = { match: m, fuzzy: f };
+        var items = {
+            match: m,
+            fuzzy: f
+        };
         var data = {
             'action': 'mxp_messenger_settings_save',
             'nonce': MXP_FB2WP.nonce,
-            'data': items
+            'data': items,
+            'metod': 'set',
         };
         $.post(ajaxurl, data, function(res) {
             if (res.success) {
@@ -64,14 +71,12 @@
             }
         });
     }
-
     $(document).ready(function() {
         loading(true);
         var data = {
             'action': 'mxp_messenger_settings_save',
             'nonce': MXP_FB2WP.nonce,
-            'method': 'get',
-            'data': '[]'
+            'method': 'get'
         };
         $.post(ajaxurl, data, function(res) {
             if (res.success) {
