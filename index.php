@@ -532,7 +532,7 @@ class Mxp_FB2WP {
             wp_send_json_success(array('data' => array('match' => array(), 'fuzzy' => array())));
         }
         if (isset($method) && $method == "get") {
-            wp_send_json_success(get_option("mxp_messenger_msglist"));
+            wp_send_json_success(json_decode(get_option("mxp_messenger_msglist"), true));
         }
         if (update_option("mxp_messenger_msglist", $data)) {
             wp_send_json_success(array('data' => json_decode($data, true)));
