@@ -2,15 +2,14 @@
 if (!defined('WPINC')) {
     die;
 }
-//有整理過些惹...
-//TODO:優化
+
 if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-setting-page')) {
     $id                          = sanitize_text_field($_POST['mxp_fb_app_id']);
     $secret                      = sanitize_text_field($_POST['mxp_fb_secret']);
     $token                       = sanitize_text_field($_POST['mxp_fb_app_access_token']);
     $vtoken                      = sanitize_text_field($_POST['mxp_fb_webhooks_verify_token']);
     $enable_log                  = sanitize_text_field($_POST['mxp_enable_debug']);
-    $default_reply               = esc_textarea(stripslashes($_POST['mxp_messenger_default_reply']));
+    $default_reply               = base64_encode(stripslashes($_POST['mxp_messenger_default_reply']));
     $post_enable                 = sanitize_text_field($_POST['mxp_fb2wp_post_enable']);
     $post_author                 = sanitize_text_field($_POST['mxp_fb2wp_post_author']);
     $post_category               = sanitize_text_field($_POST['mxp_fb2wp_post_category']);
@@ -31,7 +30,7 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $display_img_height          = sanitize_text_field($_POST['mxp_fb2wp_image_height']);
     $display_vid_width           = sanitize_text_field($_POST['mxp_fb2wp_video_width']);
     $display_vid_height          = sanitize_text_field($_POST['mxp_fb2wp_video_height']);
-    $post_footer                 = stripslashes($_POST['mxp_fb2wp_post_footer']);
+    $post_footer                 = base64_encode(stripslashes($_POST['mxp_fb2wp_post_footer']));
     $no_post_tag                 = sanitize_text_field($_POST['mxp_fb2wp_no_post_tag']);
     $enable_fbquote              = sanitize_text_field($_POST['mxp_fb_quote_enable']);
     $enable_fbsave               = sanitize_text_field($_POST['mxp_fb_save_enable']);
@@ -51,10 +50,10 @@ if (!empty($_POST) && wp_verify_nonce($_REQUEST['_wpnonce'], 'mxp-fb2wp-main-set
     $theme_color                 = sanitize_text_field($_POST['mxp_fb_messenger_theme_color']);
     $mxp_remove_plugin_debug_log = sanitize_text_field((!isset($_POST['mxp_remove_plugin_debug_log']) || $_POST['mxp_remove_plugin_debug_log'] == "") ? "no" : $_POST['mxp_remove_plugin_debug_log']);
     $mxp_active_tab              = sanitize_text_field($_POST['mxp_fb2wp_active_tab']);
-    $section_title               = stripslashes($_POST['mxp_fb_functions_section_title']);
+    $section_title               = base64_encode(stripslashes($_POST['mxp_fb_functions_section_title']));
     $comment_mirror_enable       = sanitize_text_field($_POST['mxp_fb2wp_comment_mirror_enable']);
     $comment_mirror_approved     = sanitize_text_field($_POST['mxp_fb2wp_comment_mirror_approved']);
-    if (has_shortcode($post_footer, 'mxp_fb2wp_display_embed')) {
+    if (has_shortcode(base64_decode($post_footer), 'mxp_fb2wp_display_embed')) {
         //待處理
         echo "<script>alert('" . __('Do not contain shortcode [mxp_fb2wp_display_embed] in footer contents for synced posts.', 'fb2wp-integration-tools') . "');</script>";
         unset($post_footer);
@@ -248,7 +247,7 @@ esc_html_e('Use commas to separate testing users\' Facebook user IDs, or leave b
 		<p><?php
 /* translators: Default reply when there is no correspondent match. */
 esc_html_e('Default reply: ', 'fb2wp-integration-tools');?>
-		<textarea name="mxp_messenger_default_reply" rows="3" cols="30"><?php echo get_option("mxp_messenger_default_reply"); ?></textarea><br /><?php
+		<textarea name="mxp_messenger_default_reply" rows="3" cols="30"><?php echo esc_textarea(base64_decode(get_option("mxp_messenger_default_reply", ""))); ?></textarea><br /><?php
 esc_html_e('You may use [mxp_input_msg] as a placeholder of users input message. For example, "Oops, I don\'t understand what you mean by saying \'[mxp_input_msg]\'. Please try other commands."', 'fb2wp-integration-tools');?></p>
 		<p><?php
 /* translators: %1$s is the url of Handover Protocol instructions */
@@ -353,7 +352,7 @@ esc_html_e('Use comma-saparated format', 'fb2wp-integration-tools');?>
 		<input type="radio" name="mxp_fb2wp_default_display_embed" value="no" <?php checked('no', get_option("mxp_fb2wp_default_display_embed"));?>><label><?php esc_html_e('Disable', 'fb2wp-integration-tools');?></label>
 		</p>
 		<p><?php esc_html_e('Footer contents for synced posts (HTML, JavaScript, CSS and shortcodes supported): ', 'fb2wp-integration-tools');?>
-		<textarea name="mxp_fb2wp_post_footer" rows="3" cols="40"><?php echo get_option("mxp_fb2wp_post_footer", ""); ?></textarea>
+		<textarea name="mxp_fb2wp_post_footer" rows="3" cols="40"><?php echo esc_textarea(base64_decode(get_option("mxp_fb2wp_post_footer", ""))); ?></textarea>
 		</p>
 		<h2><?php esc_html_e('Sync Comments Setup', 'fb2wp-integration-tools');?></h2>
 		<p><?php esc_html_e('To sync comments of posts shared to Facebook page back to the original posts.', 'fb2wp-integration-tools');?></p>
@@ -369,7 +368,7 @@ esc_html_e('Use comma-saparated format', 'fb2wp-integration-tools');?>
 <div id="fb_plugin" class="container Section">
 		<h2><?php esc_html_e('Facebook Plugins', 'fb2wp-integration-tools');?></h2>
 		<p><?php esc_html_e('Block title: ', 'fb2wp-integration-tools');?>
-		<input type="text" name="mxp_fb_functions_section_title" value="<?php echo get_option("mxp_fb_functions_section_title", esc_attr__('<h3>Facebook Plugins</h3>', 'fb2wp-integration-tools')); ?>">
+		<input type="text" name="mxp_fb_functions_section_title" value="<?php echo esc_attr(base64_decode(get_option("mxp_fb_functions_section_title", base64_encode(esc_attr__('<h3>Facebook Plugins</h3>', 'fb2wp-integration-tools'))))); ?>">
 		<?php esc_html_e('(HTML, JavaScript and CSS supoorted)', 'fb2wp-integration-tools');?>
 		</p>
 		<p><?php esc_html_e('Enable Quote Plugin: ', 'fb2wp-integration-tools');?>
