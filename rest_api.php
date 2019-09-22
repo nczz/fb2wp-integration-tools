@@ -206,13 +206,13 @@ if (class_exists('WP_REST_Controller')) {
         }
 
         private function parsing_message($sender, $msg) {
-            $obj        = unserialize(get_option("mxp_messenger_msglist"));
+            $obj        = json_decode(base64_decode(get_option("mxp_messenger_msglist")), true);
             $match_resp = "";
             if (isset($obj['match'])) {
                 $m = $obj['match'];
                 if (is_array($m)) {
                     for ($i = 0; $i < count($m); ++$i) {
-                        $key   = $m[$i]['key'];
+                        $key   = urldecode($m[$i]['key']);
                         $value = urldecode($m[$i]['value']);
                         if ($key == $msg) {
                             //1.4.7 新增 hook
@@ -232,7 +232,7 @@ if (class_exists('WP_REST_Controller')) {
                 $f = $obj['fuzzy'];
                 if (is_array($f)) {
                     for ($i = 0; $i < count($f); ++$i) {
-                        $key   = $f[$i]['key'];
+                        $key   = urldecode($f[$i]['key']);
                         $value = urldecode($f[$i]['value']);
                         if (preg_match("/{$key}/i", $msg)) {
                             //1.4.7 新增 hook

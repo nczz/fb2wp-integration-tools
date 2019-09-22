@@ -36,7 +36,7 @@
             var m_textarea = $('textarea', m_items[i]).val();
             if (m_input != "" && m_textarea != "") {
                 m.push({
-                    key: m_input,
+                    key: encodeURIComponent(m_input),
                     value: encodeURIComponent(m_textarea)
                 });
             }
@@ -46,7 +46,7 @@
             var f_textarea = $('textarea', f_items[i]).val();
             if (f_input != "" && f_textarea != "") {
                 f.push({
-                    key: f_input,
+                    key: encodeURIComponent(f_input),
                     value: encodeURIComponent(f_textarea)
                 });
             }
