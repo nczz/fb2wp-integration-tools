@@ -294,7 +294,7 @@ class Mxp_FB2WP {
             return $meta;
         }
         $posts  = explode("_", $post_id);
-        $footer = get_option("mxp_fb2wp_post_footer", "");
+        $footer = base64_decode(get_option("mxp_fb2wp_post_footer", ""));
         if (has_shortcode($footer, 'mxp_fb2wp_display_embed')) {
             $footer = strip_shortcodes($footer);
         }
