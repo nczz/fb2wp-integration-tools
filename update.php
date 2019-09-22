@@ -329,6 +329,11 @@ class Mxp_Update {
         if ($post_footer != "") {
             update_option("mxp_fb2wp_post_footer", base64_encode($post_footer));
         }
+        // 外掛區域標題
+        $section_title = get_option("mxp_fb_functions_section_title", "");
+        if ($post_footer != "") {
+            update_option("mxp_fb_functions_section_title", base64_encode($section_title));
+        }
         return true;
     }
 }

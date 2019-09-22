@@ -303,7 +303,7 @@ if (class_exists('WP_REST_Controller')) {
         }
 
         public function message_nomatch($msg) {
-            $nomatch = get_option("mxp_messenger_default_reply", "「{$msg}」無法識別指令");
+            $nomatch = base64_decode(get_option("mxp_messenger_default_reply", base64_encode("「{$msg}」無法識別指令")));
             $detect  = false;
             if (strpos($nomatch, '[mxp_input_msg]') !== false) {
                 $detect = true;
