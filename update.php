@@ -317,7 +317,7 @@ class Mxp_Update {
         // 機器人關鍵字
         $msglist = get_option("mxp_messenger_msglist", "");
         if ($msglist != "" || is_array($msglist)) {
-            update_option("mxp_messenger_msglist", base64_encode(json_encode($msglist)));
+            update_option("mxp_messenger_msglist", base64_encode(json_encode(maybe_unserialize($msglist))));
         }
         // 機器人預設回覆
         $default_reply = get_option("mxp_messenger_default_reply", "");
