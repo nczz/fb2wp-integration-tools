@@ -420,7 +420,7 @@ class Mxp_FB2WP {
         }
         // v1.5.0 新增 Facebook 小工具擺放位置的選項：文章內容上方、文章內容下方
         if (get_option("mxp_fb_widget_place", "down") == "down") {
-            return $content . "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>" . __('Facebook features:', 'fb2wp-integration-tools') . "</h3>") . $func . "</div>";
+            return $content . "<div id='mxp_fb_functions_section'>" . base64_decode(get_option("mxp_fb_functions_section_title", base64_encode(esc_attr__('<h3>Facebook Plugins</h3>', 'fb2wp-integration-tools')))) . $func . "</div>";
         } else {
             return "<div id='mxp_fb_functions_section'>" . get_option("mxp_fb_functions_section_title", "</h3>" . __('Facebook features:', 'fb2wp-integration-tools') . "</h3>") . $func . "</div>" . $content;
         }
