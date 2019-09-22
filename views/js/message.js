@@ -69,7 +69,7 @@ function htmlEntities(str) {
                 alert(MXP_FB2WP.successMsg);
                 loading(false);
             } else {
-                alert(MXP_FB2WP.errorMsg);
+                alert(res.data.data.msg);
                 loading(false);
             }
         });
@@ -96,7 +96,7 @@ function htmlEntities(str) {
                 $('.delete_item').click(delete_item);
                 loading(false);
             } else {
-                alert(MXP_FB2WP.errorMsg);
+                alert(res.data.data.msg);
                 loading(false);
             }
         });
