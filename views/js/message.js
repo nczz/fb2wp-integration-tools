@@ -59,7 +59,7 @@
             'action': 'mxp_messenger_settings_save',
             'nonce': MXP_FB2WP.nonce,
             'data': items,
-            'metod': 'set',
+            'method': 'set',
         };
         $.post(ajaxurl, data, function(res) {
             if (res.success) {
