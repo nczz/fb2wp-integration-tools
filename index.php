@@ -523,7 +523,7 @@ class Mxp_FB2WP {
     public function mxp_messenger_settings_save() {
         $data = "";
         if (isset($_POST['data'])) {
-            $data = base64_encode(json_encode($_POST['data']));
+            $data = base64_encode(json_encode(wp_unslash($_POST['data'])));
         }
         $nonce  = sanitize_text_field($_POST['nonce']);
         $method = strtolower(sanitize_text_field($_POST['method']));
@@ -536,7 +536,7 @@ class Mxp_FB2WP {
                 if (update_option("mxp_messenger_msglist", $data)) {
                     wp_send_json_success(array('data' => json_decode(base64_decode($data), true)));
                 } else {
-                    wp_send_json_error(array('data' => array('msg' => __('Unable to update', 'fb2wp-integration-tools'))));
+                    wp_send_json_error(array('data' => array('msg' => __('Nothing changed!', 'fb2wp-integration-tools'))));
                 }
             }
             break;
