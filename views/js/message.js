@@ -17,7 +17,7 @@
     }
 
     function add_item(prefix, id, req, resp) {
-        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. ' + MXP_FB2WP.inputMatch + '<input class="' + prefix + '_' + id + ' item" type="text" value="' + req + '" size="20"/>' + MXP_FB2WP.matchReply + '<textarea class="' + prefix + '_' + id + ' item" rows="3" cols="30">' + decodeURIComponent(resp) + '</textarea><button data-id="' + prefix + '_' + id + '" class="button delete_item">' + MXP_FB2WP.removeItem + '</button></p>';
+        return '<p class="item" id="' + prefix + '_' + id + '">' + id + '. ' + MXP_FB2WP.inputMatch + '<input class="' + prefix + '_' + id + ' item" type="text" value="' + decodeURIComponent(req) + '" size="20"/>' + MXP_FB2WP.matchReply + '<textarea class="' + prefix + '_' + id + ' item" rows="3" cols="30">' + decodeURIComponent(resp) + '</textarea><button data-id="' + prefix + '_' + id + '" class="button delete_item">' + MXP_FB2WP.removeItem + '</button></p>';
     }
 
     function delete_item() {
