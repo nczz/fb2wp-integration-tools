@@ -169,16 +169,16 @@ foreach ($tabs as $key => $value) {
 printf('<a href="%s" target="_blank">Facebook App</a> ' . esc_html__('Settings', 'fb2wp-integration-tools') . '</h2>', 'https://developers.facebook.com');?></h3>
         <form action="" method="POST">
         <p><?php esc_html_e('App ID: ', 'fb2wp-integration-tools');?>
-        <input type="text" value="<?php echo get_option("mxp_fb_app_id"); ?>" name="mxp_fb_app_id" size="20" id="fb_app_id" />
+        <input type="text" value="<?php echo esc_attr(get_option("mxp_fb_app_id")); ?>" name="mxp_fb_app_id" size="20" id="fb_app_id" />
         </p>
         <p><?php esc_html_e('App Secret: ', 'fb2wp-integration-tools');?>
-        <input type="text" value="<?php echo get_option("mxp_fb_secret"); ?>" name="mxp_fb_secret" size="36" id="fb_app_secret" />
+        <input type="text" value="<?php echo esc_attr(get_option("mxp_fb_secret")); ?>" name="mxp_fb_secret" size="36" id="fb_app_secret" />
         </p>
         <p><?php esc_html_e('Page ID: ', 'fb2wp-integration-tools');?>
-        <input type="text" value="<?php echo get_option("mxp_fb_page_id"); ?>" name="mxp_fb_page_id" size="20" id="mxp_fb_page_id" />
+        <input type="text" value="<?php echo esc_attr(get_option("mxp_fb_page_id")); ?>" name="mxp_fb_page_id" size="20" id="mxp_fb_page_id" />
         </p>
         <p><?php esc_html_e('Page Access Token: ', 'fb2wp-integration-tools');?>
-        <input type="text" value="<?php echo get_option("mxp_fb_app_access_token"); ?>" name="mxp_fb_app_access_token" size="60" id="fb_app_access_token" />(<a href="https://tw.wordpress.org/plugins/fb2wp-integration-tools/faq/" target="_blank" ><?php esc_html_e('FAQ', 'fb2wp-integration-tools');?></a>)
+        <input type="text" value="<?php echo esc_attr(get_option("mxp_fb_app_access_token")); ?>" name="mxp_fb_app_access_token" size="60" id="fb_app_access_token" />(<a href="https://tw.wordpress.org/plugins/fb2wp-integration-tools/faq/" target="_blank" ><?php esc_html_e('FAQ', 'fb2wp-integration-tools');?></a>)
         </p>
         <p><?php esc_html_e('Enable Facebook JavaScript SDK: ', 'fb2wp-integration-tools');?>
         <input type="radio" name="mxp_fb_enable_jssdk" value="yes" <?php checked('yes', get_option("mxp_fb_enable_jssdk", "yes"));?> checked="checked"><label>
