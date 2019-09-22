@@ -257,9 +257,9 @@ printf(__('Enable <a href="%1$s" target="%2$s">Handover Protocol</a>: ', 'fb2wp-
         </p>
         <p><?php _e('Text shown on Handover Protocol switch button: ', 'fb2wp-integration-tools');?>
         <input type="text" name="mxp_fb2wp_messenger_enable_pass_thread_btn_text" size="30" value="<?php
-echo get_option("mxp_fb2wp_messenger_enable_pass_thread_btn_text",
+echo esc_attr(get_option("mxp_fb2wp_messenger_enable_pass_thread_btn_text",
     /* translators: Default message shown on Handover Protocol switch button.*/
-    esc_html__('Click here to inform the admin.', 'fb2wp-integration-tools'));
+    esc_html__('Click here to inform the admin.', 'fb2wp-integration-tools')));
 ?>" />
         </p>
 </div>
