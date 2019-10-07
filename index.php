@@ -3,7 +3,7 @@
  * Plugin Name: XX2WP integration tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: The best Facebook Webhooks integration plugin ever! This plugin integrates the following features: Facebook Reviews, Automated bots, Facebook-WordPress posts synchronization and Facebook Page plugins etc. This plugin also allows developers to use powerful Hooks to connect Facebook Page comments and messages.
- * Version: 1.9.4
+ * Version: 1.9.5
  * Author: Chun
  * Author URI: https://www.mxp.tw/contact/
  * License: GPLv2 or later
@@ -21,7 +21,7 @@ if (!class_exists('Mxp_FB2WP_API')) {
 }
 
 class Mxp_FB2WP {
-    static $version            = '1.9.4';
+    static $version            = '1.9.5';
     protected static $instance = null;
     protected static $rest_api = null;
     public $slug               = 'mxp-fb2wp';
@@ -66,6 +66,7 @@ class Mxp_FB2WP {
         add_action('wp_ajax_mxp_messenger_settings_save', array($this, 'mxp_messenger_settings_save'));
         add_action('wp_ajax_mxp_import_fb_ratings', array($this, 'mxp_import_fb_ratings'));
         add_action('wp_ajax_mxp_debug_record_action', array($this, 'mxp_debug_record_action'));
+        add_action('wp_ajax_mxp_clean_duplicate_action', array($this, 'mxp_clean_duplicate_action'));
         //FB 死活都修不好這個是怎樣勒？
         //$this->get_fb_locals();
     }
@@ -196,20 +197,21 @@ class Mxp_FB2WP {
             include plugin_dir_path(__FILE__) . "views/post.php";
         });
         wp_localize_script($this->slug . '-post-page', 'MXP_FB2WP', array(
-            'ajaxurl'    => admin_url('admin-ajax.php'),
-            'nonce'      => wp_create_nonce('mxp-ajax-nonce'),
-            'waitMe'     => esc_html__('Loading...', 'fb2wp-integration-tools'),
-            'removeBtn'  => esc_html__('Remove this page', 'fb2wp-integration-tools'),
-            'remove'     => esc_html__('Remove', 'mxp-fb2wp'),
-            'searchBtn'  => esc_html__('Search', 'fb2wp-integration-tools'),
-            'searchTerm' => esc_html__('Search terms', 'fb2wp-integration-tools'),
-            'action'     => esc_html__('Actions', 'mxp-fb2wp'),
-            'time'       => esc_html__('Time', 'fb2wp-integration-tools'),
-            'object'     => esc_html__('Objects', 'fb2wp-integration-tools'),
-            'sender'     => esc_html__('Targets', 'fb2wp-integration-tools'),
-            'msg'        => esc_html__('Messages', 'fb2wp-integration-tools'),
-            'postBtn'    => esc_html__('Publish', 'fb2wp-integration-tools'),
-            'empty'      => esc_html__('No contents', 'fb2wp-integration-tools'),
+            'ajaxurl'        => admin_url('admin-ajax.php'),
+            'nonce'          => wp_create_nonce('mxp-ajax-nonce'),
+            'waitMe'         => esc_html__('Loading...', 'fb2wp-integration-tools'),
+            'removeBtn'      => esc_html__('Remove this page', 'fb2wp-integration-tools'),
+            'remove'         => esc_html__('Remove', 'mxp-fb2wp'),
+            'searchBtn'      => esc_html__('Search', 'fb2wp-integration-tools'),
+            'cleanDuplicate' => esc_html__('Clean Duplicate', 'fb2wp-integration-tools'),
+            'searchTerm'     => esc_html__('Search terms', 'fb2wp-integration-tools'),
+            'action'         => esc_html__('Actions', 'mxp-fb2wp'),
+            'time'           => esc_html__('Time', 'fb2wp-integration-tools'),
+            'object'         => esc_html__('Objects', 'fb2wp-integration-tools'),
+            'sender'         => esc_html__('Targets', 'fb2wp-integration-tools'),
+            'msg'            => esc_html__('Messages', 'fb2wp-integration-tools'),
+            'postBtn'        => esc_html__('Publish', 'fb2wp-integration-tools'),
+            'empty'          => esc_html__('No contents', 'fb2wp-integration-tools'),
         ));
         wp_enqueue_script($this->slug . '-post-page');
         wp_enqueue_script($this->slug . '-loading-script');
@@ -669,6 +671,52 @@ class Mxp_FB2WP {
             break;
         }
 
+    }
+    public function mxp_clean_duplicate_action() {
+        $nonce = $_POST['nonce'];
+        global $wpdb;
+        if (!wp_verify_nonce($nonce, 'mxp-ajax-nonce')) {
+            wp_send_json_error(array('data' => array('msg' => __('Bad request', 'fb2wp-integration-tools'))));
+        }
+        $raw_data   = $wpdb->get_results("SELECT sid,action,created_time,post_id,message FROM {$wpdb->prefix}fb2wp_debug ORDER BY sid DESC", ARRAY_A);
+        $empty_data = $wpdb->get_results("SELECT sid FROM {$wpdb->prefix}fb2wp_debug WHERE action='remove' AND message='' ORDER BY sid DESC", ARRAY_A);
+        $id_arr     = array();
+        foreach ($raw_data as $key => $data) {
+            $raw_data[$key]['message'] = md5($data['message']);
+            if (!isset($id_arr[$data['post_id']])) {
+                $id_arr[$data['post_id']]   = array();
+                $id_arr[$data['post_id']][] = $raw_data[$key];
+            } else {
+                $id_arr[$data['post_id']][] = $raw_data[$key];
+            }
+        }
+        $count = array();
+        foreach ($id_arr as $key => $set) {
+            $comp = array();
+            foreach ($set as $id => $item) {
+                if (!isset($comp[$item['message']])) {
+                    $comp[$item['message']]   = array();
+                    $comp[$item['message']][] = $item['sid'];
+                } else {
+                    $comp[$item['message']][] = $item['sid'];
+                }
+            }
+
+            foreach ($comp as $msgid => $pids) {
+                for ($i = 1; $i < count($pids); ++$i) {
+                    $count[] = $pids[$i];
+                }
+            }
+        }
+
+        foreach ($empty_data as $key => $item) {
+            $count[] = $item['sid'];
+        }
+
+        for ($i = 0; $i < count($count); ++$i) {
+            $wpdb->delete("{$wpdb->prefix}fb2wp_debug", array('sid' => intval($count[$i])));
+        }
+        wp_send_json_success(array('data' => count($count)));
     }
 }
 

@@ -17,12 +17,7 @@
     }
     //v1.4.3 修正後台輸出因html標籤，導致顯示錯誤，避免被自己XSS
     function escapeHtml(unsafe) {
-        return unsafe
-            .replace(/&/g, "&amp;")
-            .replace(/</g, "&lt;")
-            .replace(/>/g, "&gt;")
-            .replace(/"/g, "&quot;")
-            .replace(/'/g, "&#039;");
+        return unsafe.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
     }
 
     function timeConverter(timestamp) {
@@ -41,21 +36,21 @@
     function build_table(data) {
         var items = data.data;
         var pages = data.total_pages;
-        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="' + MXP_FB2WP.searchTerm + '"/><button class="button action" id="search">' + MXP_FB2WP.searchBtn + '</button></div>';
+        var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="' + MXP_FB2WP.searchTerm + '"/><button class="button action" id="search">' + MXP_FB2WP.searchBtn + '</button> | <button class="button action" id="clean_duplicate">' + MXP_FB2WP.cleanDuplicate + '</button></div>';
         var sel = '<select id="page_select">';
         for (var i = 0; i < pages; ++i) {
             var now = i == data.page ? 'selected' : '';
             sel += '<option value="' + i + '" ' + now + '>第 ' + (i + 1) + ' 頁</option>';
         }
         sel += '</select>';
-        var table = '<table id="main"><tr><th><button class="button action delete_all">' + MXP_FB2WP.removeBtn + '</button> |' + sel + '</th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg +'</th></tr>';
+        var table = '<table id="main"><tr><th><button class="button action delete_all">' + MXP_FB2WP.removeBtn + '</button> |' + sel + '</th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg + '</th></tr>';
         for (var i = 0; i < items.length; ++i) {
             var item = items[i];
             var disabled = item.action != 'add' ? 'disabled' : '';
             if (item.item == 'album') {
                 disabled = 'disabled';
             }
-            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>'+MXP_FB2WP.postBtn+'</button> | <button data-id="' + item.sid + '"" class="button action delete">' + MXP_FB2WP.remove +'</button></td>';
+            var post = '<tr id="item_' + item.sid + '""><td><button data-id="' + item.sid + '"" class="button action post" ' + disabled + '>' + MXP_FB2WP.postBtn + '</button> | <button data-id="' + item.sid + '"" class="button action delete">' + MXP_FB2WP.remove + '</button></td>';
             var action = '<td>' + item.action + '</td>';
             var created_time = '<td><a href="https://facebook.com/' + item.post_id + '" target="_blank" >' + timeConverter(item.created_time) + '</a></td>';
             var obj = '<td>' + item.item + '</td>';
@@ -71,7 +66,7 @@
         var items = data.data;
         var pages = data.total_pages;
         var search_box = '<div class="search_box"><input id="keyword" type="text" size="20" value="" placeholder="' + MXP_FB2WP.searchTerm + '"/><button class="button action" id="search">' + MXP_FB2WP.searchBtn + '</button></div>';
-        var table = '<table id="search_results"><tr><th><a href="">返回前頁</a></th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg +'</th></tr>';
+        var table = '<table id="search_results"><tr><th><a href="">返回前頁</a></th><th>' + MXP_FB2WP.action + '</th><th>' + MXP_FB2WP.time + '</th><th>' + MXP_FB2WP.object + '</th><th>' + MXP_FB2WP.sender + '</th><th>' + MXP_FB2WP.msg + '</th></tr>';
         for (var i = 0; i < items.length; ++i) {
             var item = items[i];
             var disabled = item.action != 'add' ? 'disabled' : '';
@@ -160,7 +155,6 @@
                 loading(false);
             });
         });
-
         $('#page_select').change(function() {
             loading(true);
             var page = $(this).val();
@@ -180,7 +174,6 @@
                 loading(false);
             });
         });
-
         $('#search').click(function() {
             loading(true);
             var data = {
@@ -193,6 +186,24 @@
                 if (res.success) {
                     $('#table').html(build_search_results_table(res.data));
                     event_binding();
+                } else {
+                    alert('發生錯誤！');
+                }
+                loading(false);
+            });
+        });
+        $('#clean_duplicate').click(function() {
+            loading(true);
+            var data = {
+                'action': 'mxp_clean_duplicate_action',
+                'nonce': MXP_FB2WP.nonce,
+            };
+            $.post(ajaxurl, data, function(res) {
+                if (res.success) {
+                    alert(res.data.data + ' records has been removed!');
+                    if (res.data.data != 0) {
+                        location.reload();
+                    }
                 } else {
                     alert('發生錯誤！');
                 }
