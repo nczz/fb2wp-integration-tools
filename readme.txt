@@ -1,4 +1,4 @@
-=== XX2WP integration tools ===
+=== XX2WP Integration Tools ===
 Contributors: mxp, no249a002
 Donate link: https://mxp.tw/jT
 Tags: Mxp.TW, FB2WP, Webhooks, 同步, 文章發佈, 轉發, 機器人, 自動回覆訊息, API, sync, synchronize, 粉絲頁, Page, Messenger, Webhook, bot
@@ -26,7 +26,7 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
 教學介紹文：
 
-- [如何利用 FB2WP integration tools 讓粉絲團發文同步至我們的網站上](https://goo.gl/BDxOfx) By 一群棒子
+- [如何利用 FB2WP Integration Tools 讓粉絲團發文同步至我們的網站上](https://goo.gl/BDxOfx) By 一群棒子
 - [用 FB2WP 將臉書 Messenger 聊天機器人加入 WordPress 網站](https://diary.taskinghouse.com/posts/install-facebook-messenger-chat-bot-in-wordpress-website-with-fb2wp/) By Victor Hung's Diary 
 
 ### 程式開發捕捉事件:

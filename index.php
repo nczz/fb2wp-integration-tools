@@ -1,6 +1,6 @@
 <?php
 /**
- * Plugin Name: XX2WP integration tools - Mxp.TW
+ * Plugin Name: XX2WP Integration Tools - Mxp.TW
  * Plugin URI: https://tw.wordpress.org/plugins/fb2wp-integration-tools/
  * Description: The best Facebook Webhooks integration plugin ever! This plugin integrates the following features: Facebook Reviews, Automated bots, Facebook-WordPress posts synchronization and Facebook Page plugins etc. This plugin also allows developers to use powerful Hooks to connect Facebook Page comments and messages.
  * Version: 1.9.5
