@@ -5,7 +5,7 @@ Tags: Mxp.TW, FB2WP, Webhooks, 同步, 文章發佈, 轉發, 機器人, 自動�
 Requires at least: 4.7
 Requires PHP: 5.4
 Tested up to: 5.2
-Stable tag: 1.9.5
+Stable tag: 1.9.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -159,6 +159,11 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.9.6 =
+
+* 更新外掛名稱
+* 修正自動回覆設定頁面功能問題
 
 = 1.9.5 =
 
