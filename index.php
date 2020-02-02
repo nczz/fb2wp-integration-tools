@@ -540,6 +540,12 @@ class Mxp_FB2WP {
                 } else {
                     wp_send_json_error(array('data' => array('msg' => __('Nothing changed!', 'fb2wp-integration-tools'))));
                 }
+            } else {
+                if (update_option("mxp_messenger_msglist", "")) {
+                    wp_send_json_success(array('data' => json_decode(base64_decode($data), true)));
+                } else {
+                    wp_send_json_error(array('data' => array('msg' => __('Nothing changed!', 'fb2wp-integration-tools'))));
+                }
             }
             break;
         case 'get':
@@ -721,3 +727,4 @@ class Mxp_FB2WP {
 }
 
 add_action('plugins_loaded', array('Mxp_FB2WP', 'get_instance'));
+
