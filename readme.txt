@@ -4,8 +4,8 @@ Donate link: https://mxp.tw/jT
 Tags: Mxp.TW, FB2WP, Webhooks, 同步, 文章發佈, 轉發, 機器人, 自動回覆訊息, API, sync, synchronize, 粉絲頁, Page, Messenger, Webhook, bot
 Requires at least: 4.7
 Requires PHP: 5.4
-Tested up to: 5.4
-Stable tag: 1.9.6
+Tested up to: 5.4.1
+Stable tag: 1.9.7
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -53,7 +53,6 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 ### 待辦清單(TODO):
 
 1. 寫文件
-2. UI 修正
 
 == Installation ==
 
@@ -159,6 +158,10 @@ License URI: https://www.gnu.org/licenses/gpl-2.0.html
 網站：[聯絡我](https://www.mxp.tw/contact/)
 
 == Changelog ==
+
+= 1.9.7 =
+
+* 修正寫法，使用 WordPress 原生方法改寫
 
 = 1.9.6 =
 

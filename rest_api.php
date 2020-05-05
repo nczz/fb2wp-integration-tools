@@ -1077,27 +1077,39 @@ if (class_exists('WP_REST_Controller')) {
         }
 
         public function get_origin_url($url) {
-            if (filter_var($url, FILTER_VALIDATE_URL)) {
-                $mxp_ini    = array('curl', 'init');
-                $mxp_init   = join('_', $mxp_ini);
-                $ch         = $mxp_init();
-                $mxp_set    = array('curl', 'setopt');
-                $mxp_setopt = join('_', $mxp_set);
-                $mxp_setopt($ch, CURLOPT_URL, $url);
-                $mxp_setopt($ch, CURLOPT_HEADER, true);
-                $mxp_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
-                $mxp_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                $mxp_setopt($ch, CURLOPT_NOBODY, true);
-                $mxp_exe     = array('curl', 'exec');
-                $mxp_exec    = join('_', $mxp_exe);
-                $headers     = $mxp_exec($ch);
-                $mxp_get     = array('curl', 'getinfo');
-                $mxp_getinfo = join('_', $mxp_get);
-                $url         = $mxp_getinfo($ch, CURLINFO_EFFECTIVE_URL);
-                $mxp_c       = array('curl', 'close');
-                $mxp_close   = join('_', $mxp_c);
-                $mxp_close($ch);
-                return $url;
+            // 待改版 https://www.mxp.tw/8894/
+            // if (filter_var($url, FILTER_VALIDATE_URL)) {
+            //     $mxp_ini    = array('curl', 'init');
+            //     $mxp_init   = join('_', $mxp_ini);
+            //     $ch         = $mxp_init();
+            //     $mxp_set    = array('curl', 'setopt');
+            //     $mxp_setopt = join('_', $mxp_set);
+            //     $mxp_setopt($ch, CURLOPT_URL, $url);
+            //     $mxp_setopt($ch, CURLOPT_HEADER, true);
+            //     $mxp_setopt($ch, CURLOPT_FOLLOWLOCATION, true);
+            //     $mxp_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            //     $mxp_setopt($ch, CURLOPT_NOBODY, true);
+            //     $mxp_exe     = array('curl', 'exec');
+            //     $mxp_exec    = join('_', $mxp_exe);
+            //     $headers     = $mxp_exec($ch);
+            //     $mxp_get     = array('curl', 'getinfo');
+            //     $mxp_getinfo = join('_', $mxp_get);
+            //     $url         = $mxp_getinfo($ch, CURLINFO_EFFECTIVE_URL);
+            //     $mxp_c       = array('curl', 'close');
+            //     $mxp_close   = join('_', $mxp_c);
+            //     $mxp_close($ch);
+            //     return $url;
+            // } else {
+            //     return "";
+            // }
+            $location = array();
+            $response = wp_remote_head($url, array('redirection' => 5));
+            $response = $response['http_response']->get_response_object();
+            foreach ($response->history as $item) {
+                array_unshift($location, $item->headers->getValues('location')[0]);
+            }
+            if (isset($location[count($location) - 1])) {
+                return $location[count($location) - 1];
             } else {
                 return "";
             }
