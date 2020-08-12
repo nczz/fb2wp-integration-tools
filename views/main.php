@@ -214,7 +214,7 @@ echo '<input type="text" value="' . esc_attr(get_option("mxp_fb_jssdk_local", ge
         <p><?php
 /* translators: Choose the version of Facebook JS SDK */
 esc_html_e('SDK Version: ', 'fb2wp-integration-tools');?>
-        <input type="text" size="7" value="<?php echo esc_attr(get_option("mxp_fb_api_version", "v3.1")); ?>" name="mxp_fb_api_version">
+        <input type="text" size="7" value="<?php echo esc_attr(get_option("mxp_fb_api_version", "v7.0")); ?>" name="mxp_fb_api_version">
         </p>
 </div>
 <div id="webhooks" class="container Section">
