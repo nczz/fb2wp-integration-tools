@@ -142,6 +142,7 @@ if (class_exists('WP_REST_Controller')) {
                         $this->logger('debug-unknow-page-hook', $body);
                         break;
                     }
+                    do_action('fb2wp_webhook_event_action', $events[$i]);
                 }
             } else {
                 $this->logger('debug-isnotpage', $body);
@@ -696,6 +697,7 @@ if (class_exists('WP_REST_Controller')) {
             if (!is_array($event) || count($event) == 0) {
                 return false;
             }
+            do_action('fb2wp_log_before_insertdb_hook', $event);
             //FB來的 post_id 參數會被 insert 裡的方法自動轉為數字儲存，會有問題，需要特別設定型別
             $res = $wpdb->insert($wpdb->prefix . "fb2wp_debug", $event, array('%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s'));
             //記錄錯誤
@@ -740,7 +742,7 @@ if (class_exists('WP_REST_Controller')) {
 
                 }
             }
-
+            do_action('fb2wp_log_after_insertdb_hook', $event);
         }
         /**
          * ref: https://developers.facebook.com/docs/messenger-platform/webhook-reference#response
